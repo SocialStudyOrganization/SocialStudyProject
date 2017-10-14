@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ndlp.socialstudy">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.AppLogoFirstPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginSystem.LoginActivity" />
+        <activity android:name=".LoginSystem.RegisterActivity" />
+        <activity android:name=".NavigationDrawer_BottomNavigation.AboutUsActivity" />
+        <activity android:name=".NavigationDrawer_BottomNavigation.FeedbackActivity" />
+        <activity android:name=".NavigationDrawer_BottomNavigation.FehlerMeldenAcivity" />
+        <activity android:name=".Skripte.InformatikSkripteActivity" />
+        <activity android:name=".Skripte.InternationalBusinessSkripteActivity" />
+        <activity android:name=".Skripte.WebViewActivity" />
+        <activity android:name=".tutorialsheets.TutorialsheetsSlider" />
+        <activity android:name=".Skripte.ClassesActivity" />
+        <activity android:name=".NavigationDrawer_BottomNavigation.MainActivity"></activity>
+    </application>
+
+</manifest>

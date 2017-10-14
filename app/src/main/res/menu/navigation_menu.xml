@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/ic_launcher"
+        android:title="My Acoount" />
+
+    <item android:id="@+id/nav_anonym"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Settings" />
+
+    <item android:id="@+id/nav_feedback_senden"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Feedback senden" />
+
+    <item android:id="@+id/nav_fehler_melden"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Fehler melden" />
+
+    <item android:id="@+id/nav_about_us"
+        android:icon="@mipmap/ic_launcher"
+        android:title="About us" />
+
+
+
+</menu>
