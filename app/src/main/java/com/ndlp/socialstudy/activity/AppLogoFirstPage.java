@@ -47,6 +47,8 @@ public class AppLogoFirstPage extends AppCompatActivity {
             Intent intent = new Intent(AppLogoFirstPage.this, TutorialsheetsSlider.class);
             AppLogoFirstPage.this.startActivity(intent);
             finish();
+
+
         }
         //  navigate to MainActivity if a username is existing in SharedPrefs
         else {
