@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest{
 
-    private static final String LOGIN_Request_URL = "http://hellownero.de/Loginskripte/Login.php";
+    private static final String LOGIN_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Login.php";
     private Map<String, String> params;
 
     //  Constructor

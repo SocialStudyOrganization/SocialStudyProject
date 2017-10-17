@@ -56,10 +56,10 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     private static final String PASSWORT = "Nadipat2";
 
     //  location of the php script on server
-    final static String urlAddress = "http://hellownero.de/SkripteSkript/select_skripte.php";
+    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
 
     public String skriptname;
-    public String category = "informatik";
+    public String category = "Elektrotechnik";
     public String date;
     public String time;
     public String user;

@@ -14,7 +14,7 @@ import java.util.Map;
 public class SkripteRequest extends StringRequest {
 
     //  declare php location
-    private static final String Register_Request_URL = "http://hellownero.de/SkripteSkript/InformatikskripteRequest.php";
+    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/InformatikskripteRequest.php";
     private Map<String, String> params;
 
     //  Constructor
