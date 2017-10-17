@@ -14,15 +14,16 @@ import java.util.Map;
 public class SkripteRequest extends StringRequest {
 
     //  declare php location
-    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/InformatikskripteRequest.php";
+    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/SkripteRequest.php";
     private Map<String, String> params;
 
     //  Constructor
     //  if volley is finished it calls the listener in SkripteActivity
-    public SkripteRequest(String skriptname, String category, String date, String time, String user, Response.Listener<String> listener){
+    public SkripteRequest(String skriptname, String format, String category, String date, String time, String user, Response.Listener<String> listener){
         super(Method.POST, Register_Request_URL, listener, null);
         params = new HashMap<>();
         params.put("skriptname", skriptname);
+        params.put("format", format);
         params.put("category", category);
         params.put("date", date);
         params.put("time", time);

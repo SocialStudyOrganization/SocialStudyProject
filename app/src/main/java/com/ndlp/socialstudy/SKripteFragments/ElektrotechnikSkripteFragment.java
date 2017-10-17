@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -45,10 +46,15 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     //--------------------Variablendeklaration-----------------------------------------
 
     private FloatingActionButton floatingasPDF;
+    private FloatingActionButton floatingGallery;
+    private FloatingActionButton floatinfasWord;
 
     private static final int READ_REQUEST_CODE = 1;
-    Uri PDFUri;
-    public String PDFName;
+    private static final int SELECT_PICTURE = 1;
+    private static final int REQUEST_CODE_OPEN = 1;
+    Uri skriptUri;
+    Uri imageUri;
+    Uri wordUri;
 
     //  Serverdata
     private static final String SERVER_IP = "w0175925.kasserver.com";
@@ -59,6 +65,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
 
     public String skriptname;
+    public String format;
     public String category = "Elektrotechnik";
     public String date;
     public String time;
@@ -85,9 +92,13 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
+        floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
+        floatinfasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
 
-        PDFUri = null;
-        PDFName = null;
+        skriptUri = null;
+        imageUri = null;
+        wordUri = null;
+        skriptname = null;
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -101,9 +112,12 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 //  get all files on the device with type pdf -> highlighted and clickable
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
+
+                format = "PDF";
 
                 //  get the data for the fields in the recycler view according to time and date
                 Calendar calander = Calendar.getInstance();
@@ -122,6 +136,65 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             }
         });
 
+        floatingGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                format = "Image";
+
+                //  get the data for the fields in the recycler view according to time and date
+                Calendar calander = Calendar.getInstance();
+                int cDay = calander.get(Calendar.DAY_OF_MONTH);
+                int cMonth = calander.get(Calendar.MONTH) + 1;
+                int cYear = calander.get(Calendar.YEAR);
+                date = String.valueOf(cDay)+ "." + String.valueOf(cMonth)+ "." + String.valueOf(cYear);
+                int cHour = calander.get(Calendar.HOUR_OF_DAY);
+                int cMinute = calander.get(Calendar.MINUTE);
+                int cSecond = calander.get(Calendar.SECOND);
+                time = String.valueOf(cHour)+ ":" +String.valueOf(cMinute)+ ":" + String.valueOf(cSecond);
+
+                startActivityForResult(Intent.createChooser(intent,
+                        "Select Picture"), SELECT_PICTURE);
+
+            }
+        });
+
+        floatinfasWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                String[] mimetypes = {"application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+
+                format = "Word";
+
+                //  get the data for the fields in the recycler view according to time and date
+                Calendar calander = Calendar.getInstance();
+                int cDay = calander.get(Calendar.DAY_OF_MONTH);
+                int cMonth = calander.get(Calendar.MONTH) + 1;
+                int cYear = calander.get(Calendar.YEAR);
+                date = String.valueOf(cDay)+ "." + String.valueOf(cMonth)+ "." + String.valueOf(cYear);
+                int cHour = calander.get(Calendar.HOUR_OF_DAY);
+                int cMinute = calander.get(Calendar.MINUTE);
+                int cSecond = calander.get(Calendar.SECOND);
+                time = String.valueOf(cHour)+ ":" +String.valueOf(cMinute)+ ":" + String.valueOf(cSecond);
+
+
+                startActivityForResult(intent, REQUEST_CODE_OPEN);
+
+            }
+        });
+
+
+
+
         return rootView;
     }
 
@@ -133,34 +206,56 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         //  response to some other intent, and the code below shouldn't run at all.
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK){
 
-            //  check that intent != 0 therefore consists of data
-            //  getData() gets the data out of the Intent and saves it as PFDUri variable
+            //if the intent was from the pdf fab
             if (data != null){
-                PDFUri = data.getData();
-                Cursor resultCursor = getActivity().getContentResolver().query(PDFUri, null, null, null, null);
+
+
+                skriptUri = data.getData();
+                Cursor resultCursor = getActivity().getContentResolver().query(skriptUri, null, null, null, null);
 
                 //  move to first row
                 resultCursor.moveToFirst();
 
                 //  get PDF name out of the file and set it as PDFName
-                PDFName = resultCursor.getString(resultCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                skriptname = resultCursor.getString(resultCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
 
 
-                //  sets skriptname equals to PDFName
-                skriptname = PDFName;
 
                 //  calls method putIntoTable()
                 putIntoTable();
 
                 //  starts upload task to the server
-                UploadTask uploadTask = new UploadTask(getActivity(), PDFUri, PDFName);
+                UploadTask uploadTask = new UploadTask(getActivity(), skriptUri, skriptname);
                 uploadTask.execute(SERVER_IP, USERNAME, PASSWORT);
-
-
 
             }
         }
+
+        /*//if the result comes from the gallery Intent
+        if (requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK) {
+
+            if (data != null){
+
+                Log.d("FAB", "Image");
+
+                imageUri = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                Cursor cursor = getActivity().getContentResolver().query(
+                        imageUri, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String filePath = cursor.getString(columnIndex);
+                cursor.close();
+
+
+            }
+
+        }*/
+
     }
+
 
     //  method to get the result on the server from uploading skript detailled data
     public void putIntoTable(){
@@ -192,7 +287,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         };
 
         //  starts the request to upload skriptname category, date, time, user to server
-        SkripteRequest skripteRequest = new SkripteRequest(skriptname, category, date, time, user, responseListener);
+        SkripteRequest skripteRequest = new SkripteRequest(skriptname,format, category, date, time, user, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(skripteRequest);
     }
@@ -240,7 +335,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                 ftpClient.enterLocalPassiveMode();
 
                 //  navigates to the folder on te server
-                ftpClient.changeWorkingDirectory("/pdf");
+                ftpClient.changeWorkingDirectory("/SocialStudy/Skripte");
                 return ftpClient.storeFile(fileName, inputStream);
 
             } catch(Exception e){
