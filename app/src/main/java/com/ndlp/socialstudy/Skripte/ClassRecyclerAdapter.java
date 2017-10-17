@@ -68,7 +68,6 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
                         fragmentTransaction.replace(R.id.frame_layout, elektrotechnikSkripteFragment);
                         fragmentTransaction.commit();
 
-
                         break;
                     // case 1...
 
