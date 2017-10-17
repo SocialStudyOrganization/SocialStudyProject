@@ -2,6 +2,8 @@ package com.ndlp.socialstudy.Skripte;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ndlp.socialstudy.LoginSystem.LoginActivity;
+import com.ndlp.socialstudy.LoginSystem.RegisterActivity;
+import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.SKripteFragments.ClassesFragment;
+import com.ndlp.socialstudy.SKripteFragments.ElektrotechnikSkripteFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +38,7 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
         this.context = context;
         this.data = data;
     }
+
 
     //  get the xml file, give it to the viewholder
     @Override
@@ -54,16 +62,22 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
                 Intent intent;
                 switch (holder.getAdapterPosition()){
                     case 0:
-                        intent =  new Intent(context, InformatikSkripteActivity.class);
+                        ElektrotechnikSkripteFragment elektrotechnikSkripteFragment = new ElektrotechnikSkripteFragment();
+                        FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, elektrotechnikSkripteFragment);
+                        fragmentTransaction.commit();
+
+
                         break;
-                    case 1:
-                        intent =  new Intent(context, InternationalBusinessSkripteActivity.class);
-                        break;
+                    // case 1...
+
                     default:
-                        intent = new Intent(context, ClassesActivity.class);
+                        intent = new Intent(context, MainActivity.class);
+                        context.startActivity(intent);
                         break;
                 }
-                context.startActivity(intent);
+
             }
         });
 

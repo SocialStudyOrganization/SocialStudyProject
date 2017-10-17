@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 
 
@@ -65,12 +66,12 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
         holder.scriptUser.setText(currentScript.getScriptUser());
 
 
-
+        //WEBVIEW
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent registerIntent = new Intent(context, WebViewActivity.class);
+                Intent registerIntent = new Intent(context, LoginActivity.class);
                 registerIntent.putExtra("pdf_name", currentScript.getScriptName());
                 context.startActivity(registerIntent);
             }

@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Skripte;
+package com.ndlp.socialstudy.SKripteFragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,15 +7,24 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.OpenableColumns;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.github.clans.fab.FloatingActionButton;
+import com.ndlp.socialstudy.GetScriptData.Downloader;
+import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Skripte.SkripteRequest;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
@@ -27,28 +36,19 @@ import java.io.InputStream;
 import java.util.Calendar;
 
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-import com.github.clans.fab.FloatingActionButton;
-import com.ndlp.socialstudy.GetScriptData.Downloader;
-import com.ndlp.socialstudy.R;
+public class ElektrotechnikSkripteFragment extends Fragment {
+    public static ElektrotechnikSkripteFragment newInstance() {
+        ElektrotechnikSkripteFragment elektrotechnikSkripteFragment = new ElektrotechnikSkripteFragment();
+        return elektrotechnikSkripteFragment;
+    }
 
-/**
- *Activity to handle the listing of different informatic files (pdf Skripte)
- */
+    //--------------------Variablendeklaration-----------------------------------------
 
-public class InformatikSkripteActivity extends AppCompatActivity {
-
-    Toolbar mActionBarToolbar;
     private FloatingActionButton floatingasPDF;
-    private FloatingActionButton floatingasWord;
-
 
     private static final int READ_REQUEST_CODE = 1;
     Uri PDFUri;
     public String PDFName;
-
 
     //  Serverdata
     private static final String SERVER_IP = "w0175925.kasserver.com";
@@ -66,30 +66,35 @@ public class InformatikSkripteActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informatik_skripte);
+//---------------------------------ONCREATE----------------------------------------------------------
 
-        //  set toolbar and adjust title
-        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mActionBarToolbar);
-        getSupportActionBar().setTitle("Informatik Skripte");
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_elektrotechnik_skripte, container, false);
+
 
         //  initialize the recyclerView of the data files
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_skripteInformatik);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
 
-        floatingasPDF = (FloatingActionButton) findViewById(R.id.floating_asPDFFile);
+        floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
 
         PDFUri = null;
         PDFName = null;
 
         //  gets the username out of sharedPrefs LoginData
-        SharedPreferences sharedPrefLoginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter
-        new Downloader(InformatikSkripteActivity.this, urlAddress, mRecyclerView).execute();
+        new Downloader(getActivity(), urlAddress, mRecyclerView).execute();
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
@@ -117,12 +122,12 @@ public class InformatikSkripteActivity extends AppCompatActivity {
             }
         });
 
+        return rootView;
     }
-
 
     //  if we receive a result from volley this gets called
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         //  if result code == ok and If the request code seen here doesn't match, it's the
         //  response to some other intent, and the code below shouldn't run at all.
@@ -132,7 +137,7 @@ public class InformatikSkripteActivity extends AppCompatActivity {
             //  getData() gets the data out of the Intent and saves it as PFDUri variable
             if (data != null){
                 PDFUri = data.getData();
-                Cursor resultCursor = getContentResolver().query(PDFUri, null, null, null, null);
+                Cursor resultCursor = getActivity().getContentResolver().query(PDFUri, null, null, null, null);
 
                 //  move to first row
                 resultCursor.moveToFirst();
@@ -148,7 +153,7 @@ public class InformatikSkripteActivity extends AppCompatActivity {
                 putIntoTable();
 
                 //  starts upload task to the server
-                UploadTask uploadTask = new UploadTask(InformatikSkripteActivity.this, PDFUri, PDFName);
+                UploadTask uploadTask = new UploadTask(getActivity(), PDFUri, PDFName);
                 uploadTask.execute(SERVER_IP, USERNAME, PASSWORT);
 
 
@@ -173,7 +178,7 @@ public class InformatikSkripteActivity extends AppCompatActivity {
 
 
                     if (success){
-                        Toast.makeText(InformatikSkripteActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
                     }
                     else {
 
@@ -188,7 +193,7 @@ public class InformatikSkripteActivity extends AppCompatActivity {
 
         //  starts the request to upload skriptname category, date, time, user to server
         SkripteRequest skripteRequest = new SkripteRequest(skriptname, category, date, time, user, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(InformatikSkripteActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
         queue.add(skripteRequest);
     }
 
@@ -219,7 +224,7 @@ public class InformatikSkripteActivity extends AppCompatActivity {
             //  connected zum Server + alles
             try {
                 //  resolver Brechtigungen und liest die Datei ein
-                inputStream = getContentResolver().openInputStream(contentUri);
+                inputStream = getActivity().getContentResolver().openInputStream(contentUri);
 
                 ftpClient.connect(params[0]);
                 int reply = ftpClient.getReplyCode();
@@ -270,11 +275,10 @@ public class InformatikSkripteActivity extends AppCompatActivity {
             //  if true make toast that file is uploaded
             if (result) {
                 Toast.makeText(context, "Datei hochgeladen", Toast.LENGTH_LONG).show();
-                new Downloader(InformatikSkripteActivity.this, urlAddress, mRecyclerView).execute();
+                new Downloader(getActivity(), urlAddress, mRecyclerView).execute();
             }
 
         }
     }
-
 
 }

@@ -25,11 +25,7 @@
         <activity android:name=".NavigationDrawer_BottomNavigation.AboutUsActivity" />
         <activity android:name=".NavigationDrawer_BottomNavigation.FeedbackActivity" />
         <activity android:name=".NavigationDrawer_BottomNavigation.FehlerMeldenAcivity" />
-        <activity android:name=".Skripte.InformatikSkripteActivity" />
-        <activity android:name=".Skripte.InternationalBusinessSkripteActivity" />
-        <activity android:name=".Skripte.WebViewActivity" />
         <activity android:name=".tutorialsheets.TutorialsheetsSlider" />
-        <activity android:name=".Skripte.ClassesActivity" />
         <activity android:name=".NavigationDrawer_BottomNavigation.MainActivity"></activity>
     </application>
 

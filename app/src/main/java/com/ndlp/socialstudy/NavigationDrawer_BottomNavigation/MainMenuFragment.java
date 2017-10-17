@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Skripte.ClassesActivity;
+import com.ndlp.socialstudy.SKripteFragments.ClassesFragment;
 
 /**
  * Fragment to navigate between tasks, exercises, surveys, solutions
@@ -40,8 +40,11 @@ public class MainMenuFragment extends Fragment {
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ClassesActivity.class);
-                startActivity(intent);
+                ClassesFragment classesFragment = new ClassesFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, classesFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
