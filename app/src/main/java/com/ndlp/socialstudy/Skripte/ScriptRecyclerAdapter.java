@@ -30,22 +30,20 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
 
     //  conastructor
     public ScriptRecyclerAdapter(Context context, ArrayList<ScriptObject> scriptObjects) {
-
         this.context = context;
         this.scriptObjects = scriptObjects;
     }
 
     //  set context constructor
     public void setContext(Context context) {
-
         this.context = context;
     }
 
     //  scriptObject Constructor
     public void setScriptList(ArrayList<ScriptObject> scriptObjects) {
-
         this.scriptObjects = scriptObjects;
     }
+
 
     //  get the predefined layout create holder for data
     @Override

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -37,10 +36,10 @@ import java.io.InputStream;
 import java.util.Calendar;
 
 
-public class ElektrotechnikSkripteFragment extends Fragment {
-    public static ElektrotechnikSkripteFragment newInstance() {
-        ElektrotechnikSkripteFragment elektrotechnikSkripteFragment = new ElektrotechnikSkripteFragment();
-        return elektrotechnikSkripteFragment;
+public class MarketingSkripteFragment extends Fragment {
+    public static MarketingSkripteFragment newInstance() {
+        MarketingSkripteFragment marketingSkripteFragment = new MarketingSkripteFragment();
+        return marketingSkripteFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -66,14 +65,12 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
     public String skriptname;
     public String format;
-    public String category = "elektrotechnik";
+    public String category = "marketing";
     public String date;
     public String time;
     public String user;
 
-    RecyclerView mRecyclerViewElektrotechnik;
-
-//---------------------------------ONCREATE----------------------------------------------------------
+    RecyclerView mRecyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,11 +82,11 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_elektrotechnik_skripte, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_marketing_skripte, container, false);
 
 
         //  initialize the recyclerView of the data files
-        mRecyclerViewElektrotechnik = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_skripteMarketing);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
@@ -105,7 +102,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter
-        new Downloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category);
+        new Downloader(getActivity(), urlAddress, mRecyclerView, category);
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +222,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                 putIntoTable();
 
                 //  starts upload task to the server
-                UploadTask uploadTask = new UploadTask(getActivity(), skriptUri, skriptname);
+                MarketingSkripteFragment.UploadTask uploadTask = new MarketingSkripteFragment.UploadTask(getActivity(), skriptUri, skriptname);
                 uploadTask.execute(SERVER_IP, USERNAME, PASSWORT);
 
             }
@@ -370,10 +367,9 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             //  if true make toast that file is uploaded
             if (result) {
                 Toast.makeText(context, "Datei hochgeladen", Toast.LENGTH_LONG).show();
-                //new Downloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category).execute();
+                //new Downloader(getActivity(), urlAddress, mRecyclerView).execute();
             }
 
         }
     }
-
 }

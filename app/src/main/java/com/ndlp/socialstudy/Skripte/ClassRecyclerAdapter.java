@@ -17,6 +17,7 @@ import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.SKripteFragments.ClassesFragment;
 import com.ndlp.socialstudy.SKripteFragments.ElektrotechnikSkripteFragment;
+import com.ndlp.socialstudy.SKripteFragments.MarketingSkripteFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,20 +60,28 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+
                 switch (holder.getAdapterPosition()){
                     case 0:
                         ElektrotechnikSkripteFragment elektrotechnikSkripteFragment = new ElektrotechnikSkripteFragment();
-                        FragmentManager fragmentManager = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout, elektrotechnikSkripteFragment);
-                        fragmentTransaction.commit();
-
+                        FragmentManager fragmentManager0 = ((MainActivity) context).getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction0 = fragmentManager0.beginTransaction();
+                        fragmentTransaction0.replace(R.id.frame_layout, elektrotechnikSkripteFragment);
+                        fragmentTransaction0.addToBackStack(null);
+                        fragmentTransaction0.commit();
                         break;
-                    // case 1...
+
+                    case 1:
+                        MarketingSkripteFragment marketingSkripteFragment = new MarketingSkripteFragment();
+                        FragmentManager fragmentManager1 = ((MainActivity) context).getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+                        fragmentTransaction1.replace(R.id.frame_layout, marketingSkripteFragment);
+                        fragmentTransaction1.addToBackStack(null);
+                        fragmentTransaction1.commit();
+                        break;
 
                     default:
-                        intent = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, MainActivity.class);
                         context.startActivity(intent);
                         break;
                 }
