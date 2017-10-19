@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.ndlp.socialstudy.Answers.AnswerClassesFragment;
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteClassesFragment;
@@ -39,6 +40,7 @@ public class MainMenuFragment extends Fragment {
         //  navigate to Classes in order to show Skripte
         Button b_toSkripte = (Button) rootView.findViewById(R.id.b_toSkripte);
         Button b_toTasks = (Button) rootView.findViewById(R.id.b_toTasks);
+        Button b_toAnswers = (Button) rootView.findViewById(R.id.b_toAnswers);
 
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,19 @@ public class MainMenuFragment extends Fragment {
                         .commit();
             }
         });
+
+        b_toAnswers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnswerClassesFragment answerClassesFragment = new AnswerClassesFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, answerClassesFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+
 
 
         Button b_logout = (Button) rootView.findViewById(R.id.b_logout);
