@@ -1,8 +1,8 @@
-package com.ndlp.socialstudy.SKripteFragments;
+package com.ndlp.socialstudy.Tasks;
 
-
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -12,18 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.ClassObject;
-import com.ndlp.socialstudy.Skripte.ClassRecyclerAdapter;
 import com.ndlp.socialstudy.Skripte.DividerItemDecoration;
+import com.ndlp.socialstudy.Skripte.SkripteClassRecyclerAdapter;
+import com.ndlp.socialstudy.Skripte.SkripteClassesFragment;
 
 import java.util.ArrayList;
 
 
-public class ClassesFragment extends Fragment {
-    public static ClassesFragment newInstance() {
-        ClassesFragment fragment = new ClassesFragment();
+public class TaskClassesFragment extends Fragment {
+    public static TaskClassesFragment newInstance() {
+        TaskClassesFragment fragment = new TaskClassesFragment();
         return fragment;
     }
 
@@ -35,17 +35,17 @@ public class ClassesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_classes, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_task_classes, container, false);
 
         RecyclerView rv_recyclerviewclasses;
-        ClassRecyclerAdapter adapter;
+        TaskClassRecyclerAdapter adapter;
 
 
-        rv_recyclerviewclasses = (RecyclerView) rootView.findViewById(R.id.rv_recyclerviewclasses);
+        rv_recyclerviewclasses = (RecyclerView) rootView.findViewById(R.id.rv_recyclerviewtaskclasses);
 
 
         ArrayList<ClassObject> data = new ArrayList<>();
-        String[] titles = {"Elektrotechnik", "Marketing", "Recht", "Projektmanagement", "Rechnungswesen"};
+        String[] titles = {"Elektrotechnik", "Marketing"};
 
         //  For each String in String[] titles create a classObject -> class ClassObject
         for (String title : titles) {
@@ -58,7 +58,7 @@ public class ClassesFragment extends Fragment {
 
 
         //  calls method getData() and transfers titles to ClassRecyclerAdapter
-        adapter = new ClassRecyclerAdapter(getContext(), data);
+        adapter = new TaskClassRecyclerAdapter(getContext(), data);
         rv_recyclerviewclasses.setAdapter(adapter);
         rv_recyclerviewclasses.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -72,3 +72,4 @@ public class ClassesFragment extends Fragment {
         return rootView;
     }
 }
+

@@ -1,4 +1,5 @@
-package com.ndlp.socialstudy.GetScriptData;
+package com.ndlp.socialstudy.Tasks;
+
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,8 +7,6 @@ import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.ndlp.socialstudy.Skripte.ScriptObject;
-import com.ndlp.socialstudy.Skripte.ScriptRecyclerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,25 +14,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * transforms the given data and sends it to the recyclerview
- */
-
-
-public class DataParser extends AsyncTask<Void,Void,Boolean> {
+public class TaskDataParser extends AsyncTask<Void,Void,Boolean> {
 
     private Context context;
     private JSONArray jsonData;
-    private RecyclerView rv_skripte;
+    private RecyclerView rv_task;
     private ProgressDialog pd;
-    private ArrayList<ScriptObject> arrayList = new ArrayList<>();
-    private ScriptRecyclerAdapter mRecyclerAdapter = new ScriptRecyclerAdapter();
+    private ArrayList<TaskObject> arrayList = new ArrayList<>();
+    private TaskRecyclerAdapter mRecyclerAdapter = new TaskRecyclerAdapter();
 
     //  Constructor
-    public DataParser(Context context, JSONArray jsonData, RecyclerView rv_skripte) {
+    public TaskDataParser(Context context, JSONArray jsonData, RecyclerView rv_task) {
         this.context = context;
         this.jsonData = jsonData;
-        this.rv_skripte = rv_skripte;
+        this.rv_task = rv_task;
     }
 
     //  shows progressDialog to actualize data displayed
@@ -58,15 +52,15 @@ public class DataParser extends AsyncTask<Void,Void,Boolean> {
         pd.dismiss();
         if(result)
         {
-            rv_skripte.setLayoutManager(new LinearLayoutManager(context));
+            rv_task.setLayoutManager(new LinearLayoutManager(context));
             mRecyclerAdapter.setContext(context);
-            mRecyclerAdapter.setScriptList(arrayList);
-            rv_skripte.setAdapter(mRecyclerAdapter);
+            mRecyclerAdapter.setTaskList(arrayList);
+            rv_task.setAdapter(mRecyclerAdapter);
         }
     }
 
 
-    //  transform the given jsonData and get an scriptObject out of every skript
+    //  transform the given jsonData and get an Object out of every
     private Boolean parseData()
     {
         try
@@ -75,9 +69,9 @@ public class DataParser extends AsyncTask<Void,Void,Boolean> {
             arrayList.clear();
             for (int i = 0; i < jsonData.length(); i++) {
                 jo = jsonData.getJSONObject(i);
-                ScriptObject scriptObject = new ScriptObject(jo.getInt("skript_id"),jo.getString("skriptname")
-                , jo.getString("format"), jo.getString("category"), jo.getString("date"), jo.getString("user"));
-                arrayList.add(scriptObject);
+                TaskObject taskObject = new TaskObject(jo.getInt("task_id"),jo.getString("taskname")
+                        , jo.getString("format"), jo.getString("category"), jo.getString("date"), jo.getString("user"));
+                arrayList.add(taskObject);
                 mRecyclerAdapter.notifyDataSetChanged();
             }
             return true;

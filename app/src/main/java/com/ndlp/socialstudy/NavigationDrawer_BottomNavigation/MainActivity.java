@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //bottomNavigationView.getMenu().getItem(2).setChecked(true);
 
 
-
     }
 
     //  listens for click events in the navigationDrawer

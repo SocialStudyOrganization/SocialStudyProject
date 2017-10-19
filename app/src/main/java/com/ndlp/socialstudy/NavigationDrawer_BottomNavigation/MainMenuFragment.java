@@ -12,7 +12,8 @@ import android.widget.Button;
 
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.SKripteFragments.ClassesFragment;
+import com.ndlp.socialstudy.Skripte.SkripteClassesFragment;
+import com.ndlp.socialstudy.Tasks.TaskClassesFragment;
 
 /**
  * Fragment to navigate between tasks, exercises, surveys, solutions
@@ -37,12 +38,26 @@ public class MainMenuFragment extends Fragment {
 
         //  navigate to Classes in order to show Skripte
         Button b_toSkripte = (Button) rootView.findViewById(R.id.b_toSkripte);
+        Button b_toTasks = (Button) rootView.findViewById(R.id.b_toTasks);
+
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClassesFragment classesFragment = new ClassesFragment();
+                //Start fragment
+                SkripteClassesFragment classesFragment = new SkripteClassesFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, classesFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        b_toTasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TaskClassesFragment taskClassesFragment = new TaskClassesFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, taskClassesFragment)
                         .addToBackStack(null)
                         .commit();
             }

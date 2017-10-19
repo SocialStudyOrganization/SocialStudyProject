@@ -4,7 +4,7 @@ package com.ndlp.socialstudy.Skripte;
  * Class to create different scriptObjects
  */
 
-public class ScriptObject {
+public class ItemObject {
 
     private Integer scriptID;
     private String scriptName;
@@ -14,7 +14,7 @@ public class ScriptObject {
     private String scriptUser;
 
     //  Constructor
-    public ScriptObject(Integer scriptID, String scriptName, String scriptFormat, String scriptCategory, String scriptDate, String scriptUser) {
+    public ItemObject(Integer scriptID, String scriptName, String scriptFormat, String scriptCategory, String scriptDate, String scriptUser) {
 
         this.scriptID = scriptID;
         this.scriptName = scriptName;

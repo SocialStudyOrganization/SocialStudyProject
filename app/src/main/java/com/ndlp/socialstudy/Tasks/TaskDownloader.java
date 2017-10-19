@@ -1,8 +1,6 @@
-package com.ndlp.socialstudy.GetScriptData;
+package com.ndlp.socialstudy.Tasks;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,45 +12,36 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ndlp.socialstudy.Skripte.ScripteDataParser;
+import com.ndlp.socialstudy.Skripte.SkripteDownloader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * class to handle the download/ actualize the data
- */
-
-public class Downloader {
 
 
-
+public class TaskDownloader {
     private String urlAddress;
     private String category;
 
 
     //  constructor
-    public Downloader(Context context, String urlAddress, RecyclerView rv_skripte, String category) {
+    public TaskDownloader(Context context, String urlAddress, RecyclerView rv_task, String category) {
 
         this.urlAddress = urlAddress;
         this.category = category;
 
-        downloadData(context, rv_skripte);
+        downloadData(context, rv_task);
     }
 
 
-    private void downloadData(final Context context, final RecyclerView rv_skripte)
+    private void downloadData(final Context context, final RecyclerView rv_task)
     {
 
-        StringRequest requestScripts = new StringRequest(Request.Method.POST, urlAddress,
+        StringRequest requestTasks = new StringRequest(Request.Method.POST, urlAddress,
 
                 new Response.Listener<String>() {
 
@@ -63,10 +52,10 @@ public class Downloader {
 
                             JSONArray jsonArray = new JSONArray(response);
 
-                            new DataParser(context, jsonArray, rv_skripte).execute();
+                            new TaskDataParser(context, jsonArray, rv_task).execute();
 
                         } catch (JSONException e) {
-                            Log.e(Downloader.class.getSimpleName(), e.getMessage());
+                            Log.e(TaskDownloader.class.getSimpleName(), e.getMessage());
                         }
                     }
                 },
@@ -90,6 +79,6 @@ public class Downloader {
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(requestScripts);
+        requestQueue.add(requestTasks);
     }
 }

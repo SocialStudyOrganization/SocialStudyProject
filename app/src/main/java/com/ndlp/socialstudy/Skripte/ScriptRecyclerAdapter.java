@@ -23,13 +23,13 @@ import java.util.ArrayList;
 public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAdapter.ScriptViewHolder> {
 
     private Context context;
-    private ArrayList<ScriptObject> scriptObjects;
+    private ArrayList<ItemObject> scriptObjects;
 
     public ScriptRecyclerAdapter() {
     }
 
     //  conastructor
-    public ScriptRecyclerAdapter(Context context, ArrayList<ScriptObject> scriptObjects) {
+    public ScriptRecyclerAdapter(Context context, ArrayList<ItemObject> scriptObjects) {
         this.context = context;
         this.scriptObjects = scriptObjects;
     }
@@ -40,7 +40,7 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
     }
 
     //  scriptObject Constructor
-    public void setScriptList(ArrayList<ScriptObject> scriptObjects) {
+    public void setScriptList(ArrayList<ItemObject> scriptObjects) {
         this.scriptObjects = scriptObjects;
     }
 
@@ -57,7 +57,7 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
     @Override
     public void onBindViewHolder(ScriptViewHolder holder, int position) {
 
-        final ScriptObject currentScript = scriptObjects.get(position);
+        final ItemObject currentScript = scriptObjects.get(position);
 
         holder.scriptName.setText(currentScript.getScriptName());
         holder.scriptDate.setText(currentScript.getScriptDate());

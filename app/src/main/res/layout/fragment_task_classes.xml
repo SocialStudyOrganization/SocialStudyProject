@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ndlp.socialstudy.Skripte.MarketingSkripteFragment">
+    tools:context="com.ndlp.socialstudy.Tasks.TaskClassesFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,14 +10,11 @@
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_skripteMarketing"
+            android:id="@+id/rv_recyclerviewtaskclasses"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content">
 
-        <include
-            layout="@layout/fab_pdf">
-        </include>
+        </android.support.v7.widget.RecyclerView>
 
 
     </RelativeLayout>

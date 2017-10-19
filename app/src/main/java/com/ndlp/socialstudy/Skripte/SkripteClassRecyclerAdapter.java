@@ -1,33 +1,24 @@
 package com.ndlp.socialstudy.Skripte;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.ndlp.socialstudy.LoginSystem.LoginActivity;
-import com.ndlp.socialstudy.LoginSystem.RegisterActivity;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.SKripteFragments.ClassesFragment;
-import com.ndlp.socialstudy.SKripteFragments.ElektrotechnikSkripteFragment;
-import com.ndlp.socialstudy.SKripteFragments.MarketingSkripteFragment;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Class handeling the RecyclerAdapter
  */
 
-public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdapter.MyViewHolder> {
+public class SkripteClassRecyclerAdapter extends RecyclerView.Adapter<SkripteClassRecyclerAdapter.MyViewHolder> {
 
     private Context context;
 
@@ -35,7 +26,7 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
 
 
     //  Konstruktor gets the data from ClassesActivity
-    public ClassRecyclerAdapter(Context context, ArrayList<ClassObject> data){
+    public SkripteClassRecyclerAdapter(Context context, ArrayList<ClassObject> data){
         this.context = context;
         this.data = data;
     }
@@ -81,8 +72,6 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
                         break;
 
                     default:
-                        Intent intent = new Intent(context, MainActivity.class);
-                        context.startActivity(intent);
                         break;
                 }
 

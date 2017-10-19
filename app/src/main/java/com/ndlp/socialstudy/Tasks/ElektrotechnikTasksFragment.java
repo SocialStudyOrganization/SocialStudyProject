@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.SKripteFragments;
+package com.ndlp.socialstudy.Tasks;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -23,9 +22,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
-import com.ndlp.socialstudy.GetScriptData.Downloader;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Skripte.SkripteRequest;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
@@ -37,10 +34,10 @@ import java.io.InputStream;
 import java.util.Calendar;
 
 
-public class ElektrotechnikSkripteFragment extends Fragment {
-    public static ElektrotechnikSkripteFragment newInstance() {
-        ElektrotechnikSkripteFragment elektrotechnikSkripteFragment = new ElektrotechnikSkripteFragment();
-        return elektrotechnikSkripteFragment;
+public class ElektrotechnikTasksFragment extends Fragment {
+    public static ElektrotechnikTasksFragment newInstance() {
+        ElektrotechnikTasksFragment elektrotechnikTasksFragment = new ElektrotechnikTasksFragment();
+        return elektrotechnikTasksFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -52,7 +49,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     private static final int READ_REQUEST_CODE = 1;
     private static final int SELECT_PICTURE = 1;
     private static final int REQUEST_CODE_OPEN = 1;
-    Uri skriptUri;
+    Uri Uri;
     Uri imageUri;
     Uri wordUri;
 
@@ -61,19 +58,17 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     private static final String USERNAME = "f00dd887";
     private static final String PASSWORT = "Nadipat2";
 
-    //  location of the php script on server
-    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+    //  location of the php on server
+    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_tasks.php";
 
-    public String skriptname;
+    public String taskname;
     public String format;
     public String category = "elektrotechnik";
     public String date;
     public String time;
     public String user;
 
-    RecyclerView mRecyclerViewElektrotechnik;
-
-//---------------------------------ONCREATE----------------------------------------------------------
+    RecyclerView mRecyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,27 +80,27 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_elektrotechnik_skripte, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_elektrotechnik_tasks, container, false);
 
 
         //  initialize the recyclerView of the data files
-        mRecyclerViewElektrotechnik = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_tasksElektrotechnik);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
         floatinfasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
 
-        skriptUri = null;
+        Uri = null;
         imageUri = null;
         wordUri = null;
-        skriptname = null;
+        taskname = null;
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter
-        new Downloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category);
+        new TaskDownloader(getActivity(), urlAddress, mRecyclerView, category);
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
@@ -193,8 +188,6 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         });
 
 
-
-
         return rootView;
     }
 
@@ -210,14 +203,14 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             if (data != null){
 
 
-                skriptUri = data.getData();
-                Cursor resultCursor = getActivity().getContentResolver().query(skriptUri, null, null, null, null);
+                Uri = data.getData();
+                Cursor resultCursor = getActivity().getContentResolver().query(Uri, null, null, null, null);
 
                 //  move to first row
                 resultCursor.moveToFirst();
 
                 //  get PDF name out of the file and set it as PDFName
-                skriptname = resultCursor.getString(resultCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                taskname = resultCursor.getString(resultCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
 
 
 
@@ -225,7 +218,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                 putIntoTable();
 
                 //  starts upload task to the server
-                UploadTask uploadTask = new UploadTask(getActivity(), skriptUri, skriptname);
+                ElektrotechnikTasksFragment.UploadTask uploadTask = new ElektrotechnikTasksFragment.UploadTask(getActivity(), Uri, taskname);
                 uploadTask.execute(SERVER_IP, USERNAME, PASSWORT);
 
             }
@@ -257,7 +250,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     }
 
 
-    //  method to get the result on the server from uploading skript detailled data
+    //  method to get the result on the server from uploading detailled data
     public void putIntoTable(){
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -277,7 +270,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                     }
                     else {
 
-                        Log.e("Skriptladen", jsonResponse.getString("error_msg"));
+                        Log.e("Laden", jsonResponse.getString("error_msg"));
                     }
 
                 } catch (JSONException e) {
@@ -286,10 +279,10 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             }
         };
 
-        //  starts the request to upload skriptname category, date, time, user to server
-        SkripteRequest skripteRequest = new SkripteRequest(skriptname,format, category, date, time, user, responseListener);
+        //  starts the request to upload name category, date, time, user to server
+        TasksRequest tasksRequest = new TasksRequest(taskname, format, category, date, time, user, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(skripteRequest);
+        queue.add(tasksRequest);
     }
 
     //  with using asyncTask the download is handled in the background
@@ -335,7 +328,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                 ftpClient.enterLocalPassiveMode();
 
                 //  navigates to the folder on te server
-                ftpClient.changeWorkingDirectory("/SocialStudy/Skripte");
+                ftpClient.changeWorkingDirectory("/SocialStudy/Tasks");
                 return ftpClient.storeFile(fileName, inputStream);
 
             } catch(Exception e){
@@ -370,10 +363,8 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             //  if true make toast that file is uploaded
             if (result) {
                 Toast.makeText(context, "Datei hochgeladen", Toast.LENGTH_LONG).show();
-                //new Downloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category).execute();
             }
 
         }
     }
-
 }
