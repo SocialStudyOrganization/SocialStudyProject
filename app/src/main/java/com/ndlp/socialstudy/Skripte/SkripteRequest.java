@@ -28,7 +28,6 @@ public class SkripteRequest extends StringRequest {
         params.put("date", date);
         params.put("time", time);
         params.put("user", user);
-
     }
 
     //  volley needs to access this data

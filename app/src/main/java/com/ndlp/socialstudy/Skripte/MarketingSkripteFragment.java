@@ -64,6 +64,7 @@ public class MarketingSkripteFragment extends Fragment {
     public String skriptname;
     public String format;
     public String category = "marketing";
+    public String subFolder = "Skripte";
     public String date;
     public String time;
     public String user;
@@ -100,7 +101,7 @@ public class MarketingSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter
-        new SkripteDownloader(getActivity(), urlAddress, mRecyclerView, category);
+        new SkripteDownloader(getActivity(), urlAddress, mRecyclerView, category, subFolder);
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {

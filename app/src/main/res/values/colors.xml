@@ -53,4 +53,6 @@
     </array>
 
     <color name="nav_item_state_list">#ffffff</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

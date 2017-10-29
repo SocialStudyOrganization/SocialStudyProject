@@ -1,5 +1,7 @@
 package com.ndlp.socialstudy.LoginSystem;
 
+import android.util.Log;
+
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
@@ -18,11 +20,15 @@ public class RegisterRequest extends StringRequest {
 
     //  Constructor
     //  if volley is finished with the request it calls the listener in RegisterActivity
-    public RegisterRequest(String username, String password, Response.Listener<String> listener){
+    public RegisterRequest(String email, String password, int matrikelnummer, String firstName, String surname,Response.Listener<String> listener){
         super(Method.POST, Register_Request_URL, listener, null);
         params = new HashMap<>();
-        params.put("username", username);
+        params.put("email", email);
         params.put("password", password);
+        params.put("matrikelnummer", matrikelnummer + "");
+        params.put("firstName", firstName);
+        params.put("surname", surname);
+
     }
 
 

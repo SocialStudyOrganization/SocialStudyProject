@@ -29,16 +29,25 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
+
+        final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
+        final EditText etMatrikelnummer = (EditText) findViewById(R.id.etMatrikelnummer);
+        final EditText etFirstName = (EditText) findViewById(R.id.etFirstName);
+        final EditText etSurname = (EditText) findViewById(R.id.etSurname);
+
         final Button bRegiser = (Button) findViewById(R.id.bRegister);
 
         //  transfer username and password toString
         bRegiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String username = etUsername.getText().toString();
+                final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
+                final int matrikelnummer = Integer.parseInt(etMatrikelnummer.getText().toString());
+                final String firstName = etFirstName.getText().toString();
+                final String surname = etSurname.getText().toString();
+
 
                 //listens for response from volley happening through RegisterRequest
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -74,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 };
 
                 //  call register request and transfer string username and password
-                RegisterRequest registerRequest = new RegisterRequest(username, password, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(email, password, matrikelnummer, firstName, surname, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }

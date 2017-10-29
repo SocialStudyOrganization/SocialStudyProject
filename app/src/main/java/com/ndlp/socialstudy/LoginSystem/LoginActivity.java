@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //  connect to the xml widgets
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
+        final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final TextView tvRegisterLink = (TextView) findViewById(R.id.tvRegisterHere);
 
@@ -60,13 +60,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //  transfer inputs to strings
-                final String username = etUsername.getText().toString();
+                final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
                 final Animation shake = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.shake);
 
                 //  when sth is not filled show toast
-                if (username.matches("") || password.matches("")) {
-                    Toast.makeText(LoginActivity.this, "Fill in your Username and Password", Toast.LENGTH_LONG).show();
+                if (email.matches("") || password.matches("")) {
+                    Toast.makeText(LoginActivity.this, "Fill in your Email and Password", Toast.LENGTH_LONG).show();
 
                 }
                 //  set listener for a server response
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (success) {
                                     SharedPreferences sharedPrefLoginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editorLoginData = sharedPrefLoginData.edit();
-                                    editorLoginData.putString("username", username);
+                                    editorLoginData.putString("username", email);
                                     editorLoginData.putString("password", password);
                                     editorLoginData.apply();
 
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (rememberMe.isChecked()) {
                                         SharedPreferences sharedPrefrememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                                         SharedPreferences.Editor editorrememberMe = sharedPrefrememberMe.edit();
-                                        editorrememberMe.putString("username", username);
+                                        editorrememberMe.putString("username", email);
                                         editorrememberMe.apply();
                                     }
 
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                                 //  if false give toast
                                 } else {
 
-                                    findViewById(R.id.etUsername).startAnimation(shake);
+                                    findViewById(R.id.etEmail).startAnimation(shake);
                                     findViewById(R.id.etPassword).startAnimation(shake);
                                     Toast.makeText(LoginActivity.this, "Wrong Username or Password", Toast.LENGTH_LONG).show();
 
@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                     };
 
                     //  call class LoginRequest
-                    LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+                    LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                     queue.add(loginRequest);
                 }

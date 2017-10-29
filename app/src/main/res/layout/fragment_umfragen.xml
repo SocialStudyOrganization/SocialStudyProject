@@ -2,32 +2,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    tools:context="com.ndlp.socialstudy.Skripte.ElektrotechnikSkripteFragment">
+    tools:context="com.ndlp.socialstudy.Umfragen.UmfragenFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
+            android:id="@+id/swipeRefreshLayoutUmfragen"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_skripteElektrotechnik"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_umfragen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
 
 
         <include
-            layout="@layout/fab_pdf">
+            layout="@layout/fab_addumfrage">
         </include>
 
 

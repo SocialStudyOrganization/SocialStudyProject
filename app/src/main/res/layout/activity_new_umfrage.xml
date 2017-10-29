@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ndlp.socialstudy.Umfragen.NewUmfrageActivity"
+    android:background="#3498DB">
+
+    <RelativeLayout
+        android:id="@+id/rl_newUmfrageTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#2C3E50">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Neue Umfrage"
+            android:textSize="20sp"
+            android:paddingTop="7dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_newUmfrageTopBar"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#2C3E50">
+
+        <EditText
+            android:id="@+id/et_headingNewUmfrage"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#3498DB"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="10dp"
+            android:text="Rückmeldung Rechnungswesen"/>
+
+        <ImageView
+            android:id="@+id/iv_newUmfrageDateIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle"
+            android:layout_below="@id/et_headingNewUmfrage"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"/>
+
+        <EditText
+            android:id="@+id/et_newUmfrageDate"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@id/iv_newUmfrageDateIcon"
+            android:layout_below="@id/et_headingNewUmfrage"
+            android:layout_marginTop="15dp"
+            android:background="#3498DB"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="140dp"
+            android:hint="Terminierung Datum"
+            android:textSize="17sp"/>
+
+        <ImageView
+            android:id="@+id/iv_newUmfrageTimeIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle"
+            android:layout_below="@id/iv_newUmfrageDateIcon"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/et_newUmfrageTime"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#3498DB"
+            android:layout_below="@id/et_newUmfrageDate"
+            android:layout_toRightOf="@id/iv_newUmfrageTimeIcon"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="140dp"
+            android:hint="Terminierung Zeit"
+            android:textSize="17sp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="#2C3E50">
+
+        <TextView
+            android:id="@+id/tv_newPollEinreichen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Einreichen"
+            android:textSize="30sp"/>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/fab_newumfragemenu">
+    </include>
+
+
+</RelativeLayout>

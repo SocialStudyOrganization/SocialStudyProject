@@ -1,5 +1,7 @@
 package com.ndlp.socialstudy.Skripte;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Class to create different scriptObjects
  */

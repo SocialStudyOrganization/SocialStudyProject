@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,7 +45,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
     private FloatingActionButton floatingasPDF;
     private FloatingActionButton floatingGallery;
-    private FloatingActionButton floatinfasWord;
+    private FloatingActionButton floatingasWord;
 
     private static final int READ_REQUEST_CODE = 1;
     private static final int SELECT_PICTURE = 1;
@@ -64,11 +65,13 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     public String skriptname;
     public String format;
     public String category = "elektrotechnik";
+    public String subFolder = "Skripte";
     public String date;
     public String time;
     public String user;
 
     RecyclerView mRecyclerViewElektrotechnik;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 //---------------------------------ONCREATE----------------------------------------------------------
 
@@ -87,10 +90,11 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
         //  initialize the recyclerView of the data files
         mRecyclerViewElektrotechnik = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
-        floatinfasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
+        floatingasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
 
         skriptUri = null;
         imageUri = null;
@@ -101,8 +105,18 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         user = sharedPrefLoginData.getString("username", "");
 
-        //  calls DownloaderClass and puts urlAddress as parameter
-        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category);
+        //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
+        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+
+        //sets refreshlistener on Swiperefreshlayout
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Refresh items
+                new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +151,6 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -161,7 +174,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             }
         });
 
-        floatinfasWord.setOnClickListener(new View.OnClickListener() {
+        floatingasWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -217,10 +230,6 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                 skriptname = resultCursor.getString(resultCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
 
 
-
-                //  calls method putIntoTable()
-                putIntoTable();
-
                 //  starts upload task to the server
                 UploadTask uploadTask = new UploadTask(getActivity(), skriptUri, skriptname);
                 uploadTask.execute(SERVER_IP, USERNAME, PASSWORT);
@@ -228,33 +237,12 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             }
         }
 
-        /*//if the result comes from the gallery Intent
-        if (requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK) {
-
-            if (data != null){
-
-                Log.d("FAB", "Image");
-
-                imageUri = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                Cursor cursor = getActivity().getContentResolver().query(
-                        imageUri, filePathColumn, null, null, null);
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String filePath = cursor.getString(columnIndex);
-                cursor.close();
-
-
-            }
-
-        }*/
 
     }
 
 
     //  method to get the result on the server from uploading skript detailled data
+    //gets called in postexecute only if file is successfully uploaded
     public void putIntoTable(){
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -271,10 +259,14 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
                     if (success){
                         Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
+
+                        //notify recycler adapter that dataset changed
+                        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+
                     }
                     else {
+                        Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
-                        Log.e("Skriptladen", jsonResponse.getString("error_msg"));
                     }
 
                 } catch (JSONException e) {
@@ -367,7 +359,11 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             //  if true make toast that file is uploaded
             if (result) {
                 Toast.makeText(context, "Datei hochgeladen", Toast.LENGTH_LONG).show();
-                //new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category).execute();
+
+                //  calls method putIntoTable()
+                putIntoTable();
+
+
             }
 
         }

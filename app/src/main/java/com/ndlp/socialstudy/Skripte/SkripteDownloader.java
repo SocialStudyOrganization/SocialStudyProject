@@ -29,13 +29,15 @@ public class SkripteDownloader {
 
     private String urlAddress;
     private String category;
+    private String subFolder;
 
 
     //  constructor
-    public SkripteDownloader(Context context, String urlAddress, RecyclerView rv_skripte, String category) {
+    public SkripteDownloader(Context context, String urlAddress, RecyclerView rv_skripte, String category, String subFolder) {
 
         this.urlAddress = urlAddress;
         this.category = category;
+        this.subFolder = subFolder;
 
         downloadData(context, rv_skripte);
     }
@@ -55,7 +57,7 @@ public class SkripteDownloader {
 
                             JSONArray jsonArray = new JSONArray(response);
 
-                            new ScripteDataParser(context, jsonArray, rv_skripte).execute();
+                            new ScripteDataParser(context, jsonArray, rv_skripte, subFolder).execute();
 
                         } catch (JSONException e) {
                             Log.e(SkripteDownloader.class.getSimpleName(), e.getMessage());

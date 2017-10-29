@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="160dp">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3498DB"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:id="@+id/rl_topbar"
+            android:background="#2C3E50">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/iv_dropdownUmfragen"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="5dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_settings_black_24dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@id/iv_dropdownUmfragen"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:text="DHBW, bis heute 19:00Uhr"
+                android:textSize="19sp"
+                android:maxLines="1"/>
+
+
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rl_topbar"
+            android:layout_marginTop="10dp">
+            
+            <ImageView
+                android:id="@+id/iv_umfragenImage"
+                android:layout_width="80dp"
+                android:layout_height="94dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                android:background="@mipmap/ic_launcher"/>
+            
+            <TextView
+                android:id="@+id/tv_umfragenBeschreibung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:maxLines="2"
+                android:layout_toRightOf="@id/iv_umfragenImage"
+                android:text="Mathematik auf diesen Freitag verschieben?"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_umfragenmehr..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/iv_umfragenImage"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:text="mehr..." />
+            
+        </RelativeLayout>
+        
+    </RelativeLayout>
+        
+        
+
+    
+
+</RelativeLayout>

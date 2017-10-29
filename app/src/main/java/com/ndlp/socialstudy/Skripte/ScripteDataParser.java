@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class ScripteDataParser extends AsyncTask<Void,Void,Boolean> {
 
     private Context context;
+    private String subFolder;
     private JSONArray jsonData;
     private RecyclerView rv_skripte;
     private ProgressDialog pd;
@@ -27,10 +28,11 @@ public class ScripteDataParser extends AsyncTask<Void,Void,Boolean> {
     private ScriptRecyclerAdapter mRecyclerAdapter = new ScriptRecyclerAdapter();
 
     //  Constructor
-    public ScripteDataParser(Context context, JSONArray jsonData, RecyclerView rv_skripte) {
+    public ScripteDataParser(Context context, JSONArray jsonData, RecyclerView rv_skripte, String subFolder) {
         this.context = context;
         this.jsonData = jsonData;
         this.rv_skripte = rv_skripte;
+        this.subFolder = subFolder;
     }
 
     //  shows progressDialog to actualize data displayed
@@ -39,7 +41,7 @@ public class ScripteDataParser extends AsyncTask<Void,Void,Boolean> {
         super.onPreExecute();
         pd=new ProgressDialog(context);
         pd.setTitle("Parse");
-        pd.setMessage("Pasring..Please wait");
+        pd.setMessage("Loading your Files from the server...");
         pd.show();
     }
 
@@ -58,6 +60,7 @@ public class ScripteDataParser extends AsyncTask<Void,Void,Boolean> {
             rv_skripte.setLayoutManager(new LinearLayoutManager(context));
             mRecyclerAdapter.setContext(context);
             mRecyclerAdapter.setScriptList(arrayList);
+            mRecyclerAdapter.setSubFolder(subFolder);
             rv_skripte.setAdapter(mRecyclerAdapter);
         }
     }

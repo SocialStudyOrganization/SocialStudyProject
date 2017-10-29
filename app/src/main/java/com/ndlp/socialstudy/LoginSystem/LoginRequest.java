@@ -18,10 +18,10 @@ public class LoginRequest extends StringRequest{
 
     //  Constructor
     //  if volley is finished with the request it calls the listener in LoginActivity
-    public LoginRequest(String username, String password, Response.Listener<String> listener){
+    public LoginRequest(String email, String password, Response.Listener<String> listener){
         super(Request.Method.POST, LOGIN_Request_URL, listener, null);
         params = new HashMap<>();
-        params.put("username", username);
+        params.put("email", email);
         params.put("password", password);
     }
 

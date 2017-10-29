@@ -38,12 +38,12 @@
             android:paddingTop="70dp">
 
             <EditText
-                android:id="@+id/etUsername"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:hint="Username/ Email Address"
+                android:hint="Email Address"
                 android:inputType="textEmailAddress"
                 android:singleLine="false"
                 android:textColor="#ffffff"

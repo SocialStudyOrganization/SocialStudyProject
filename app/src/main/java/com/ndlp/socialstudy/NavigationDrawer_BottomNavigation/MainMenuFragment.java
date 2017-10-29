@@ -15,6 +15,7 @@ import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteClassesFragment;
 import com.ndlp.socialstudy.Tasks.TaskClassesFragment;
+import com.ndlp.socialstudy.Umfragen.UmfragenFragment;
 
 /**
  * Fragment to navigate between tasks, exercises, surveys, solutions
@@ -41,6 +42,7 @@ public class MainMenuFragment extends Fragment {
         Button b_toSkripte = (Button) rootView.findViewById(R.id.b_toSkripte);
         Button b_toTasks = (Button) rootView.findViewById(R.id.b_toTasks);
         Button b_toAnswers = (Button) rootView.findViewById(R.id.b_toAnswers);
+        Button b_tomfragen = (Button) rootView.findViewById(R.id.b_toUmfragen);
 
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +73,17 @@ public class MainMenuFragment extends Fragment {
                 AnswerClassesFragment answerClassesFragment = new AnswerClassesFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, answerClassesFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        b_tomfragen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UmfragenFragment umfragenFragment = new UmfragenFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, umfragenFragment)
                         .addToBackStack(null)
                         .commit();
             }
