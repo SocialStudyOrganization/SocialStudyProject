@@ -283,9 +283,9 @@ public class MarketingSkripteFragment extends Fragment {
         };
 
         //  starts the request to upload skriptname category, date, time, user to server
-        SkripteRequest skripteRequest = new SkripteRequest(skriptname,format, category, date, time, user, responseListener);
+        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(skriptname,format, category, date, time, user, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(skripteRequest);
+        queue.add(skripteDataIntoDatabase);
     }
 
     //  with using asyncTask the download is handled in the background

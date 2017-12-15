@@ -11,15 +11,15 @@ import java.util.Map;
  *Class to handle the request to the server to upload detailled info of data to server
  */
 
-public class SkripteRequest extends StringRequest {
+public class SkripteDataIntoDatabase extends StringRequest {
 
     //  declare php location
-    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/SkripteRequest.php";
+    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/SkripteDataIntoDatabase.php";
     private Map<String, String> params;
 
     //  Constructor
     //  if volley is finished it calls the listener in SkripteActivity
-    public SkripteRequest(String skriptname, String format, String category, String date, String time, String user, Response.Listener<String> listener){
+    public SkripteDataIntoDatabase(String skriptname, String format, String category, String date, String time, String user, Response.Listener<String> listener){
         super(Method.POST, Register_Request_URL, listener, null);
         params = new HashMap<>();
         params.put("skriptname", skriptname);
