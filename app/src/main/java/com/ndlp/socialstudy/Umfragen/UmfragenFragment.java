@@ -58,12 +58,8 @@ public class UmfragenFragment extends Fragment {
         floatingaddUmfrage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO insert addUmfrage
-
                 Intent intent = new Intent(getContext(), NewUmfrageActivity.class);
                 startActivity(intent);
-
-                Toast.makeText(getActivity(), "ADD UMFRAGE", Toast.LENGTH_LONG).show();
             }
         });
 

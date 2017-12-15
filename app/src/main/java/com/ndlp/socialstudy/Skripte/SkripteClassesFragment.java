@@ -46,7 +46,6 @@ public class SkripteClassesFragment extends Fragment {
 
         //  For each String in String[] titles create a classObject -> class ClassObject
         for (String title : titles) {
-
             //  add each title to data
             ClassObject current = new ClassObject(title);
             data.add(current);

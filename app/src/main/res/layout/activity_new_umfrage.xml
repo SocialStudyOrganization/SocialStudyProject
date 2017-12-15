@@ -45,7 +45,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
             android:layout_marginStart="10dp"
-            android:text="Rückmeldung Rechnungswesen"/>
+            android:text="Rückmeldung Rechnungswesen"
+            android:maxLines="1"
+            android:textSize="15sp"/>
 
         <ImageView
             android:id="@+id/iv_newUmfrageDateIcon"
@@ -67,7 +69,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="140dp"
             android:hint="Terminierung Datum"
-            android:textSize="17sp"/>
+            android:textSize="12sp"/>
 
         <ImageView
             android:id="@+id/iv_newUmfrageTimeIcon"
@@ -90,7 +92,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="140dp"
             android:hint="Terminierung Zeit"
-            android:textSize="17sp"/>
+            android:textSize="12sp"/>
 
     </RelativeLayout>
 

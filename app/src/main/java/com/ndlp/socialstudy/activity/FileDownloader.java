@@ -10,6 +10,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPReply;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,6 +34,11 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
     String subFolder;
     String format;
     File my_clicked_file;
+
+    //  Serverdata
+    private static final String SERVER_IP = "w0175925.kasserver.com";
+    private static final String USERNAME = "f00dd887";
+    private static final String PASSWORT = "Nadipat2";
 
     //final private int REQUEST_CODE_ASK_FOR_PERMISSIONS = 123;
 
@@ -66,27 +74,36 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
 
         Log.i("Info:", path);
 
+        FTPClient ftpClient = new FTPClient();
+
         try {
-            URL url = new URL(path);
-            URLConnection urlConnection = url.openConnection();
-            urlConnection.connect();
 
+            ftpClient.connect(SERVER_IP);
+            int reply = ftpClient.getReplyCode();
 
-            // this will be useful to display download percentage
-            // might be -1: server did not report the length
-            file_length = urlConnection.getContentLength();
+            if(!FTPReply.isPositiveCompletion(reply)){
+                ftpClient.disconnect();
+                return "ERROR: FTP connection failed!";
+            }
 
+            ftpClient.login(USERNAME, PASSWORT);
+
+            //  passes Firewall
+            ftpClient.enterLocalPassiveMode();
+
+            ftpClient.changeWorkingDirectory("/SocialStudy/" + subFolder);
 
             /**
              * Create new Folder
              */
 
 
-            File new_Folder = new File("/sdcard/MY DOWNLOADED FILES/" + subFolder);
-            //File new_Folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), subFolder);
+            //File new_Folder = new File("/sdcard/MY DOWNLOADED FILES/" + subFolder);
+            File new_Folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/Android/data/" + context.getPackageName() + "/files/" + subFolder);
             if (!new_Folder.exists()) {
 
-                if (!new_Folder.mkdir()) {
+                if (!new_Folder.mkdirs()) {
                     return "ERROR: mkdirs() failed for directory" + new_Folder.getAbsolutePath();
                 }
 
@@ -101,26 +118,16 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
             inputoutput_file = new File(new_Folder, fileName);
 
 
-            InputStream inputStream = new BufferedInputStream(url.openStream(), 8192);
-            //this will read the information in 1 KB
-            byte[] data = new byte[1024];
-            int total = 0;
-            int count;
+
 
             OutputStream outputStream = new FileOutputStream(inputoutput_file);
 
-            while ((count = inputStream.read(data))!= -1){
-                total+=count;
+            if (!ftpClient.retrieveFile(fileName, outputStream)) {
 
-                if (file_length>0) {
-                    int progress = total * 100 / file_length;
-                    publishProgress(progress);
-                    outputStream.write(data, 0, count);
-                    Log.i("Info:", "Progress: " + Integer.toString(progress));
-                }
+                outputStream.close();
+                return "ERROR: Failed to retrieve file!";
             }
 
-            inputStream.close();
             outputStream.close();
 
 /*            //make the file visible

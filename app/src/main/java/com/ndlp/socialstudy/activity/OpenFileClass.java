@@ -44,37 +44,32 @@ public class OpenFileClass {
 
         try {
 
-            switch (format) {
-                            case "PDF":
-                                Intent pdfIntent = new Intent();
-                                pdfIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                pdfIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                                pdfIntent.setAction(android.content.Intent.ACTION_VIEW);
-                                Uri contentPDFUri = FileProvider.getUriForFile(context,
-                                        "com.ndlp.socialstudy.provider",
-                                        my_clicked_file);
-                                pdfIntent.setDataAndType(contentPDFUri,"application/pdf");
-                                Intent intentpdfChooser = Intent.createChooser(pdfIntent, "Open With");
-                                try {
-                                    context.startActivity(intentpdfChooser);
-                                } catch (ActivityNotFoundException e) {
-                                    Toast.makeText(context, "Please install a PDF app to view your file!", Toast.LENGTH_LONG).show();
-                                    // Instruct the user to install a PDF reader here, or something
-                                }
-                            case "Word":
+            if (format.equals("PDF")) {
 
-                            case "Image":
-                                Intent imageIntent = new Intent();
-                                imageIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                imageIntent.setAction(android.content.Intent.ACTION_VIEW);
-                                //Uri uri = Uri.parse("file://" + my_clicked_file.getAbsolutePath());
-                                Uri contentimageUri = FileProvider.getUriForFile(context,
-                                        "com.ndlp.socialstudy.provider",
-                                        my_clicked_file);
-                                imageIntent.setDataAndType(contentimageUri,"image/*");
-                                //imageIntent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + subFolder + "/" + fileName), "image/*");
+                Uri contentPDFUri = FileProvider.getUriForFile(context,
+                        "com.ndlp.socialstudy.provider",
+                        my_clicked_file);
+                String stringUri = contentPDFUri.toString();
+                Intent intent = new Intent(context, PDFViewerActivity.class);
+                intent.putExtra("pathtoPDF", stringUri);
+                context.startActivity(intent);
+            }
+            else if (format.equals("Image")) {
 
-                                context.startActivity(imageIntent);
+                Intent imageIntent = new Intent();
+                imageIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                imageIntent.setAction(android.content.Intent.ACTION_VIEW);
+                //Uri uri = Uri.parse("file://" + my_clicked_file.getAbsolutePath());
+                Uri contentimageUri = FileProvider.getUriForFile(context,
+                        "com.ndlp.socialstudy.provider",
+                        my_clicked_file);
+                imageIntent.setDataAndType(contentimageUri,"image/*");
+                //imageIntent.setDataAndType(Uri.parse(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + subFolder + "/" + fileName), "image/*");
+
+                context.startActivity(imageIntent);
+            }
+            else if (format.equals("Word")) {
+
             }
 
 

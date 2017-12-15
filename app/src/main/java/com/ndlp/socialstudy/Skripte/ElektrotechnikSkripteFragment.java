@@ -289,7 +289,6 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         private Context context;
         private Uri contentUri;
         private String fileName;
-
         private PowerManager.WakeLock mWakeLock;
 
         //  Constructor
@@ -343,6 +342,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
                 }
             }
+
         }
 
         @Override
@@ -367,6 +367,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
             }
 
         }
+
     }
 
 }

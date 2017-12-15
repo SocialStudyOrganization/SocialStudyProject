@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ndlp.socialstudy.Umfragen.NewUmfrageActivity"
+    android:background="#3498DB">
+
+    <RelativeLayout
+        android:id="@+id/rl_optionPollTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#2C3E50">
+
+        <ImageView
+            android:id="@+id/iv_goBackOptionPoll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Wortumfrage"
+            android:textSize="20sp"
+            android:paddingTop="7dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_optionPollTopBar"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#2C3E50"
+        android:id="@+id/rl_optionPollSurroundBar">
+
+        <EditText
+            android:id="@+id/et_headingOptionPoll"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#3498DB"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="10dp"
+            android:text="Unterthema"
+            android:maxLines="1"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+    
+    <EditText
+        android:id="@+id/et_optionPollQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Bitte die Frage eingeben"
+        android:layout_below="@id/rl_optionPollSurroundBar"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"/>
+    
+
+
+    <RelativeLayout
+        android:id="@+id/rl_optionPolladdItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#2C3E50"
+        android:layout_marginBottom="70dp">
+
+        <EditText
+            android:id="@+id/et_iteminput"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Items eingeben"
+            android:textSize="20sp"
+            android:maxLines="1"/>
+
+        <Button
+            android:id="@+id/b_addItem"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/rv_myOptionPollRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_optionPollQuestion"
+        android:layout_above="@id/rl_optionPolladdItemLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="#2C3E50"
+        android:id="@+id/rl_optionPollSubmitLayout">
+
+        <TextView
+            android:id="@+id/tv_newPollEinreichen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Einreichen"
+            android:textSize="30sp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

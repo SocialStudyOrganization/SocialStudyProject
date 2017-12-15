@@ -116,7 +116,8 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
 
                     //File my_clicked_file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + subFolder + "/" + fileName);
 
-                    File my_clicked_file = new File("/sdcard/MY DOWNLOADED FILES/" + subFolder + "/" + fileName);
+                    File my_clicked_file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                            + "/Android/data/" + context.getPackageName() + "/files/" + subFolder + "/" + fileName);
 
                     if (my_clicked_file.exists()) {
                         OpenFileClass openFileClass = new OpenFileClass(context, whichFormat, my_clicked_file, fileName, subFolder);
@@ -128,7 +129,7 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
                     }
 
                 } catch (Exception e){
-                    Toast.makeText(context, "ERROR: " + fileName + "Ein Fehler ist aufgetreten!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "ERROR: " + fileName + "Ein Fehler beim Klicken ist aufgetreten (FileDownloader)!", Toast.LENGTH_LONG).show();
                 }
 
 
