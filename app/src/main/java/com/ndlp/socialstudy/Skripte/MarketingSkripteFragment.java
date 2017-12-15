@@ -101,7 +101,7 @@ public class MarketingSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter
-        new SkripteDownloader(getActivity(), urlAddress, mRecyclerView, category, subFolder);
+        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
@@ -283,9 +283,9 @@ public class MarketingSkripteFragment extends Fragment {
         };
 
         //  starts the request to upload skriptname category, date, time, user to server
-        SkripteRequest skripteRequest = new SkripteRequest(skriptname,format, category, date, time, user, responseListener);
+        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(skriptname,format, category, date, time, user, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(skripteRequest);
+        queue.add(skripteDataIntoDatabase);
     }
 
     //  with using asyncTask the download is handled in the background

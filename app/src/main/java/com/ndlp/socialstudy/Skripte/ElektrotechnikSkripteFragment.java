@@ -106,14 +106,14 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
-        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
 
         //sets refreshlistener on Swiperefreshlayout
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Refresh items
-                new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+                new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -261,7 +261,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                         Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
                         //notify recycler adapter that dataset changed
-                        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+                        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
 
                     }
                     else {
@@ -276,9 +276,9 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         };
 
         //  starts the request to upload skriptname category, date, time, user to server
-        SkripteRequest skripteRequest = new SkripteRequest(skriptname,format, category, date, time, user, responseListener);
+        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(skriptname,format, category, date, time, user, responseListener);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(skripteRequest);
+        queue.add(skripteDataIntoDatabase);
     }
 
     //  with using asyncTask the download is handled in the background
