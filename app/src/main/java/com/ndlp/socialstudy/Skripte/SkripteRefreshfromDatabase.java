@@ -26,7 +26,6 @@ import java.util.Map;
 public class SkripteRefreshfromDatabase {
 
 
-
     private String urlAddress;
     private String category;
     private String subFolder;
