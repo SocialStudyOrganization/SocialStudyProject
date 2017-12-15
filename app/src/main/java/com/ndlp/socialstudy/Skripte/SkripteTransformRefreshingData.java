@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 
 
-public class ScripteDataParser extends AsyncTask<Void,Void,Boolean> {
+public class SkripteTransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
 
     private Context context;
     private String subFolder;
@@ -28,7 +28,7 @@ public class ScripteDataParser extends AsyncTask<Void,Void,Boolean> {
     private ScriptRecyclerAdapter mRecyclerAdapter = new ScriptRecyclerAdapter();
 
     //  Constructor
-    public ScripteDataParser(Context context, JSONArray jsonData, RecyclerView rv_skripte, String subFolder) {
+    public SkripteTransformRefreshingData(Context context, JSONArray jsonData, RecyclerView rv_skripte, String subFolder) {
         this.context = context;
         this.jsonData = jsonData;
         this.rv_skripte = rv_skripte;

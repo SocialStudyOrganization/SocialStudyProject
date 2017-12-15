@@ -101,7 +101,7 @@ public class MarketingSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter
-        new SkripteDownloader(getActivity(), urlAddress, mRecyclerView, category, subFolder);
+        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
 
         //  set onClickListener on the floating item as PDF
         floatingasPDF.setOnClickListener(new View.OnClickListener() {

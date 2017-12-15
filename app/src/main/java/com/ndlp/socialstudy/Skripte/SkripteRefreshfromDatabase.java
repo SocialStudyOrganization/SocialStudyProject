@@ -23,7 +23,7 @@ import java.util.Map;
  * class to handle the download/ actualize the data
  */
 
-public class SkripteDownloader {
+public class SkripteRefreshfromDatabase {
 
 
 
@@ -33,7 +33,7 @@ public class SkripteDownloader {
 
 
     //  constructor
-    public SkripteDownloader(Context context, String urlAddress, RecyclerView rv_skripte, String category, String subFolder) {
+    public SkripteRefreshfromDatabase(Context context, String urlAddress, RecyclerView rv_skripte, String category, String subFolder) {
 
         this.urlAddress = urlAddress;
         this.category = category;
@@ -57,10 +57,10 @@ public class SkripteDownloader {
 
                             JSONArray jsonArray = new JSONArray(response);
 
-                            new ScripteDataParser(context, jsonArray, rv_skripte, subFolder).execute();
+                            new SkripteTransformRefreshingData(context, jsonArray, rv_skripte, subFolder).execute();
 
                         } catch (JSONException e) {
-                            Log.e(SkripteDownloader.class.getSimpleName(), e.getMessage());
+                            Log.e(SkripteRefreshfromDatabase.class.getSimpleName(), e.getMessage());
                         }
                     }
                 },

@@ -106,14 +106,14 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
-        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
 
         //sets refreshlistener on Swiperefreshlayout
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Refresh items
-                new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+                new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -261,7 +261,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
                         Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
                         //notify recycler adapter that dataset changed
-                        new SkripteDownloader(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+                        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
 
                     }
                     else {
