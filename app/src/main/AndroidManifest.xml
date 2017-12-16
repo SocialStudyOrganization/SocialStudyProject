@@ -45,7 +45,7 @@
         <activity
             android:name=".Umfragen.OptionPollActivity"
             android:theme="@style/Theme.AppCompat.Transparent" />
-        <activity android:name=".activity.PDFViewerActivity"></activity>
+        <activity android:name=".GeneralFileFolder.PDFViewerActivity"></activity>
     </application>
 
 </manifest>

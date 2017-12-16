@@ -10,11 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Skripte.DividerItemDecoration;
+import com.ndlp.socialstudy.activity.DividerItemDecoration;
 
 import java.util.ArrayList;
 

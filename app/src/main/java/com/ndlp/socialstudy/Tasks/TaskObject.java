@@ -1,6 +1,8 @@
 package com.ndlp.socialstudy.Tasks;
 
-
+/**
+ * Created by ndlp on 16.12.2017.
+ */
 
 public class TaskObject {
     private Integer taskID;

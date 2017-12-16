@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.ndlp.socialstudy.Answers.AnswerClassesFragment;
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Skripte.SkripteClassesFragment;
-import com.ndlp.socialstudy.Tasks.TaskClassesFragment;
+import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
+import com.ndlp.socialstudy.Tasks.TasksVorlesungenFragment;
 import com.ndlp.socialstudy.Umfragen.UmfragenFragment;
 
 /**
@@ -48,7 +47,7 @@ public class MainMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Start fragment
-                SkripteClassesFragment classesFragment = new SkripteClassesFragment();
+                SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, classesFragment)
                         .addToBackStack(null)
@@ -59,15 +58,15 @@ public class MainMenuFragment extends Fragment {
         b_toTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TaskClassesFragment taskClassesFragment = new TaskClassesFragment();
+                TasksVorlesungenFragment tasksVorlesungenFragment = new TasksVorlesungenFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, taskClassesFragment)
+                        .replace(R.id.frame_layout, tasksVorlesungenFragment)
                         .addToBackStack(null)
                         .commit();
             }
         });
 
-        b_toAnswers.setOnClickListener(new View.OnClickListener() {
+/*        b_toAnswers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AnswerClassesFragment answerClassesFragment = new AnswerClassesFragment();
@@ -77,6 +76,8 @@ public class MainMenuFragment extends Fragment {
                         .commit();
             }
         });
+
+*/
 
         b_tomfragen.setOnClickListener(new View.OnClickListener() {
             @Override
