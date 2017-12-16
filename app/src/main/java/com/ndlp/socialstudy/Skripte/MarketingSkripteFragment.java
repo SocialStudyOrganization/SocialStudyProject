@@ -89,7 +89,6 @@ public class MarketingSkripteFragment extends Fragment {
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
-        floatinfasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
 
         skriptUri = null;
         imageUri = null;

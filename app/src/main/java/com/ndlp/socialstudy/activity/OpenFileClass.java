@@ -68,9 +68,6 @@ public class OpenFileClass {
 
                 context.startActivity(imageIntent);
             }
-            else if (format.equals("Word")) {
-
-            }
 
 
         }catch (Exception e){

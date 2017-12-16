@@ -89,7 +89,6 @@ public class ElektrotechnikAnswersFragment extends Fragment {
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
-        floatinfasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
 
         Uri = null;
         imageUri = null;

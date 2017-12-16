@@ -81,8 +81,6 @@ public class ScriptRecyclerAdapter extends RecyclerView.Adapter<ScriptRecyclerAd
         switch (whichFormat) {
             case "PDF":
                 imageName = "ic_picture_as_pdf_black_24dp";
-            case "Word":
-                imageName = "ic_insert_drive_file_black_24dp";
             case "Image":
                 imageName = "ic_photo_library_black_24dp";
         }

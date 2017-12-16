@@ -30,7 +30,7 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
     private String fileName;
     private Context context;
     ProgressDialog progressDialog;
-    File inputoutput_file;
+    File transferring_file;
     String subFolder;
     String format;
     File my_clicked_file;
@@ -51,16 +51,13 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
         this.my_clicked_file = my_clicked_file;
     }
 
-
+    FTPClient ftpClient = new FTPClient();
 
     @Override
     protected void onPreExecute() {
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Download in Progress...");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setMax(100);
-        progressDialog.setProgress(0);
         progressDialog.show();
 
     }
@@ -70,16 +67,14 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
 
 
         String path = params[0];
-        int file_length = 0;
 
         Log.i("Info:", path);
-
-        FTPClient ftpClient = new FTPClient();
 
         try {
 
             ftpClient.connect(SERVER_IP);
-            int reply = ftpClient.getReplyCode();
+            int reply = ftpClient.getReplyCode();               //Returns the integer value of the reply code of the last FTP reply. You will usually only use this method after you connect to the
+                                                                // FTP server to check that the connection was successful since connect is of type void
 
             if(!FTPReply.isPositiveCompletion(reply)){
                 ftpClient.disconnect();
@@ -89,16 +84,16 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
             ftpClient.login(USERNAME, PASSWORT);
 
             //  passes Firewall
-            ftpClient.enterLocalPassiveMode();
+            ftpClient.enterLocalPassiveMode();                  //telling the server to open a data port to which the client will connect to conduct data transfers.
 
             ftpClient.changeWorkingDirectory("/SocialStudy/" + subFolder);
+
+
 
             /**
              * Create new Folder
              */
 
-
-            //File new_Folder = new File("/sdcard/MY DOWNLOADED FILES/" + subFolder);
             File new_Folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                     + "/Android/data/" + context.getPackageName() + "/files/" + subFolder);
             if (!new_Folder.exists()) {
@@ -115,26 +110,22 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
              * Create an output file to store the file for download
              */
 
-            inputoutput_file = new File(new_Folder, fileName);
+            transferring_file = new File(new_Folder, fileName);
 
 
 
 
-            OutputStream outputStream = new FileOutputStream(inputoutput_file);
+            OutputStream outputStream = new FileOutputStream(transferring_file);
 
-            if (!ftpClient.retrieveFile(fileName, outputStream)) {
-
+            if (!ftpClient.retrieveFile(fileName, outputStream)) {                                         //Retrieves a named file from the server and writes it to the given OutputStream.
+                                                                                                            //true if successful false if not
                 outputStream.close();
                 return "ERROR: Failed to retrieve file!";
             }
 
             outputStream.close();
 
-/*            //make the file visible
-            MediaScannerConnection
-                    .scanFile(context, new String[] {inputoutput_file.getAbsolutePath()},
-                            new String[] {null}, null);
-*/
+
             return "Download Complete...";
 
         } catch (MalformedURLException e) {
@@ -166,10 +157,6 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
             return;
         }
 
-
-
-
-        //open file to view
 
     }
 }

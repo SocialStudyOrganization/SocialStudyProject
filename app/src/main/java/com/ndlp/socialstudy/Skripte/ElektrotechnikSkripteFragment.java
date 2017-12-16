@@ -6,33 +6,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.activity.FileUploader;
+import com.ndlp.socialstudy.activity.TImeDateRequest;
 
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Calendar;
 
 
 public class ElektrotechnikSkripteFragment extends Fragment {
@@ -45,19 +32,12 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
     private FloatingActionButton floatingasPDF;
     private FloatingActionButton floatingGallery;
-    private FloatingActionButton floatingasWord;
 
     private static final int READ_REQUEST_CODE = 1;
     private static final int SELECT_PICTURE = 1;
     private static final int REQUEST_CODE_OPEN = 1;
     Uri skriptUri;
     Uri imageUri;
-    Uri wordUri;
-
-    //  Serverdata
-    private static final String SERVER_IP = "w0175925.kasserver.com";
-    private static final String USERNAME = "f00dd887";
-    private static final String PASSWORT = "Nadipat2";
 
     //  location of the php script on server
     final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
@@ -70,7 +50,7 @@ public class ElektrotechnikSkripteFragment extends Fragment {
     public String time;
     public String user;
 
-    RecyclerView mRecyclerViewElektrotechnik;
+    RecyclerView mRecyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
 
 //---------------------------------ONCREATE----------------------------------------------------------
@@ -89,16 +69,14 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
 
         //  initialize the recyclerView of the data files
-        mRecyclerViewElektrotechnik = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_skripteElektrotechnik);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
-        floatingasWord = (FloatingActionButton) rootView.findViewById(R.id.floating_asWordFile);
 
         skriptUri = null;
         imageUri = null;
-        wordUri = null;
         skriptname = null;
 
         //  gets the username out of sharedPrefs LoginData
@@ -106,14 +84,14 @@ public class ElektrotechnikSkripteFragment extends Fragment {
         user = sharedPrefLoginData.getString("username", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
-        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
 
         //sets refreshlistener on Swiperefreshlayout
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Refresh items
-                new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
+                new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -130,16 +108,9 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
                 format = "PDF";
 
-                //  get the data for the fields in the recycler view according to time and date
-                Calendar calander = Calendar.getInstance();
-                int cDay = calander.get(Calendar.DAY_OF_MONTH);
-                int cMonth = calander.get(Calendar.MONTH) + 1;
-                int cYear = calander.get(Calendar.YEAR);
-                date = String.valueOf(cDay)+ "." + String.valueOf(cMonth)+ "." + String.valueOf(cYear);
-                int cHour = calander.get(Calendar.HOUR_OF_DAY);
-                int cMinute = calander.get(Calendar.MINUTE);
-                int cSecond = calander.get(Calendar.SECOND);
-                time = String.valueOf(cHour)+ ":" +String.valueOf(cMinute)+ ":" + String.valueOf(cSecond);
+                TImeDateRequest tImeDateRequest = new TImeDateRequest();
+                date = tImeDateRequest.getDate();
+                time = tImeDateRequest.getTime();
 
                 //  calls startAcivityForResult method
                 startActivityForResult(intent, READ_REQUEST_CODE);
@@ -157,53 +128,15 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
                 format = "Image";
 
-                //  get the data for the fields in the recycler view according to time and date
-                Calendar calander = Calendar.getInstance();
-                int cDay = calander.get(Calendar.DAY_OF_MONTH);
-                int cMonth = calander.get(Calendar.MONTH) + 1;
-                int cYear = calander.get(Calendar.YEAR);
-                date = String.valueOf(cDay)+ "." + String.valueOf(cMonth)+ "." + String.valueOf(cYear);
-                int cHour = calander.get(Calendar.HOUR_OF_DAY);
-                int cMinute = calander.get(Calendar.MINUTE);
-                int cSecond = calander.get(Calendar.SECOND);
-                time = String.valueOf(cHour)+ ":" +String.valueOf(cMinute)+ ":" + String.valueOf(cSecond);
+                TImeDateRequest tImeDateRequest = new TImeDateRequest();
+                date = tImeDateRequest.getDate();
+                time = tImeDateRequest.getTime();
 
                 startActivityForResult(Intent.createChooser(intent,
                         "Select Picture"), SELECT_PICTURE);
 
             }
         });
-
-        floatingasWord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
-                String[] mimetypes = {"application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
-                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
-
-                format = "Word";
-
-                //  get the data for the fields in the recycler view according to time and date
-                Calendar calander = Calendar.getInstance();
-                int cDay = calander.get(Calendar.DAY_OF_MONTH);
-                int cMonth = calander.get(Calendar.MONTH) + 1;
-                int cYear = calander.get(Calendar.YEAR);
-                date = String.valueOf(cDay)+ "." + String.valueOf(cMonth)+ "." + String.valueOf(cYear);
-                int cHour = calander.get(Calendar.HOUR_OF_DAY);
-                int cMinute = calander.get(Calendar.MINUTE);
-                int cSecond = calander.get(Calendar.SECOND);
-                time = String.valueOf(cHour)+ ":" +String.valueOf(cMinute)+ ":" + String.valueOf(cSecond);
-
-
-                startActivityForResult(intent, REQUEST_CODE_OPEN);
-
-            }
-        });
-
-
-
 
         return rootView;
     }
@@ -231,8 +164,9 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                UploadTask uploadTask = new UploadTask(getActivity(), skriptUri, skriptname);
-                uploadTask.execute(SERVER_IP, USERNAME, PASSWORT);
+                FileUploader fileUploader = new FileUploader(getActivity(), skriptUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
+                fileUploader.execute();
+
 
             }
         }
@@ -240,134 +174,5 @@ public class ElektrotechnikSkripteFragment extends Fragment {
 
     }
 
-
-    //  method to get the result on the server from uploading skript detailled data
-    //gets called in postexecute only if file is successfully uploaded
-    public void putIntoTable(){
-
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-
-            //when the request is executed and volley gives a reponse it will
-            // check success from php
-            @Override
-            public void onResponse(String response) {
-
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    boolean success = jsonResponse.getBoolean("success");
-
-
-                    if (success){
-                        Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
-
-                        //notify recycler adapter that dataset changed
-                        new SkripteRefreshfromDatabase(getActivity(), urlAddress, mRecyclerViewElektrotechnik, category, subFolder);
-
-                    }
-                    else {
-                        Toast.makeText(getActivity(), jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        //  starts the request to upload skriptname category, date, time, user to server
-        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(skriptname,format, category, date, time, user, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(skripteDataIntoDatabase);
-    }
-
-    //  with using asyncTask the download is handled in the background
-    //  therefore user can use app nevertheless
-    private class UploadTask extends AsyncTask<String, Integer, Boolean> {
-
-        //  Variables
-        private Context context;
-        private Uri contentUri;
-        private String fileName;
-        private PowerManager.WakeLock mWakeLock;
-
-        //  Constructor
-        public UploadTask(Context context, Uri contentUri, String fileName){
-            this.context = context;
-            this.contentUri = contentUri;
-            this.fileName = fileName;
-        }
-
-        //  Methoden to uploadTask
-        protected Boolean doInBackground(String... params) {
-
-            FTPClient ftpClient = new FTPClient();
-            InputStream inputStream = null;
-
-            //  connected zum Server + alles
-            try {
-                //  resolver Brechtigungen und liest die Datei ein
-                inputStream = getActivity().getContentResolver().openInputStream(contentUri);
-
-                ftpClient.connect(params[0]);
-                int reply = ftpClient.getReplyCode();
-
-                if(!FTPReply.isPositiveCompletion(reply)){
-                    ftpClient.disconnect();
-                    Log.e("UploadTask", "FTPServer refuses connection");
-                }
-
-                ftpClient.login(params[1], params[2]);
-
-                //  passes Firewall
-                ftpClient.enterLocalPassiveMode();
-
-                //  navigates to the folder on te server
-                ftpClient.changeWorkingDirectory("/SocialStudy/Skripte");
-                return ftpClient.storeFile(fileName, inputStream);
-
-            } catch(Exception e){
-                e.printStackTrace();
-                return false;
-            } finally {
-
-                try {
-
-                    //  control if inputstream has data, logouts from ftp and disconnects
-                    if (inputStream != null)
-                        inputStream.close();
-                    ftpClient.logout();
-                    ftpClient.disconnect();
-                } catch(IOException ignored) {
-
-                }
-            }
-
-        }
-
-        @Override
-        protected void onPreExecute() {
-            PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            mWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
-            mWakeLock.acquire();
-        }
-
-        //
-        @Override
-        protected void onPostExecute(Boolean result) {
-            mWakeLock.release();
-            //  if true make toast that file is uploaded
-            if (result) {
-                Toast.makeText(context, "Datei hochgeladen", Toast.LENGTH_LONG).show();
-
-                //  calls method putIntoTable()
-                putIntoTable();
-
-
-            }
-
-        }
-
-    }
 
 }

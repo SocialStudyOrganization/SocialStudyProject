@@ -51,16 +51,6 @@
         fab:menu_fab_hide_animation="@anim/hide_in_button">
 
 
-        <!-- fab:menu_labels_style="@style/YourCustomLabelsStyle" removed -->
-        <!--fab:menu_fab_label="your_label_here"-->
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/floating_asWordFile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_file_upload_black_24dp"
-            fab:fab_size="mini"
-            fab:fab_label="as Word File" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/floating_asPDFFile"
