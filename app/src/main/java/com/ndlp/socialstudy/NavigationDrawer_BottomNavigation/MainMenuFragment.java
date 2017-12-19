@@ -15,7 +15,7 @@ import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
 import com.ndlp.socialstudy.Tasks.TasksVorlesungenFragment;
-import com.ndlp.socialstudy.Umfragen.UmfragenFragment;
+import com.ndlp.socialstudy.Umfragen.BasicUmfragenFragment;
 
 /**
  * Fragment to navigate between tasks, exercises, surveys, solutions
@@ -100,9 +100,9 @@ public class MainMenuFragment extends Fragment {
         b_tomfragen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UmfragenFragment umfragenFragment = new UmfragenFragment();
+                BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, umfragenFragment)
+                        .replace(R.id.frame_layout, basicUmfragenFragment)
                         .addToBackStack(null)
                         .commit();
             }

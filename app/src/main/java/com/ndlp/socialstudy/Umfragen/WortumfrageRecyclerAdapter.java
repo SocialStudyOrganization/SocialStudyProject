@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ndlp.socialstudy.R;
@@ -15,19 +14,19 @@ import java.util.ArrayList;
 
 
 
-public class OptionPollItemsRecyclerAdapter extends RecyclerView.Adapter<OptionPollItemsRecyclerAdapter.MyViewHolder>{
+public class WortumfrageRecyclerAdapter extends RecyclerView.Adapter<WortumfrageRecyclerAdapter.MyViewHolder>{
 
     private Context context;
-    private ArrayList<OptionPollItemOpject> data;
+    private ArrayList<WortumfrageObject> data;
 
-    public OptionPollItemsRecyclerAdapter (Context context, ArrayList<OptionPollItemOpject> data){
+    public WortumfrageRecyclerAdapter(Context context, ArrayList<WortumfrageObject> data){
         this.context = context;
         this.data = data;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.option_poll_item, null);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.wortumfrage_item, null);
 
         return new MyViewHolder(itemView);
     }
@@ -36,7 +35,7 @@ public class OptionPollItemsRecyclerAdapter extends RecyclerView.Adapter<OptionP
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        final OptionPollItemOpject current = data.get(position);
+        final WortumfrageObject current = data.get(position);
         holder.itemTitle.setText(current.getItemTitle());
 
         holder.removeButton.setOnClickListener(new View.OnClickListener() {

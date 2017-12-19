@@ -1,8 +1,6 @@
 package com.ndlp.socialstudy.Umfragen;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,17 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.ndlp.socialstudy.R;
 
 
-public class UmfragenFragment extends Fragment {
-    public static UmfragenFragment newInstance() {
-        UmfragenFragment umfragenFragment = new UmfragenFragment();
-        return umfragenFragment;
+public class BasicUmfragenFragment extends Fragment {
+    public static BasicUmfragenFragment newInstance() {
+        BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
+        return basicUmfragenFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------

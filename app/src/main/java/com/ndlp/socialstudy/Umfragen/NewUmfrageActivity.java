@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
@@ -21,7 +20,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
         fabToOptionPoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewUmfrageActivity.this, OptionPollActivity.class);
+                Intent intent = new Intent(NewUmfrageActivity.this, WortumfragenActivity.class);
                 startActivity(intent);
             }
         });

@@ -40,11 +40,12 @@
         <activity android:name=".tutorialsheets.TutorialsheetsSlider" />
         <activity android:name=".NavigationDrawer_BottomNavigation.MainActivity" />
         <activity
-            android:name=".Umfragen.NewUmfrageActivity"
-            android:theme="@style/Theme.AppCompat.Transparent" />
+            android:name=".Umfragen.NewUmfrageActivity"/>
         <activity
-            android:name=".Umfragen.OptionPollActivity"
-            android:theme="@style/Theme.AppCompat.Transparent" />
+            android:name=".Umfragen.WortumfragenActivity"
+            android:windowSoftInputMode="adjustResize"/>
+            <!--android:theme="@style/Theme.AppCompat.Transparent" />
+            -->
         <activity android:name=".GeneralFileFolder.PDFViewerActivity"></activity>
     </application>
 
