@@ -11,6 +11,7 @@ import android.graphics.drawable.PaintDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //declaring typefonts
+        //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
         Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
         Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
@@ -51,9 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
         Typeface quicksand_lightitalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-LightItalic.otf");
 
-        RelativeLayout rl_background = (RelativeLayout) findViewById(R.id.rl_background);
-
         //create BG gradient
+        RelativeLayout rl_background = (RelativeLayout) findViewById(R.id.rl_background);
         ShapeDrawable.ShaderFactory shaderFactory = new ShapeDrawable.ShaderFactory() {
             @Override
             public Shader resize(int width, int height) {
@@ -80,10 +80,20 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final TextView tvRegisterLink = (TextView) findViewById(R.id.tvRegisterHere);
-
+        final TextView tv_RememberMe = (TextView) findViewById(R.id.tv_RememberMe);
         final CheckBox rememberMe = (CheckBox) findViewById(R.id.cb_rememberMe);
+        final TextView tv_passwordForgotten = (TextView) findViewById(R.id.tv_passwordForgotten);
+
 
         Button bLogin = (Button) findViewById(R.id.bLogin);
+
+        //assign typefaces
+        etEmail.setTypeface(quicksand_light);
+        etPassword.setTypeface((quicksand_light));
+        tv_RememberMe.setTypeface(quicksand_light);
+        bLogin.setTypeface(quicksand_bold);
+        tv_passwordForgotten.setTypeface(quicksand_light);
+        tvRegisterLink.setTypeface(quicksand_light);
 
 
         //  navigate to register a new user
