@@ -4,6 +4,27 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!-- Standard colors -->
+    <color name="weiß">#ecf0f1</color>
+    <color name="grau">#576D7E</color>
+    <color name="grau_alt">#666666</color>
+    <color name="dunkelgrau">#515151</color>
+    <color name="grün">#88F9D4</color>
+    <color name="grün_alt">#1FCC9E</color>
+    <color name="dunkelgrün">#18C29C</color>
+    <color name="gelb">#FCCF4F</color>
+    <color name="dunkelgelb">#E8B12A</color>
+    <color name="rot">#E74C3C</color>
+    <color name="dunkelrot">#DC3522</color>
+    <color name="blau">#3498DB</color>
+    <color name="dunkelblau">#2C3E50</color>
+
+    <!-- Dark BG gradient -->
+    <color name="bgg_hellblau">#2980B9</color>
+    <color name="bgg_hellblau_alt">#2E5570</color>
+    <color name="bgg_dunkelblau">#2C3E50</color>
+    <color name="bgg_dunkelgrau">#31353D</color>
+
     <!-- Tutorialsheets background color-->
     <color name="bg_screen1">#f64c73</color>
     <color name="bg_screen2">#20d2bb</color>
