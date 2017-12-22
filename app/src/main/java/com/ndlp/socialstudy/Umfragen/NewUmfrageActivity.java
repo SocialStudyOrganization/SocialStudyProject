@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
@@ -52,6 +53,9 @@ public class NewUmfrageActivity extends AppCompatActivity {
         if(getIntent().hasExtra("wortfrage") && getIntent().hasExtra("wortumfrageoptionen")) {
             wortfrage = getIntent().getStringExtra("wortfrage");
             wortumfrageoptionen = getIntent().getStringArrayListExtra("wortumfrageoptionen");
+
+
+
             Wortumfragenobject wortumfragenobject = new Wortumfragenobject(wortfrage, wortumfrageoptionen);
             wortumfragenobjects.add(wortumfragenobject);
             newUmfrageRecyclerAdapter.notifyDataSetChanged();

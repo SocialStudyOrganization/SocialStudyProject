@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 import java.util.ArrayList;
 
@@ -101,10 +102,43 @@ public class WortumfragenActivity extends AppCompatActivity {
                         strings.add(wortumfragelistenObject.getItemTitle());
                     }
 
+                    TinyDB tinyDB = new TinyDB(WortumfragenActivity.this);
+                    ArrayList<Integer> anzahleinzelnerUmfragenarray = new ArrayList<>();
 
-                    /*Wortumfragenobject wortumfragenobject = new Wortumfragenobject(wortfrage, strings);
-                    wortumfragenobjects.add(wortumfragenobject);
-                    newUmfrageRecyclerAdapter.notifyDataSetChanged();*/
+                    if (tinyDB.getListInt("AnzahlEinzelnerUmfragen").isEmpty()){
+                        anzahleinzelnerUmfragenarray.add(1);
+                        tinyDB.putListInt("AnzahlEinzelnerUmfragen", anzahleinzelnerUmfragenarray);
+
+                    } else {
+
+                        anzahleinzelnerUmfragenarray = tinyDB.getListInt("AnzahlEinzelnerUmfragen");
+
+                        int neuerEintrag;
+                        neuerEintrag = anzahleinzelnerUmfragenarray.size() + 1;
+
+                        anzahleinzelnerUmfragenarray.add(neuerEintrag);
+                        tinyDB.putListInt("AnzahlEinzelnerUmfragen", anzahleinzelnerUmfragenarray);
+
+                        double wortfragezahl;
+                        double optionenzahl;
+
+                        wortfragezahl = neuerEintrag + 0.1;
+                        optionenzahl = neuerEintrag + 0.2;
+
+                        tinyDB.putString("" + wortfragezahl, wortfrage);
+                        tinyDB.putListString("" + optionenzahl, strings);
+
+
+
+
+                    }
+
+
+
+                    tinyDB.putString("1.1" , wortfrage);
+                    tinyDB.putListString("1.2" , strings);
+
+
 
 
                     Intent intent = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
