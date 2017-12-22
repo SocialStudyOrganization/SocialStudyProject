@@ -16,11 +16,8 @@ import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
-import com.ndlp.socialstudy.activity.TinyDB;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class WortumfragenActivity extends AppCompatActivity {
 
@@ -48,12 +45,21 @@ public class WortumfragenActivity extends AppCompatActivity {
         rv_myOptionPollRecyclerView = (RecyclerView) findViewById(R.id.rv_myOptionPollRecyclerView);
         tv_newPollEinreichen = (TextView) findViewById(R.id.tv_newPollEinreichen);
 
-        final WortumfrageRecyclerAdapter adapter;
-        final ArrayList<WortumfrageObject> arrayListWortUmfrage = new ArrayList<>();
+        //intern
+        final WortumfrageOptionenRecyclerAdapter adapter;
+        final ArrayList<WortumfragelistenObject> arrayListWortUmfrage = new ArrayList<>();
 
-        adapter = new WortumfrageRecyclerAdapter(this, arrayListWortUmfrage);
+        adapter = new WortumfrageOptionenRecyclerAdapter(this, arrayListWortUmfrage);
         rv_myOptionPollRecyclerView.setAdapter(adapter);
         rv_myOptionPollRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //extern
+        final NewUmfrageRecyclerAdapter newUmfrageRecyclerAdapter;
+        final ArrayList<Wortumfragenobject> wortumfragenobjects = new ArrayList<>();
+
+        newUmfrageRecyclerAdapter = new NewUmfrageRecyclerAdapter(this, wortumfragenobjects);
+
+
 
         Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.line_divider);
         rv_myOptionPollRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
@@ -69,7 +75,7 @@ public class WortumfragenActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    WortumfrageObject current = new WortumfrageObject(itemTitle);
+                    WortumfragelistenObject current = new WortumfragelistenObject(itemTitle);
                     arrayListWortUmfrage.add(current);
                     adapter.notifyDataSetChanged();
                     et_iteminput.setText("");
@@ -89,19 +95,24 @@ public class WortumfragenActivity extends AppCompatActivity {
 
                 }
                 else {
-                    ArrayList<String> strings = new ArrayList<String>();
-                    for (WortumfrageObject wortumfrageObject : arrayListWortUmfrage) {
-                        strings.add(wortumfrageObject.getItemTitle());
+                    ArrayList<String> strings = new ArrayList<>();
+
+                    for (WortumfragelistenObject wortumfragelistenObject : arrayListWortUmfrage) {
+                        strings.add(wortumfragelistenObject.getItemTitle());
                     }
 
-                    TinyDB tinyDB = new TinyDB(WortumfragenActivity.this);
-                    tinyDB.putListString("Wortumfrage1", strings);
-                    tinyDB.putString("Wortumfragethema1", wortfrage);
 
-                    //ArrayList datastring = tinyDB.getListString("Wortumfrage1");
-                    //Toast.makeText(WortumfragenActivity.this, ""+datastring, Toast.LENGTH_LONG).show();
+                    /*Wortumfragenobject wortumfragenobject = new Wortumfragenobject(wortfrage, strings);
+                    wortumfragenobjects.add(wortumfragenobject);
+                    newUmfrageRecyclerAdapter.notifyDataSetChanged();*/
+
+
                     Intent intent = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
+                    intent.putExtra("wortfrage", wortfrage);
+                    intent.putExtra("wortumfrageoptionen", strings);
                     startActivity(intent);
+                    finish();
+
                 }
 
 

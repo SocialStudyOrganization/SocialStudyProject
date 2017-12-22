@@ -4,11 +4,11 @@ package com.ndlp.socialstudy.Umfragen;
  * Created by ndlp on 03.11.2017.
  */
 
-public class WortumfrageObject {
+public class WortumfragelistenObject {
 
     private String itemTitle;
 
-    public WortumfrageObject(String itemTitle) {
+    public WortumfragelistenObject(String itemTitle) {
 
         this.itemTitle = itemTitle;
     }

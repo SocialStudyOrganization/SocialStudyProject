@@ -14,12 +14,12 @@ import java.util.ArrayList;
 
 
 
-public class WortumfrageRecyclerAdapter extends RecyclerView.Adapter<WortumfrageRecyclerAdapter.MyViewHolder>{
+public class WortumfrageOptionenRecyclerAdapter extends RecyclerView.Adapter<WortumfrageOptionenRecyclerAdapter.MyViewHolder>{
 
     private Context context;
-    private ArrayList<WortumfrageObject> data;
+    private ArrayList<WortumfragelistenObject> data;
 
-    public WortumfrageRecyclerAdapter(Context context, ArrayList<WortumfrageObject> data){
+    public WortumfrageOptionenRecyclerAdapter(Context context, ArrayList<WortumfragelistenObject> data){
         this.context = context;
         this.data = data;
     }
@@ -35,7 +35,7 @@ public class WortumfrageRecyclerAdapter extends RecyclerView.Adapter<Wortumfrage
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        final WortumfrageObject current = data.get(position);
+        final WortumfragelistenObject current = data.get(position);
         holder.itemTitle.setText(current.getItemTitle());
 
         holder.removeButton.setOnClickListener(new View.OnClickListener() {
