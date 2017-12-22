@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 import org.w3c.dom.Text;
 
@@ -50,15 +51,43 @@ public class NewUmfrageActivity extends AppCompatActivity {
         rv_newUmfrage.setAdapter(newUmfrageRecyclerAdapter);
         rv_newUmfrage.setLayoutManager(new LinearLayoutManager(this));
 
-        if(getIntent().hasExtra("wortfrage") && getIntent().hasExtra("wortumfrageoptionen")) {
+/*        if(getIntent().hasExtra("wortfrage") && getIntent().hasExtra("wortumfrageoptionen")) {
             wortfrage = getIntent().getStringExtra("wortfrage");
             wortumfrageoptionen = getIntent().getStringArrayListExtra("wortumfrageoptionen");
 
 
+*/
+        TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
+        ArrayList<Integer> anzahleinzelnerUmfragenarray = new ArrayList<>();
 
-            Wortumfragenobject wortumfragenobject = new Wortumfragenobject(wortfrage, wortumfrageoptionen);
-            wortumfragenobjects.add(wortumfragenobject);
-            newUmfrageRecyclerAdapter.notifyDataSetChanged();
+        if (!tinyDB.getListInt("AnzahlEinzelnerUmfragen").isEmpty())     {
+
+            anzahleinzelnerUmfragenarray = tinyDB.getListInt("AnzahlEinzelnerUmfragen");
+
+
+            for (int eintrag = anzahleinzelnerUmfragenarray.size(); eintrag>0; eintrag--) {
+
+                double wortfragezahl;
+                double optionenzahl;
+
+                wortfragezahl = eintrag + 0.1;
+                optionenzahl = eintrag + 0.2;
+
+                try {
+
+                    wortfrage = tinyDB.getString("" + wortfragezahl);
+                    wortumfrageoptionen = tinyDB.getListString("" + optionenzahl);
+
+                    Wortumfragenobject wortumfragenobject = new Wortumfragenobject(wortfrage, wortumfrageoptionen);
+                    wortumfragenobjects.add(wortumfragenobject);
+                    newUmfrageRecyclerAdapter.notifyDataSetChanged();
+
+                } catch (Exception e){
+                    Toast.makeText(NewUmfrageActivity.this, e.getMessage(), Toast.LENGTH_LONG ).show();
+                }
+
+
+            }
         }
 
         fabToOptionPoll.setOnClickListener(new View.OnClickListener() {
