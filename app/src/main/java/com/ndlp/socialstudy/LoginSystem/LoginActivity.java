@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         Button bLogin = (Button) findViewById(R.id.bLogin);
 
         //assign typefaces
-        etEmail.setTypeface(quicksand_light);
-        etPassword.setTypeface((quicksand_light));
+        etEmail.setTypeface(quicksand_regular);
+        etPassword.setTypeface((quicksand_regular));
         tv_RememberMe.setTypeface(quicksand_light);
         bLogin.setTypeface(quicksand_bold);
         tv_passwordForgotten.setTypeface(quicksand_light);
