@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.Stundenplan;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -84,7 +85,6 @@ public class CalendarFragment extends Fragment {
 
 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(finalURL);
         webView.setHorizontalScrollBarEnabled(false);
 
         webView.getSettings().setSupportZoom(true);
@@ -92,17 +92,37 @@ public class CalendarFragment extends Fragment {
         webView.getSettings().setDisplayZoomControls(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.setInitialScale(1);
-        webView.setWebViewClient(new myWebViewClient());
+
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                Toast.makeText(getContext(), "Error:" + description, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        webView.loadUrl(finalURL);
 
 
         return rootView;
     }
 
-    public class myWebViewClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
-    }
+
+
 }
