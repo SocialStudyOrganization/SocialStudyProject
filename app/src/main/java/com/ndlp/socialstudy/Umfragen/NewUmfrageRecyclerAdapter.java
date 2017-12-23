@@ -37,15 +37,6 @@ public class NewUmfrageRecyclerAdapter extends RecyclerView.Adapter<NewUmfrageRe
         final Wortumfragenobject current = data.get(position);
         holder.newUmfrageitem_header.setText(current.getWortumFrageFrage());
 
-        holder.removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, data.size());
-
-            }
-        });
     }
 
     @Override
@@ -57,14 +48,12 @@ public class NewUmfrageRecyclerAdapter extends RecyclerView.Adapter<NewUmfrageRe
     class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView newUmfrageitem_header;
-        Button removeButton;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
 
             newUmfrageitem_header = (TextView) itemView.findViewById(R.id.tv_newUmfrageitem_header);
-            removeButton = (Button) itemView.findViewById(R.id.b_newUmfrageitem_deleteItem);
 
 
         }

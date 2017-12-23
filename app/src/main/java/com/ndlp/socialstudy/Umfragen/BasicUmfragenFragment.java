@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 
 public class BasicUmfragenFragment extends Fragment {
@@ -42,6 +43,10 @@ public class BasicUmfragenFragment extends Fragment {
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayoutUmfragen);
 
         floatingaddUmfrage = (FloatingActionButton) rootView.findViewById(R.id.floatingaddUmfrage);
+
+
+        TinyDB tinyDB = new TinyDB(getContext());
+        tinyDB.remove("AnzahlEinzelnerUmfragen");
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

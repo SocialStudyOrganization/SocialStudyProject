@@ -146,9 +146,7 @@ public class WortumfragenActivity extends AppCompatActivity {
                     }
 
                     Intent intent = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
-    /*                intent.putExtra("wortfrage", wortfrage);
-                    intent.putExtra("wortumfrageoptionen", strings);
-    */                startActivity(intent);
+                    startActivity(intent);
                     finish();
                 }
 

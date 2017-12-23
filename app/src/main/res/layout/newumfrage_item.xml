@@ -24,13 +24,6 @@
         android:textSize="20sp"
         android:text="TextView" />
 
-    <Button
-        android:id="@+id/b_newUmfrageitem_deleteItem"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="15dp" />
 
 
 </RelativeLayout>
