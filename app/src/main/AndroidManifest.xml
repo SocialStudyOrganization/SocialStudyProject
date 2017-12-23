@@ -44,8 +44,6 @@
         <activity
             android:name=".Umfragen.WortumfragenActivity"
             android:windowSoftInputMode="adjustResize"/>
-            <!--android:theme="@style/Theme.AppCompat.Transparent" />
-            -->
         <activity android:name=".GeneralFileFolder.PDFViewerActivity"></activity>
     </application>
 

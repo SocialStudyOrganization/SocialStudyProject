@@ -8,6 +8,9 @@ public class TImeDateRequest {
 
     private String date;
     private String time;
+    private String day;
+    private String month;
+    private String year;
 
     Calendar calander = Calendar.getInstance();
 
@@ -27,4 +30,7 @@ public class TImeDateRequest {
         time = String.valueOf(cHour)+ ":" +String.valueOf(cMinute)+ ":" + String.valueOf(cSecond);
         return time;
     }
+
+
+
 }

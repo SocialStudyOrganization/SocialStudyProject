@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
 
 /**
  * Activity to handle the fragments with bottomNavigationView and navigationDrawer
