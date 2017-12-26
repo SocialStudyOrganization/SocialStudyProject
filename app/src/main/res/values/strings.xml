@@ -37,6 +37,9 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="feedback_text">Wir sind stets bemüht, StudyWire zu \noptimieren - denn je besser unsere\nPlattform gestaltet ist, desto leichter\nfällt uns allen der Studienalltag. Um\njedem die bestmögliche Erfahrung\nbereit stellen zu können, ist auch Dein\nFeedback gefragt!\n\nTeile uns mit, wo Du Raum für weitere\nVerbesserungen siehst oder welche\nFunktionen wir in Zukunft noch\nimplementieren sollen.\n\nVielen Dank dafür, dass du Teil dieser\nCommunity bist!</string>
+    <string name="feedback_button_text">Feedback geben</string>
+    <string name="login_button_text">Anmelden</string>
 </resources>
 
 
