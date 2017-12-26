@@ -2,41 +2,78 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_feedback_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dunkelblau"
     tools:context="com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.FehlerMeldenAcivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/appBarLayout" />
+        android:layout_gravity="top"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/dunkelblau"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:id="@+id/tv_toolbar_title_workaround_fehler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="36dp"
+                android:text="Fehler melden"
+                android:textAlignment="viewStart"
+                android:textColor="@color/weiß"
+                android:textSize="22sp" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="@drawable/toolbar_dropshadow" />
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="300dp"
+        android:id="@+id/tv_fehler_msg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Für uns ist es wichtig frühzeitig wenn Fehler im Code vorliegen, um Ihnen eine reibungslose Nutzung zu gewährleisten!
-
-Beschreiben Sie den Fehler so ausführlich wie möglich und stellen Sie diesen eventuell mit Screenshots dar!"
-        android:layout_marginTop="101dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:text="@string/fehler_text"
+        android:textColor="@color/weiß"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/b_fehlermelden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/tv_fehler_msg"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp"
-        android:text="Fehler melden" />
+        android:layout_marginTop="36dp"
+        android:background="@drawable/shape_send_error_or_feedback"
+        android:text="@string/fehler_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/weiß" />
+
 
 </RelativeLayout>
