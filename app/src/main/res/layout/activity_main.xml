@@ -30,12 +30,18 @@
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
+            android:background="@color/dunkelblau"
             app:itemIconTint="@color/nav_item_state_list"
             app:itemTextColor="@color/nav_item_state_list"
-            app:menu="@menu/bottom_navigation_items"/>
+            app:menu="@menu/bottom_navigation_items" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_above="@id/bottom_navigation_view"
+            android:background="@drawable/upward_dropshadow" />
 
     </RelativeLayout>
 
