@@ -41,7 +41,7 @@
             android:layout_marginRight="33dp"
             android:background="@drawable/shape_loginbox"
             android:ems="10"
-            android:hint="Email-Adresse"
+            android:hint="@string/login_email_hint"
             android:inputType="textEmailAddress"
             android:paddingLeft="36dp"
             android:textColor="@color/weiß"
@@ -64,9 +64,9 @@
             android:layout_marginLeft="33dp"
             android:layout_marginRight="33dp"
             android:background="@drawable/shape_loginbox"
+            android:inputType="textPassword"
             android:ems="10"
-            android:hint="Passwort"
-            android:inputType="textEmailAddress"
+            android:hint="@string/login_passwordhint"
             android:paddingLeft="36dp"
             android:textColor="@color/weiß"
             android:textColorHint="@color/weiß"
@@ -94,7 +94,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="137dp"
-            android:text="angemeldet bleiben"
+            android:text="@string/login_stay_registered"
             android:textColor="@color/weiß" />
 
     </RelativeLayout>
@@ -108,12 +108,12 @@
         <Button
             android:id="@+id/bLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="70dp"
             android:background="@drawable/shape_loginbutton"
-            android:text="Anmelden"
+            android:text="@string/loginscreen_button_text"
             android:textAllCaps="false"
             android:textColor="@color/weiß"
             android:textSize="20sp"
@@ -134,7 +134,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="35dp"
-            android:text="Passwort vergessen?"
+            android:text="@string/login_passwordforgotten_link"
             android:textColor="@color/weiß" />
 
     </RelativeLayout>
@@ -150,12 +150,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_weight="2"
             android:ems="10"
             android:gravity="right"
-            android:inputType="textPersonName"
             android:paddingBottom="5sp"
-            android:text="Accont erstellen"
+            android:text="@string/login_registerlink"
             android:textAlignment="center"
             android:textColor="@color/weiß"
             android:textSize="14sp" />
