@@ -42,6 +42,18 @@
     <string name="fehler_text">Wir legen höchsten Wert auf eine\nreibungsfreie Erfahrung für all unsere\nNutzer - also auch Dich! Sollte Dir beim\nGebrauch von Study Wire auffallen,\ndass die App mal nicht ganz tut, wie sie\nsoll, lasse es uns wissen.\n\nTeile uns mit, wann und wobei der\nFehler aufgetreten und ob er für Dich\nreproduzierbar ist.\nSehr gerne empfangen wir auch Deine\nScreenshots, um noch schneller agieren\nzu können.\n\nVielen Dank dafür, dass Du uns dabei\nhilfst, Study Wire zu optimieren!</string>
     <string name="fehler_button_text">Fehler melden</string>
     <string name="login_button_text">Anmelden</string>
+    <string name="register_mail">Email-Adresse</string>
+    <string name="register_student_id">Matrikelnummer</string>
+    <string name="register_password">Passwort</string>
+    <string name="register_name">Vorname</string>
+    <string name="register_surname">Name</string>
+    <string name="register_button_text">Registrieren</string>
+    <string name="login_email_hint">Email-Adresse</string>
+    <string name="login_stay_registered">angemeldet bleiben</string>
+    <string name="loginscreen_button_text">Anmelden</string>
+    <string name="login_passwordforgotten_link">Passwort vergessen?</string>
+    <string name="login_registerlink">Accont erstellen</string>
+    <string name="login_passwordhint">Passwort</string>
 </resources>
 
 

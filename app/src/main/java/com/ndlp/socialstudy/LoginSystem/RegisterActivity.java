@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.LoginSystem;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +30,15 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
+        Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
+        Typeface quicksand_italic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Italic.otf");
+        Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
+        Typeface quicksand_lightitalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-LightItalic.otf");
 
+        //connect to xml widgets
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final EditText etMatrikelnummer = (EditText) findViewById(R.id.etMatrikelnummer);
@@ -37,6 +46,14 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etSurname = (EditText) findViewById(R.id.etSurname);
 
         final Button bRegiser = (Button) findViewById(R.id.bRegister);
+
+        //assign typefaces
+        etEmail.setTypeface(quicksand_regular);
+        etPassword.setTypeface(quicksand_regular);
+        etMatrikelnummer.setTypeface(quicksand_regular);
+        etFirstName.setTypeface(quicksand_regular);
+        etSurname.setTypeface(quicksand_regular);
+        bRegiser.setTypeface(quicksand_bold);
 
         //  transfer username and password toString
         bRegiser.setOnClickListener(new View.OnClickListener() {
