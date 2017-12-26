@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- Standard colors -->
+    <color name="schwarz">#14151C</color>
     <color name="weiß">#ecf0f1</color>
     <color name="grau">#576D7E</color>
     <color name="grau_alt">#666666</color>
@@ -17,7 +18,7 @@
     <color name="rot">#E74C3C</color>
     <color name="dunkelrot">#DC3522</color>
     <color name="blau">#3498DB</color>
-    <color name="dunkelblau">#2C3E50</color>
+    <color name="dunkelblau">#2c3e50</color>
 
     <!-- Dark BG gradient -->
     <color name="bgg_hellblau">#2980B9</color>

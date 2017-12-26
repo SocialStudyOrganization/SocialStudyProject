@@ -3,6 +3,7 @@ package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
@@ -38,12 +41,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
+        Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
+        Typeface quicksand_italic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Italic.otf");
+        Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
+        Typeface quicksand_lightitalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-LightItalic.otf");
+
         //  listener für click events in navigationDrawer -> calls method
         setNavigationViewListner();
 
         //  set toolbar and get a ActionBarDrawerToggle for onOptionsItemsSelected
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        setTitle("");
+
+        TextView tv_toolbar_title_workaround = (TextView) findViewById(R.id.tv_toolbar_title_workaround);
+        tv_toolbar_title_workaround.setTypeface(quicksand_bold);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
@@ -70,10 +85,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * BottomNavigationView
          */
 
-
-
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation_view);
+
+        bottomNavigationView.setItemBackgroundResource(R.drawable.mainactivitybackgroundhighlight);
 
         //  listen for clicks and navigate between fragments
         bottomNavigationView.setOnNavigationItemSelectedListener
