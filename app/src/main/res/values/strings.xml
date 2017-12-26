@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SocialWire</string>
+    <string name="app_name">StudyWire</string>
 
     <!-- NavigationDrawer-->
 
@@ -39,6 +39,8 @@
     <string name="close">Close</string>
     <string name="feedback_text">Wir sind stets bemüht, StudyWire zu \noptimieren - denn je besser unsere\nPlattform gestaltet ist, desto leichter\nfällt uns allen der Studienalltag. Um\njedem die bestmögliche Erfahrung\nbereit stellen zu können, ist auch Dein\nFeedback gefragt!\n\nTeile uns mit, wo Du Raum für weitere\nVerbesserungen siehst oder welche\nFunktionen wir in Zukunft noch\nimplementieren sollen.\n\nVielen Dank dafür, dass du Teil dieser\nCommunity bist!</string>
     <string name="feedback_button_text">Feedback geben</string>
+    <string name="fehler_text">Wir legen höchsten Wert auf eine\nreibungsfreie Erfahrung für all unsere\nNutzer - also auch Dich! Sollte Dir beim\nGebrauch von Study Wire auffallen,\ndass die App mal nicht ganz tut, wie sie\nsoll, lasse es uns wissen.\n\nTeile uns mit, wann und wobei der\nFehler aufgetreten und ob er für Dich\nreproduzierbar ist.\nSehr gerne empfangen wir auch Deine\nScreenshots, um noch schneller agieren\nzu können.\n\nVielen Dank dafür, dass Du uns dabei\nhilfst, Study Wire zu optimieren!</string>
+    <string name="fehler_button_text">Fehler melden</string>
     <string name="login_button_text">Anmelden</string>
 </resources>
 
