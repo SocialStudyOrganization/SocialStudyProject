@@ -3,6 +3,7 @@ package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.ndlp.socialstudy.Umfragen.UmfragenFragment;
 public class MainMenuFragment extends Fragment {
     public static MainMenuFragment newInstance() {
         MainMenuFragment fragment = new MainMenuFragment();
+
         return fragment;
     }
 
@@ -42,6 +44,22 @@ public class MainMenuFragment extends Fragment {
         Button b_toTasks = (Button) rootView.findViewById(R.id.b_toTasks);
         Button b_toAnswers = (Button) rootView.findViewById(R.id.b_toAnswers);
         Button b_tomfragen = (Button) rootView.findViewById(R.id.b_toUmfragen);
+        Button b_logout = (Button) rootView.findViewById(R.id.b_logout);
+
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-Bold.otf");
+        Typeface quicksand_bolditalic = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-BoldItalic.otf");
+        Typeface quicksand_italic = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-Italic.otf");
+        Typeface quicksand_light = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-Light.otf");
+        Typeface quicksand_lightitalic = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-LightItalic.otf");
+
+        //assigning typefaces
+        b_toSkripte.setTypeface(quicksand_regular);
+        b_toTasks.setTypeface(quicksand_regular);
+        b_toAnswers.setTypeface(quicksand_regular);
+        b_tomfragen.setTypeface(quicksand_regular);
+        b_logout.setTypeface(quicksand_regular);
 
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +111,7 @@ public class MainMenuFragment extends Fragment {
 
 
 
-        Button b_logout = (Button) rootView.findViewById(R.id.b_logout);
+
 
         //  logout the user -> call method clearPrefs() -> call LoginActivity
         b_logout.setOnClickListener(new View.OnClickListener() {

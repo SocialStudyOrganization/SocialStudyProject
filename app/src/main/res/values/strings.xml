@@ -52,8 +52,13 @@
     <string name="login_stay_registered">angemeldet bleiben</string>
     <string name="loginscreen_button_text">Anmelden</string>
     <string name="login_passwordforgotten_link">Passwort vergessen?</string>
-    <string name="login_registerlink">Accont erstellen</string>
+    <string name="login_registerlink">Account erstellen</string>
     <string name="login_passwordhint">Passwort</string>
+    <string name="coursepage_Scripts">Skripte</string>
+    <string name="coursepage_solutions">Lösungen</string>
+    <string name="coursepage_exercises">Übungen</string>
+    <string name="coursepage_polls">Umfragen</string>
+    <string name="coursepage_coursemembers">Kursmitglieder</string>
 </resources>
 
 
