@@ -163,7 +163,8 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
+                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category,
+                        date, time, user, subFolder, urlAddress, mRecyclerView);
                 fileUploader.execute();
 
 

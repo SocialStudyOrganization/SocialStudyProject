@@ -33,10 +33,8 @@ import com.ndlp.socialstudy.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Activity to compare inputs with server data and grant access
- * handels also SharedPref rememberMe
- */
+
+
 
 public class LoginActivity extends AppCompatActivity {
     @Override

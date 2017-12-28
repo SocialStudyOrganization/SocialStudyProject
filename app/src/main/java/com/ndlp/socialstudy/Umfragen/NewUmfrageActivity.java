@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,11 +17,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 import com.ndlp.socialstudy.activity.TinyDB;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -37,7 +43,10 @@ public class NewUmfrageActivity extends AppCompatActivity {
     TextView tv_einreichen;
     ImageView iv_newumfrageback;
     String wortfrage;
+
     ArrayList<String> wortumfrageoptionen;
+
+    ArrayList<String> datatoserverarray = new ArrayList<String>();
 
     String umfragethema;
     String enddate;
@@ -63,6 +72,9 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
         final NewUmfrageRecyclerAdapter newUmfrageRecyclerAdapter;
         final ArrayList<Wortumfragenobject> wortumfragenobjects = new ArrayList<>();
+
+        datatoserverarray.clear();
+
 
         newUmfrageRecyclerAdapter = new NewUmfrageRecyclerAdapter(this, wortumfragenobjects);
         rv_newUmfrage.setAdapter(newUmfrageRecyclerAdapter);
@@ -132,6 +144,8 @@ public class NewUmfrageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
+
+
                 if (et_umfrageueberschrift.equals("") || et_umfragedatum.equals("") || et_umfragetime.equals("")
                          || wortumfragenobjects.isEmpty()){
 
@@ -140,9 +154,11 @@ public class NewUmfrageActivity extends AppCompatActivity {
                 }else {
 
                     //gets the userinputs out of the edit texts
-                    umfragethema = et_umfrageueberschrift.toString();
+                    umfragethema = et_umfrageueberschrift.getText().toString().trim();
                     enddate = et_umfragedatum.getText().toString().trim();
                     endtime = et_umfragetime.getText().toString().trim();
+
+
 
                     //checks the format of the date
                     if (!enddate.matches("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$")
@@ -167,8 +183,11 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
                         TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
                         ArrayList<Integer> anzahleinzelnerUmfragenarray;
-
                         anzahleinzelnerUmfragenarray = tinyDB.getListInt("AnzahlEinzelnerUmfragen");
+
+                        Integer anzahleinzelnerumfrageninteger = anzahleinzelnerUmfragenarray.size();
+                        String anzahleinzelnerumfragen = "" + anzahleinzelnerumfrageninteger;
+
 
 
                         for (int eintrag = anzahleinzelnerUmfragenarray.size(); eintrag>0; eintrag--) {
@@ -179,28 +198,71 @@ public class NewUmfrageActivity extends AppCompatActivity {
                             wortfragezahl = eintrag + 0.1;
                             optionenzahl = eintrag + 0.2;
 
-                            try {
-
                                 wortfrage = tinyDB.getString("" + wortfragezahl);
+                                datatoserverarray.add(wortfrage);
+
                                 wortumfrageoptionen = tinyDB.getListString("" + optionenzahl);
 
 
+                                for (int optionenzahlimarray = wortumfrageoptionen.size(); optionenzahlimarray>0; optionenzahlimarray--) {
 
-                            } catch (Exception e){
-                                Toast.makeText(NewUmfrageActivity.this, e.getMessage(), LENGTH_LONG ).show();
-                            }
+                                    String option;
 
+                                    option = wortumfrageoptionen.get(optionenzahlimarray-1);
 
+                                    datatoserverarray.add(option);
+                                }
+
+                                datatoserverarray.add("%");
                         }
 
+                        String arraytostring = datatoserverarray.toString();
 
- /*
-                        UmfragenDataIntoDatabase umfragendataintodatabase = new UmfragenDataIntoDataBase(umfragethema, erstelltamDate
-                            , enddate, endtime, user, INSERT, responseListener);
+                        arraytostring = arraytostring.replace("[", "");
+                        arraytostring = arraytostring.replace("]", "");
+                        Log.i("Umfragethema:", umfragethema);
+                        Log.i("erstelltamDate:", erstelltamDate);
+                        Log.i("enddate:", enddate);
+                        Log.i("endtime:", endtime);
+                        Log.i("user:", user);
+                        Log.i("arraytostring:", arraytostring);
+                        Toast.makeText(NewUmfrageActivity.this, anzahleinzelnerumfragen, LENGTH_LONG).show();
+
+
+
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                //  gets called if a response is transmitted
+                                try {
+                                    JSONObject jsonResponse = new JSONObject(response);
+                                    boolean success = jsonResponse.getBoolean("success");
+
+
+                                    if (success) {
+                                        Toast.makeText(NewUmfrageActivity.this, "Umfrage wurde erfolgreich angelegt", LENGTH_LONG).show();
+
+                                    } else {
+
+                                        Toast.makeText(NewUmfrageActivity.this, "Es ist ein Fehler aufgetreten. Versuchen Sie es später erneut", LENGTH_LONG).show();
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                        };
+
+
+                        UmfragenDataIntoDatabase umfragendataintodatabase = new UmfragenDataIntoDatabase(umfragethema, erstelltamDate
+                            , enddate, endtime, user, arraytostring, anzahleinzelnerumfragen, responseListener);
                         RequestQueue queue = Volley.newRequestQueue(NewUmfrageActivity.this);
                         queue.add(umfragendataintodatabase);
 
-*/
                     }
 
                 }
