@@ -176,9 +176,11 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
                         //  gets the username out of sharedPrefs LoginData
 
-                        String user;
+                        Integer userint;
                         SharedPreferences sharedPrefLoginData = NewUmfrageActivity.this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                        user = sharedPrefLoginData.getString("username", "");
+                        userint = sharedPrefLoginData.getInt("matrikelnummer", 1);
+                        String user = userint.toString();
+
 
 
                         TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
@@ -226,7 +228,6 @@ public class NewUmfrageActivity extends AppCompatActivity {
                         Log.i("endtime:", endtime);
                         Log.i("user:", user);
                         Log.i("arraytostring:", arraytostring);
-                        Toast.makeText(NewUmfrageActivity.this, anzahleinzelnerumfragen, LENGTH_LONG).show();
 
 
 
@@ -236,16 +237,17 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
                                 //  gets called if a response is transmitted
                                 try {
+                                    Log.i("tagconvertstr", response);
                                     JSONObject jsonResponse = new JSONObject(response);
                                     boolean success = jsonResponse.getBoolean("success");
 
 
                                     if (success) {
-                                        Toast.makeText(NewUmfrageActivity.this, "Umfrage wurde erfolgreich angelegt", LENGTH_LONG).show();
+                                        Toast.makeText(NewUmfrageActivity.this, jsonResponse.getString("error_msg"), LENGTH_LONG).show();
 
                                     } else {
 
-                                        Toast.makeText(NewUmfrageActivity.this, "Es ist ein Fehler aufgetreten. Versuchen Sie es später erneut", LENGTH_LONG).show();
+                                        Toast.makeText(NewUmfrageActivity.this, jsonResponse.getString("error_msg"), LENGTH_LONG).show();
 
                                     }
 
