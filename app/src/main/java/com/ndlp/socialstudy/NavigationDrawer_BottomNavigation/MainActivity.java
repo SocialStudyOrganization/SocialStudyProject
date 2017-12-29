@@ -18,8 +18,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,13 +41,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Toolbar mToolbar;
 
+    private void applyFontToMenuItem(MenuItem mi) {
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        SpannableString mNewTitle = new SpannableString(mi.getTitle());
+        mNewTitle.setSpan(new CustomTypefaceSpan("" , quicksand_regular), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        mi.setTitle(mNewTitle);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //declaring typefaces
-        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        //declaring typefaces w/o regular because declared in applyFontToMenuItem
+
         Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
         Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
         Typeface quicksand_italic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Italic.otf");
@@ -68,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         /**
          * Get Permissions or check them
@@ -127,10 +140,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    //  listens for click events in the navigationDrawer
+    //  listens for click events in the navigationDrawer & assigns typefaces to menu items
     private void setNavigationViewListner() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_drawer_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Menu m = navigationView.getMenu();
+        for (int i=0;i<m.size();i++) {
+            MenuItem mi = m.getItem(i);
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu!=null && subMenu.size() >0 ) {
+                for (int j=0; j <subMenu.size();j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+            applyFontToMenuItem(mi);
+        }
 
     }
 
