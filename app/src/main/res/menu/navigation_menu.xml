@@ -2,25 +2,29 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_account"
-        android:icon="@mipmap/ic_launcher"
-        android:title="My Acoount" />
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/icon_accountshield"
+        android:title="@string/navigation_myacc" />
 
-    <item android:id="@+id/nav_anonym"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Settings" />
+    <item
+        android:id="@+id/nav_feedback_senden"
+        android:icon="@drawable/icon_feedbackheart"
+        android:title="@string/navigation_sendfeedback" />
 
-    <item android:id="@+id/nav_feedback_senden"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Feedback senden" />
+    <item
+        android:id="@+id/nav_fehler_melden"
+        android:icon="@drawable/icon_bugreport"
+        android:title="@string/navigation_reportbug" />
 
-    <item android:id="@+id/nav_fehler_melden"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Fehler melden" />
+    <item
+        android:id="@+id/nav_anonym"
+        android:icon="@drawable/icon_settingscog"
+        android:title="@string/navigation_settings" />
 
     <item android:id="@+id/nav_about_us"
         android:icon="@mipmap/ic_launcher"
-        android:title="About us" />
+        android:title="@string/navigation_aboutus" />
 
 
 

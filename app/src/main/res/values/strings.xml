@@ -59,6 +59,12 @@
     <string name="coursepage_exercises">Übungen</string>
     <string name="coursepage_polls">Umfragen</string>
     <string name="coursepage_coursemembers">Kursmitglieder</string>
+    <string name="account_profile_info">Nadler, Patrick\nTWIW16B, Stuttgart</string>
+    <string name="navigation_myacc">Mein Account</string>
+    <string name="navigation_settings">Einstellungen</string>
+    <string name="navigation_sendfeedback">Feedback senden</string>
+    <string name="navigation_reportbug">Fehler melden</string>
+    <string name="navigation_aboutus">Über uns</string>
 </resources>
 
 
