@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 
 import com.android.volley.Request;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class UmfragenDataIntoDatabase extends StringRequest{
 
-    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/UmfragenDataIntoDatabase.php";
+    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/UmfragenCheckValues.php";
     private Map<String, String> params;
 
     public UmfragenDataIntoDatabase(String umfragethema, String erstelltamDate, String enddate, String endtime, String user, String arraytostring, String anzahlUmfragen, Response.Listener<String> listener) {

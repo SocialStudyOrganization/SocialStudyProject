@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -89,9 +89,11 @@ public class WortumfragenActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 wortfrage = et_optionPollQuestion.getText().toString();
+                String lastcharacter = wortfrage.substring(wortfrage.length() - 1);
+                Integer anzahlfragezeichen = wortfrage.replaceAll("[^,?]+", "").length();
 
-                if (wortfrage.matches("") || arrayListWortUmfrage.isEmpty()) {
-                    Toast.makeText(WortumfragenActivity.this, "You cannot check out if you didn't enter something",
+                if (wortfrage.matches("") || arrayListWortUmfrage.isEmpty() || !lastcharacter.equals("?") || anzahlfragezeichen > 1) {
+                    Toast.makeText(WortumfragenActivity.this, "Fill everything in and check that your question contains exactly one '?' at the end!",
                             Toast.LENGTH_SHORT).show();
 
                 }

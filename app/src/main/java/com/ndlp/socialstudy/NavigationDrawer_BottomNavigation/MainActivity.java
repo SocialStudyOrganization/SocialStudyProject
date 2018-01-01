@@ -243,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Manifest.permission.READ_EXTERNAL_STORAGE,}, 101);
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {

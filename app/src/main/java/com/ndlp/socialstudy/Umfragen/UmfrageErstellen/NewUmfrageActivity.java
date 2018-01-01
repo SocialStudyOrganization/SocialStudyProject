@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ import com.ndlp.socialstudy.activity.TinyDB;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

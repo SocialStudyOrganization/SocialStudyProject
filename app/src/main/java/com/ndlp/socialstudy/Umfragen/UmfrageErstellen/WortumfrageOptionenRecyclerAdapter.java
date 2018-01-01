@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

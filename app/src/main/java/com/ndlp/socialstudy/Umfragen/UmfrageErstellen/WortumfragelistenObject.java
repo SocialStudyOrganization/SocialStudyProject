@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 /**
  * Created by ndlp on 03.11.2017.
