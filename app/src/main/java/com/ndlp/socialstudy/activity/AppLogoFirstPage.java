@@ -18,6 +18,7 @@ import com.ndlp.socialstudy.tutorialsheets.TutorialsheetsSlider;
 
 public class AppLogoFirstPage extends AppCompatActivity {
 
+    //
     public String user;
 
     @Override

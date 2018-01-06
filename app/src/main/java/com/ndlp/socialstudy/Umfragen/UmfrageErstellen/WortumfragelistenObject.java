@@ -1,14 +1,14 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 /**
  * Created by ndlp on 03.11.2017.
  */
 
-public class OptionPollItemOpject {
+public class WortumfragelistenObject {
 
     private String itemTitle;
 
-    public OptionPollItemOpject(String itemTitle) {
+    public WortumfragelistenObject(String itemTitle) {
 
         this.itemTitle = itemTitle;
     }

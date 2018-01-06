@@ -62,13 +62,6 @@
             fab:fab_size="mini"
             fab:fab_label="as Option" />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/floating_pollAsScale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            fab:fab_size="mini"
-            fab:fab_label="as Scale" />
 
 
     </com.github.clans.fab.FloatingActionMenu>

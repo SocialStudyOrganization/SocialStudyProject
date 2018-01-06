@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ndlp.socialstudy.Umfragen.NewUmfrageActivity"
+    tools:context="com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity"
     android:background="#3498DB">
 
     <RelativeLayout
@@ -14,7 +14,7 @@
         android:background="#2C3E50">
 
         <ImageView
-            android:id="@+id/iv_goBackOptionPoll"
+            android:id="@+id/iv_goBacktoNeueUmfrage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/back"
@@ -29,37 +29,13 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rl_optionPollTopBar"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="#2C3E50"
-        android:id="@+id/rl_optionPollSurroundBar">
-
-        <EditText
-            android:id="@+id/et_headingOptionPoll"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#3498DB"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="10dp"
-            android:text="Unterthema"
-            android:maxLines="1"
-            android:textSize="15sp"/>
-
-    </RelativeLayout>
     
     <EditText
-        android:id="@+id/et_optionPollQuestion"
+        android:id="@+id/et_wortumfrage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Bitte die Frage eingeben"
-        android:layout_below="@id/rl_optionPollSurroundBar"
+        android:layout_below="@id/rl_optionPollTopBar"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"/>
     
@@ -79,7 +55,7 @@
             android:layout_height="wrap_content"
             android:hint="Items eingeben"
             android:textSize="20sp"
-            android:maxLines="1"/>
+            android:inputType="textPersonName"/>
 
         <Button
             android:id="@+id/b_addItem"
@@ -95,7 +71,7 @@
         android:id="@+id/rv_myOptionPollRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_optionPollQuestion"
+        android:layout_below="@id/et_wortumfrage"
         android:layout_above="@id/rl_optionPolladdItemLayout"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">

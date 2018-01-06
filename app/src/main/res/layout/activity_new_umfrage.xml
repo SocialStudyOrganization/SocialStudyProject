@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ndlp.socialstudy.Umfragen.NewUmfrageActivity"
+    tools:context="com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity"
     android:background="#3498DB">
 
     <RelativeLayout
@@ -14,6 +14,7 @@
         android:background="#2C3E50">
 
         <ImageView
+            android:id="@+id/iv_newUmfrageback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/back"
@@ -29,6 +30,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_newUmfrage_containerdatetime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_newUmfrageTopBar"
@@ -45,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
             android:layout_marginStart="10dp"
-            android:text="Rückmeldung Rechnungswesen"
+            android:hint="Bitte Überschrift eingeben"
             android:maxLines="1"
             android:textSize="15sp"/>
 
@@ -96,8 +98,24 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_newUmfrage_containerdatetime"
+        android:paddingTop="20dp"
+        android:layout_marginBottom="65dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_newUmfrage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
 
     <RelativeLayout
+        android:id="@+id/rl_newUmfrageeinreichen"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

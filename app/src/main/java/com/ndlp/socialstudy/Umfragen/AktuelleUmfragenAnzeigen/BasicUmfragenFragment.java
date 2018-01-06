@@ -1,26 +1,27 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
+import com.ndlp.socialstudy.activity.TinyDB;
+
+import java.util.ArrayList;
 
 
-public class UmfragenFragment extends Fragment {
-    public static UmfragenFragment newInstance() {
-        UmfragenFragment umfragenFragment = new UmfragenFragment();
-        return umfragenFragment;
+public class BasicUmfragenFragment extends Fragment {
+    public static BasicUmfragenFragment newInstance() {
+        BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
+        return basicUmfragenFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -30,6 +31,7 @@ public class UmfragenFragment extends Fragment {
 
     RecyclerView mRecyclerViewUmfragen;
     SwipeRefreshLayout swipeRefreshLayout;
+
 
     //---------------------------------ONCREATE-------------------------------------------------
     @Override
@@ -47,10 +49,20 @@ public class UmfragenFragment extends Fragment {
 
         floatingaddUmfrage = (FloatingActionButton) rootView.findViewById(R.id.floatingaddUmfrage);
 
+
+        final BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter;
+        final ArrayList<GeneralObject> generalObjects = new ArrayList<>();
+
+
+        basicUmfragenRecyclerAdapter = new BasicUmfragenRecyclerAdapter(getContext(), generalObjects);
+        mRecyclerViewUmfragen.setAdapter(basicUmfragenRecyclerAdapter);
+        mRecyclerViewUmfragen.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO insert refresher
+                new RefreshUmfragenFromDatabase(getActivity(), mRecyclerViewUmfragen);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -58,10 +70,14 @@ public class UmfragenFragment extends Fragment {
         floatingaddUmfrage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TinyDB tinyDB = new TinyDB(getContext());
+                tinyDB.remove("AnzahlEinzelnerUmfragen");
                 Intent intent = new Intent(getContext(), NewUmfrageActivity.class);
                 startActivity(intent);
             }
         });
+
+        new RefreshUmfragenFromDatabase(getActivity(), mRecyclerViewUmfragen);
 
         return rootView;
     }

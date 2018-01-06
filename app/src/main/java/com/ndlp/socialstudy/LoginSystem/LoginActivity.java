@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -33,10 +34,8 @@ import com.ndlp.socialstudy.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Activity to compare inputs with server data and grant access
- * handels also SharedPref rememberMe
- */
+
+
 
 public class LoginActivity extends AppCompatActivity {
     @Override
@@ -129,15 +128,23 @@ public class LoginActivity extends AppCompatActivity {
 
                             //  gets called if a response is transmitted
                             try {
+                                Log.i("tagconvertstr", response);
+
                                 JSONObject jsonResponse = new JSONObject(response);
                                 boolean success = jsonResponse.getBoolean("success");
 
-                                //  if true put username and password in sharedPrefLoginData
                                 if (success) {
+
+                                    Toast.makeText(LoginActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
+
+
                                     SharedPreferences sharedPrefLoginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editorLoginData = sharedPrefLoginData.edit();
                                     editorLoginData.putString("username", email);
                                     editorLoginData.putString("password", password);
+                                    editorLoginData.putInt("matrikelnummer", jsonResponse.getInt("matrikelnummer"));
+                                    editorLoginData.putString("surname", jsonResponse.getString("surname"));
+                                    editorLoginData.putString("firstname", jsonResponse.getString("firstname"));
                                     editorLoginData.apply();
 
                                     //  check if rememberMe is checked and put it in sharedPrefrememberMe
@@ -153,12 +160,12 @@ public class LoginActivity extends AppCompatActivity {
                                     LoginActivity.this.startActivity(intent);
                                     finish();
 
-                                //  if false give toast
+
                                 } else {
 
                                     findViewById(R.id.etEmail).startAnimation(shake);
                                     findViewById(R.id.etPassword).startAnimation(shake);
-                                    Toast.makeText(LoginActivity.this, "Wrong Username or Password", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
                                 }
 

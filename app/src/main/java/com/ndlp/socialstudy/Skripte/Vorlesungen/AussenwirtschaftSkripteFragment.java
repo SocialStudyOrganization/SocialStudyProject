@@ -89,7 +89,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Refresh items
                 new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -163,7 +162,8 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
+                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category,
+                        date, time, user, subFolder, urlAddress, mRecyclerView);
                 fileUploader.execute();
 
 

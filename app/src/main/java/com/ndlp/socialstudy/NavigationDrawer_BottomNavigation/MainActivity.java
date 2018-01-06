@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
 
 /**
  * Activity to handle the fragments with bottomNavigationView and navigationDrawer
@@ -241,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,}, 101);
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
