@@ -242,6 +242,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
                                     if (success) {
                                         Toast.makeText(NewUmfrageActivity.this, jsonResponse.getString("error_msg"), LENGTH_LONG).show();
+                                        finish();
 
                                     } else {
 

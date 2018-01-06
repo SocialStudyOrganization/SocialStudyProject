@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
-import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageRecyclerAdapter;
-import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.Wortumfragenobject;
 import com.ndlp.socialstudy.activity.TinyDB;
 
 import java.util.ArrayList;
@@ -34,11 +32,6 @@ public class BasicUmfragenFragment extends Fragment {
     RecyclerView mRecyclerViewUmfragen;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    String user;
-    String enddate;
-    String endtime;
-    String type = "Umfrage";
-    String topic;
 
     //---------------------------------ONCREATE-------------------------------------------------
     @Override
@@ -66,13 +59,10 @@ public class BasicUmfragenFragment extends Fragment {
         mRecyclerViewUmfragen.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        TinyDB tinyDB = new TinyDB(getContext());
-        tinyDB.remove("AnzahlEinzelnerUmfragen");
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO insert refresher
+                new RefreshUmfragenFromDatabase(getActivity(), mRecyclerViewUmfragen);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -80,14 +70,14 @@ public class BasicUmfragenFragment extends Fragment {
         floatingaddUmfrage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TinyDB tinyDB = new TinyDB(getContext());
+                tinyDB.remove("AnzahlEinzelnerUmfragen");
                 Intent intent = new Intent(getContext(), NewUmfrageActivity.class);
                 startActivity(intent);
             }
         });
 
-        /*GeneralObject generalObject = new GeneralObject(type, user, enddate, endtime, topic);
-        generalObjects.add(generalObject);
-        basicUmfragenRecyclerAdapter.notifyDataSetChanged();*/
+        new RefreshUmfragenFromDatabase(getActivity(), mRecyclerViewUmfragen);
 
         return rootView;
     }

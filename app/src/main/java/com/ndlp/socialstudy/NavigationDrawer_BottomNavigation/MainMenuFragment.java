@@ -15,7 +15,7 @@ import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
 import com.ndlp.socialstudy.Tasks.TasksVorlesungenFragment;
-import com.ndlp.socialstudy.Umfragen.BasicUmfragenFragment;
+import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
 
 /**
  * Fragment to navigate between tasks, exercises, surveys, solutions

@@ -1,12 +1,10 @@
-package com.ndlp.socialstudy.Umfragen;
+package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-import com.ndlp.socialstudy.Skripte.SkripteObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -89,7 +89,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Refresh items
                 new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
