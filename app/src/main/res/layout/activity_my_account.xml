@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MyAccount">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="My Account"
+        android:textSize="60sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/b_buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="88dp"
+        android:text="LOGOUT" />
+
+    <Button
+        android:id="@+id/b_buttonsendaccoundata"
+        android:layout_above="@id/b_buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="Send me my password" />
+
+    <TextView
+        android:id="@+id/tv_accountemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:hint="TextView"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_accountname"
+        android:layout_below="@id/tv_accountemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="TextView"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:id="@+id/tv_accountmatrikelnummer"
+        android:layout_below="@id/tv_accountname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="TextView"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

@@ -118,32 +118,8 @@ public class MainMenuFragment extends Fragment {
 
 
 
-
-
-
-        //  logout the user -> call method clearPrefs() -> call LoginActivity
-        b_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                clearPrefs();
-
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-
-
-            }
-        });
-
         return rootView;
     }
 
-    //  method to clear the rememberMe sharedPrefs
-    public void clearPrefs() {
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.commit();
-    }
 }

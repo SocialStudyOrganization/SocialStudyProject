@@ -39,12 +39,12 @@
         <activity android:name=".NavigationDrawer_BottomNavigation.FehlerMeldenAcivity" />
         <activity android:name=".tutorialsheets.TutorialsheetsSlider" />
         <activity android:name=".NavigationDrawer_BottomNavigation.MainActivity" />
-        <activity
-            android:name=".Umfragen.UmfrageErstellen.NewUmfrageActivity"/>
+        <activity android:name=".Umfragen.UmfrageErstellen.NewUmfrageActivity" />
         <activity
             android:name=".Umfragen.UmfrageErstellen.WortumfragenActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".GeneralFileFolder.PDFViewerActivity"></activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".GeneralFileFolder.PDFViewerActivity" />
+        <activity android:name=".NavigationDrawer_BottomNavigation.MyAccount"></activity>
     </application>
 
 </manifest>
