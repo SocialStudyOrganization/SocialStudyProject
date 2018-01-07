@@ -24,18 +24,18 @@ public class MyAccount extends AppCompatActivity {
 
         Button sendAccoundData = (Button) findViewById(R.id.b_buttonsendaccoundata);
         Button logoutbutton = (Button) findViewById(R.id.b_buttonLogout);
+        Button changepassword = (Button) findViewById(R.id.b_changepassword);
         TextView emailview = (TextView) findViewById(R.id.tv_accountemail);
         TextView matrikelnummerview = (TextView) findViewById(R.id.tv_accountmatrikelnummer);
         TextView nameview = (TextView) findViewById(R.id.tv_accountname);
 
-        final String email, matrikelnummer, firstname, surname, password;
+        final String email, matrikelnummer, firstname, surname;
 
         SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         email = sharedPrefLoginData.getString("username", "Error");
         matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 0) + "";
         firstname = sharedPrefLoginData.getString("firstname","Error");
         surname = sharedPrefLoginData.getString("surname","Error");
-        password = sharedPrefLoginData.getString("password","Error");
 
         emailview.setText(email);
         matrikelnummerview.setText(matrikelnummer);
@@ -61,7 +61,23 @@ public class MyAccount extends AppCompatActivity {
         sendAccoundData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String password;
+
+                SharedPreferences sharedPrefLoginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                password = sharedPrefLoginData.getString("password","");
+
                 Toast.makeText(MyAccount.this, "Your password is: " + password, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        changepassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyAccount.this, ChangePasswordActivity.class);
+                intent.putExtra("Matrikelnummer", matrikelnummer + "");
+                startActivity(intent);
+                finish();
             }
         });
 

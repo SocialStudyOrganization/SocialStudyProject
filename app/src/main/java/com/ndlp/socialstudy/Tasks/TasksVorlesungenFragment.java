@@ -36,12 +36,12 @@ public class TasksVorlesungenFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_tasks_vorlesungen, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_vorlesungen_darstellen, container, false);
 
         RecyclerView recyclerView;
         TasksVorlesungenRecyclerAdapter adapter;
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_tasksrecyclerviewclasses);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_vorlesungen_darstellen);
 
         ArrayList<VorlesungenObject> data = new ArrayList<>();
         String[] titles = {"Außenwirtschaft"};
