@@ -7,96 +7,161 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30sp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="11sp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/b_toSkripte"
-                    android:layout_width="140sp"
-                    android:layout_height="200sp"
-                    android:layout_marginBottom="23sp"
-                    android:layout_marginTop="60sp"
-                    android:background="@drawable/shape_course_button"
-                    android:paddingTop="135sp"
-                    android:text="@string/coursepage_Scripts"
-                    android:textAllCaps="false"
-                    android:textColor="@color/weiß"
-                    android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="11dp"
+                    android:layout_marginTop="95dp"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/b_toAnswers"
-                    android:layout_width="140sp"
-                    android:layout_height="200sp"
-                    android:background="@drawable/shape_course_button"
-                    android:paddingTop="135sp"
-                    android:text="@string/coursepage_solutions"
-                    android:textAllCaps="false"
-                    android:textColor="@color/weiß"
-                    android:textSize="16sp" />
+                    <LinearLayout
+                        android:id="@+id/b_toSkripte"
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/shape_course_button"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_skripte"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="35dp"
+                            app:srcCompat="@drawable/icon_script" />
+
+                        <TextView
+                            android:id="@+id/tv_skripte"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="25dp"
+                            android:text="@string/coursepage_Scripts"
+                            android:textAlignment="center"
+                            android:textColor="@color/weiß"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/b_toAnswers"
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/shape_course_button"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_answers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="35dp"
+                            app:srcCompat="@drawable/icon_solution" />
+
+                        <TextView
+                            android:id="@+id/tv_answers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="25dp"
+                            android:text="@string/coursepage_solutions"
+                            android:textAlignment="center"
+                            android:textColor="@color/weiß"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="95dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/b_toTasks"
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/shape_course_button"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_tasks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="45dp"
+                            app:srcCompat="@drawable/icon_exercise" />
+
+                        <TextView
+                            android:id="@+id/tv_tasks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="27dp"
+                            android:text="@string/coursepage_exercises"
+                            android:textAlignment="center"
+                            android:textColor="@color/weiß"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/b_toUmfragen"
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="22dp"
+                        android:background="@drawable/shape_course_button"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_umfragen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="35dp"
+                            app:srcCompat="@drawable/icon_poll" />
+
+                        <TextView
+                            android:id="@+id/tv_umfragen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:text="@string/coursepage_polls"
+                            android:textAlignment="center"
+                            android:textColor="@color/weiß"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="11sp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/b_toTasks"
-                    android:layout_width="140sp"
-                    android:layout_height="200sp"
-                    android:layout_marginBottom="23sp"
-                    android:layout_marginTop="60sp"
-                    android:background="@drawable/shape_course_button"
-                    android:paddingTop="135sp"
-                    android:text="@string/coursepage_exercises"
-                    android:textAllCaps="false"
-                    android:textColor="@color/weiß"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/b_toUmfragen"
-                    android:layout_width="140sp"
-                    android:layout_height="200sp"
-                    android:background="@drawable/shape_course_button"
-                    android:paddingTop="135sp"
-                    android:text="@string/coursepage_polls"
-                    android:textAllCaps="false"
-                    android:textColor="@color/weiß"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
+            <Button
+                android:id="@+id/b_logout"
+                android:layout_width="match_parent"
+                android:layout_height="42sp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_dark_button"
+                android:text="@string/coursepage_coursemembers"
+                android:textAllCaps="false"
+                android:textColor="@color/weiß"
+                android:textSize="16sp" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/b_logout"
-            android:layout_width="300sp"
-            android:layout_height="42sp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="11sp"
-            android:layout_marginStart="11sp"
-            android:layout_marginTop="542sp"
-            android:layout_weight="1"
-            android:background="@drawable/shape_dark_button"
-            android:text="@string/coursepage_coursemembers"
-            android:textAllCaps="false"
-            android:textColor="@color/weiß"
-            android:textSize="16sp" />
 
     </RelativeLayout>
 

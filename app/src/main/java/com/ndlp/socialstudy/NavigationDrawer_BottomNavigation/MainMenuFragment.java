@@ -10,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
 import com.ndlp.socialstudy.Tasks.TasksVorlesungenFragment;
 import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
+
+import org.w3c.dom.Text;
 
 /**
  * Fragment to navigate between tasks, exercises, surveys, solutions
@@ -40,11 +44,15 @@ public class MainMenuFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_main_menu, container, false);
 
         //  navigate to Classes in order to show Skripte
-        Button b_toSkripte = (Button) rootView.findViewById(R.id.b_toSkripte);
-        Button b_toTasks = (Button) rootView.findViewById(R.id.b_toTasks);
-        Button b_toAnswers = (Button) rootView.findViewById(R.id.b_toAnswers);
-        Button b_tomfragen = (Button) rootView.findViewById(R.id.b_toUmfragen);
+        LinearLayout b_toSkripte = (LinearLayout) rootView.findViewById(R.id.b_toSkripte);
+        LinearLayout b_toTasks = (LinearLayout) rootView.findViewById(R.id.b_toTasks);
+        LinearLayout b_toAnswers = (LinearLayout) rootView.findViewById(R.id.b_toAnswers);
+        LinearLayout b_tomfragen = (LinearLayout) rootView.findViewById(R.id.b_toUmfragen);
         Button b_logout = (Button) rootView.findViewById(R.id.b_logout);
+        TextView tv_skripte = (TextView) rootView.findViewById(R.id.tv_skripte);
+        TextView tv_answers = (TextView) rootView.findViewById(R.id.tv_answers);
+        TextView tv_tasks =(TextView) rootView.findViewById(R.id.tv_tasks);
+        TextView tv_umfragen=(TextView) rootView.findViewById(R.id.tv_umfragen);
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
@@ -55,10 +63,10 @@ public class MainMenuFragment extends Fragment {
         Typeface quicksand_lightitalic = Typeface.createFromAsset(b_toSkripte.getContext().getAssets(),  "fonts/Quicksand-LightItalic.otf");
 
         //assigning typefaces
-        b_toSkripte.setTypeface(quicksand_regular);
-        b_toTasks.setTypeface(quicksand_regular);
-        b_toAnswers.setTypeface(quicksand_regular);
-        b_tomfragen.setTypeface(quicksand_regular);
+        tv_skripte.setTypeface(quicksand_regular);
+        tv_answers.setTypeface(quicksand_regular);
+        tv_tasks.setTypeface(quicksand_regular);
+        tv_umfragen.setTypeface(quicksand_regular);
         b_logout.setTypeface(quicksand_regular);
 
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
