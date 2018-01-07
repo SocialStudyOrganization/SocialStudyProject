@@ -1,55 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="63dp"
+    android:background="@drawable/shape_courseitembg">
 
     <ImageView
         android:id="@+id/script_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="47dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="#ffffff" />
+        android:background="@drawable/icon_pdf" />
 
     <TextView
         android:id="@+id/script_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/script_icon"
         android:maxLines="1"
         android:text="Protokoll 18.01.1997"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000"
-        android:textStyle="bold" />
+        android:textColor="@color/weiß"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/script_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/script_name"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/script_icon"
         android:maxLines="1"
         android:text="28.09.2017"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#757575" />
+        android:textColor="@color/weiß"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/script_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#757575"
         android:layout_alignBottom="@+id/script_icon"
         android:layout_alignEnd="@+id/script_name"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="170dp"
+        android:text="user"
+        android:textColor="@color/weiß"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="19dp"
+        android:layout_height="22dp"
+        android:layout_alignEnd="@+id/script_name"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="7dp"
+        app:srcCompat="@drawable/icon_arrow_upvotable" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="19dp"
+        android:layout_height="22dp"
+        android:layout_alignStart="@+id/imageView3"
+        android:layout_alignTop="@+id/script_user"
+        android:paddingBottom="3dp"
+        app:srcCompat="@drawable/icon_arrow_downvotable"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/tv_upvotecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/script_name"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="0dp"
+        android:paddingTop="6dp"
+        android:text="4"
+        android:textColor="@color/weiß"
+        android:textSize="18sp" />
 
 </RelativeLayout>
