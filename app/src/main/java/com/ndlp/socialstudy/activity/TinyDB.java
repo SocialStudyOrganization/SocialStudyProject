@@ -21,6 +21,8 @@ package com.ndlp.socialstudy.activity;
  *  and unicode 2017 that are used for separating the items in a list.
  */
 
+/* Bad Practice Bitch */
+
 import android.os.Environment;
 
         import java.io.File;

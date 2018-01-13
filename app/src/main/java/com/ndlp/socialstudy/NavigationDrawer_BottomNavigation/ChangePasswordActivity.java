@@ -88,6 +88,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                                                 SharedPreferences sharedPrefLoginData = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                                                 SharedPreferences.Editor editorLoginData = sharedPrefLoginData.edit();
                                                 editorLoginData.putString("password", newpassword2);
+                                                editorLoginData.apply();
 
                                                 Intent intent1 = new Intent(ChangePasswordActivity.this, MyAccount.class);
                                                 ChangePasswordActivity.this.startActivity(intent1);

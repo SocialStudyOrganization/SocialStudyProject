@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.LoginSystem.RegisterActivity;
 import com.ndlp.socialstudy.LoginSystem.RegisterRequest;
@@ -26,10 +32,15 @@ import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.TinyDB;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfragenRecyclerAdapter.MyViewHolder>{
 
@@ -74,12 +85,116 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
             @Override
             public void onClick(View v) {
 
-                MainActivity myActivity = (MainActivity)context;
-                OpenUmfrageToVoteFragment openUmfrageToVoteFragment = new OpenUmfrageToVoteFragment();
-                myActivity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, openUmfrageToVoteFragment)
-                        .addToBackStack(null)
-                        .commit();
+                String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/GetUmfrageToVote.php";
+
+                StringRequest request = new StringRequest(Request.Method.POST, urlAddress,
+
+                        new Response.Listener<String>() {
+
+                            @Override
+                            public void onResponse(String response) {
+
+                                try {
+                                    Log.i("tagconvertstr", response);
+                                    JSONObject jsonResponse = new JSONObject(response);
+                                    boolean success = jsonResponse.getBoolean("success");
+
+
+                                    if (success) {
+
+                                        Toast.makeText(context, jsonResponse.getString("error_msg"), LENGTH_LONG).show();
+
+                                        TinyDB tinyDB = new TinyDB(context);
+
+                                        tinyDB.remove("umfang");
+                                        tinyDB.remove("topic");
+
+                                        Integer deletezaehler;
+
+                                        for (deletezaehler = 1; deletezaehler<=10; deletezaehler++){
+                                            tinyDB.remove("answers" + deletezaehler);
+                                            tinyDB.remove("question" + deletezaehler);
+                                            tinyDB.remove("answerIDs" + deletezaehler);
+                                        }
+
+
+
+                                        tinyDB.putInt("umfang", jsonResponse.getInt("umfang"));
+                                        Integer umfang = jsonResponse.getInt("umfang");
+
+                                        Integer zaehler;
+                                        ArrayList<String> antworten = new ArrayList<>();
+                                        ArrayList<Integer> answerIDs = new ArrayList<>();
+
+                                        for(zaehler = 1; zaehler<=umfang; zaehler++){
+                                            JSONArray jArray = jsonResponse.getJSONArray("answers" + zaehler);
+                                            JSONArray jArrayIDs = jsonResponse.getJSONArray("answerIDs" + zaehler);
+                                            if (jArray != null) {
+                                                for (int i=0;i<jArray.length();i++){
+                                                    antworten.add(jArray.getString(i));
+                                                }
+                                                tinyDB.putListString("answers" + zaehler, antworten);
+                                                tinyDB.putString("question" + zaehler, jsonResponse.getString("question" + zaehler));
+                                                tinyDB.putString("topic", current.getTopic().toString());
+
+                                                Log.i("question" + zaehler, tinyDB.getString("question" + zaehler));
+                                                Log.i("answers" + zaehler, tinyDB.getListString("answers" + zaehler).toString());
+                                            }
+                                            if (jArrayIDs != null) {
+                                                for (int i=0;i<jArrayIDs.length();i++){
+                                                    answerIDs.add(jArrayIDs.getInt(i));
+                                                }
+
+                                                tinyDB.putListInt("answerIDs" + zaehler, answerIDs);
+
+
+                                                Log.i("answerIDs" + zaehler, tinyDB.getString("answerIDs" + zaehler));
+
+                                            }
+                                            antworten.clear();
+                                            answerIDs.clear();
+                                        }
+
+
+                                        MainActivity myActivity = (MainActivity)context;
+                                        OpenUmfrageToVoteFragment openUmfrageToVoteFragment = new OpenUmfrageToVoteFragment();
+                                        myActivity.getSupportFragmentManager().beginTransaction()
+                                                .replace(R.id.frame_layout, openUmfrageToVoteFragment)
+                                                .addToBackStack(null)
+                                                .commit();
+
+                                    } else {
+
+                                        Toast.makeText(context, jsonResponse.getString("error_msg"), LENGTH_LONG).show();
+                                    }
+                                } catch (JSONException e) {
+                                    Log.e(RefreshfromDatabase.class.getSimpleName(), e.getMessage());
+                                }
+                            }
+                        },
+
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        }){
+
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+
+                        Map<String, String> params = new HashMap<>();
+                        params.put("topic", current.getTopic());
+                        Log.i("TOpic: " , current.getTopic());
+
+                        return params;
+                    }
+                };
+
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
+
             }
         });
 
