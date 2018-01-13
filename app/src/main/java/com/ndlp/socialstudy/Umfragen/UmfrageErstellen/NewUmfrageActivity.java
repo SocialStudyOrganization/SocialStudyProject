@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.ndlp.socialstudy.activity.TinyDB;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -36,9 +38,13 @@ import static android.widget.Toast.LENGTH_LONG;
 public class NewUmfrageActivity extends AppCompatActivity {
 
     EditText et_umfrageueberschrift;
+    EditText et_headingNewUmfrage;
     EditText et_umfragedatum;
     EditText et_umfragetime;
     TextView tv_einreichen;
+    TextView tv_umfrageheaderbar;
+    TextView tv_umfragecontainerhead;
+
     ImageView iv_newumfrageback;
     String wortfrage;
 
@@ -60,6 +66,14 @@ public class NewUmfrageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_umfrage);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
+        Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
+        Typeface quicksand_italic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Italic.otf");
+        Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
+        Typeface quicksand_lightitalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-LightItalic.otf");
+
         et_umfrageueberschrift = (EditText) findViewById(R.id.et_headingNewUmfrage);
         et_umfragedatum = (EditText) findViewById(R.id.et_newUmfrageDate);
         et_umfragetime = (EditText) findViewById(R.id.et_newUmfrageTime);
@@ -67,6 +81,16 @@ public class NewUmfrageActivity extends AppCompatActivity {
         rv_newUmfrage = (RecyclerView) findViewById(R.id.rv_newUmfrage);
         fabToOptionPoll = (FloatingActionButton) findViewById(R.id.floating_pollAsOption);
         iv_newumfrageback = (ImageView) findViewById(R.id.iv_newUmfrageback);
+        tv_umfrageheaderbar = (TextView) findViewById(R.id.tv_umfrageheaderbar);
+        tv_umfragecontainerhead = (TextView) findViewById(R.id.tv_umfragecontainerhead);
+
+        //assigning typefaces
+        tv_umfrageheaderbar.setTypeface(quicksand_bold);
+        tv_umfragecontainerhead.setTypeface(quicksand_regular);
+        et_umfrageueberschrift.setTypeface(quicksand_regular);
+        et_umfragedatum.setTypeface(quicksand_regular);
+        et_umfragetime.setTypeface(quicksand_regular);
+        tv_einreichen.setTypeface(quicksand_regular);
 
         final NewUmfrageRecyclerAdapter newUmfrageRecyclerAdapter;
         final ArrayList<Wortumfragenobject> wortumfragenobjects = new ArrayList<>();

@@ -4,123 +4,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity"
-    android:background="#3498DB">
+    android:background="@color/weiß"
+    tools:context="com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity">
 
     <RelativeLayout
         android:id="@+id/rl_newUmfrageTopBar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="56dp"
         android:background="#2C3E50">
 
         <ImageView
             android:id="@+id/iv_newUmfrageback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/back"
-            android:layout_alignParentRight="true"/>
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/icon_arrowback" />
 
         <TextView
+            android:id="@+id/tv_umfrageheaderbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Neue Umfrage"
-            android:textSize="20sp"
-            android:paddingTop="7dp"/>
-
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="7dp"
+            android:paddingTop="7dp"
+            android:text="Umfragen"
+            android:textColor="@color/weiß"
+            android:textSize="22sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_newUmfrage_containerdatetime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="425dp"
         android:layout_below="@id/rl_newUmfrageTopBar"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginEnd="10dp"
-        android:background="#2C3E50">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_course_button">
 
-        <EditText
-            android:id="@+id/et_headingNewUmfrage"
+        <TextView
+            android:id="@+id/tv_umfragecontainerhead"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#3498DB"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="10dp"
-            android:hint="Bitte Überschrift eingeben"
-            android:maxLines="1"
-            android:textSize="15sp"/>
+            android:layout_height="26dp"
+            android:background="@drawable/shape_pollitem_head"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:text="Neue Umfrage"
+            android:textColor="@color/weiß"
+            android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/iv_newUmfrageDateIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_circle"
-            android:layout_below="@id/et_headingNewUmfrage"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"/>
+        <RelativeLayout
+            android:layout_width="290dp"
+            android:layout_height="125dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/shape_pollitem_head">
 
-        <EditText
-            android:id="@+id/et_newUmfrageDate"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@id/iv_newUmfrageDateIcon"
-            android:layout_below="@id/et_headingNewUmfrage"
-            android:layout_marginTop="15dp"
-            android:background="#3498DB"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="140dp"
-            android:hint="Terminierung Datum"
-            android:textSize="12sp"/>
+            <EditText
+                android:id="@+id/et_headingNewUmfrage"
+                android:layout_width="230dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bluetextfeld"
+                android:hint="@string/poll_bezeichnunghint"
+                android:maxLines="1"
+                android:paddingLeft="4dp"
+                android:textColor="@color/weiß"
+                android:textColorHint="@color/weiß"
+                android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/iv_newUmfrageTimeIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_circle"
-            android:layout_below="@id/iv_newUmfrageDateIcon"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            <ImageView
+                android:id="@+id/iv_newUmfrageDateIcon"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_below="@id/et_headingNewUmfrage"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/icon_calendar" />
 
-        <EditText
-            android:id="@+id/et_newUmfrageTime"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#3498DB"
-            android:layout_below="@id/et_newUmfrageDate"
-            android:layout_toRightOf="@id/iv_newUmfrageTimeIcon"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="140dp"
-            android:hint="Terminierung Zeit"
-            android:textSize="12sp"/>
+            <EditText
+                android:id="@+id/et_newUmfrageDate"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_below="@id/et_headingNewUmfrage"
+                android:layout_marginEnd="140dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/iv_newUmfrageDateIcon"
+                android:background="@drawable/shape_bluetextfeld"
+                android:hint="Datum"
+                android:paddingLeft="4dp"
+                android:textColor="@color/weiß"
+                android:textColorHint="@color/weiß"
+                android:textSize="16sp" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_newUmfrageTimeIcon"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_below="@id/iv_newUmfrageDateIcon"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/icon_clock_time" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@id/rl_newUmfrage_containerdatetime"
-        android:paddingTop="20dp"
-        android:layout_marginBottom="65dp">
+            <EditText
+                android:id="@+id/et_newUmfrageTime"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:layout_below="@id/et_newUmfrageDate"
+                android:layout_marginEnd="140dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/iv_newUmfrageTimeIcon"
+                android:background="@drawable/shape_bluetextfeld"
+                android:hint="Zeit"
+                android:paddingLeft="4dp"
+                android:textColor="@color/weiß"
+                android:textColorHint="@color/weiß"
+                android:textSize="16sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_newUmfrage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="290dp"
+            android:layout_height="265dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="175dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_newUmfrage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
 
     </RelativeLayout>
 
 
     <RelativeLayout
         android:id="@+id/rl_newUmfrageeinreichen"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="306dp"
+        android:layout_height="36dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:background="#2C3E50">
+        android:background="@drawable/shape_dark_button">
 
         <TextView
             android:id="@+id/tv_newPollEinreichen"
@@ -129,12 +166,11 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Einreichen"
-            android:textSize="30sp"/>
+            android:textColor="@color/weiß"
+            android:textSize="16sp" />
     </RelativeLayout>
 
-    <include
-        layout="@layout/fab_newumfragemenu">
-    </include>
+    <include layout="@layout/fab_newumfragemenu"></include>
 
 
 </RelativeLayout>
