@@ -65,6 +65,8 @@
     <string name="navigation_sendfeedback">Feedback senden</string>
     <string name="navigation_reportbug">Fehler melden</string>
     <string name="navigation_aboutus">Über uns</string>
+    <string name="polls_headerhint">Name, deadline</string>
+    <string name="poll_bezeichnunghint">Bezeichnung</string>
 </resources>
 
 

@@ -6,35 +6,36 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="150dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/bg_screen3">
+        android:background="@drawable/shape_course_button">
 
         <RelativeLayout
             android:id="@+id/rl_umfrageitemtopbar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/colorPrimaryDark">
+            android:layout_height="26sp"
+            android:background="@drawable/shape_pollitem_head">
 
             <TextView
                 android:id="@+id/tv_umfrageitemheader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nadler, bis 21.12.1997, 16.00 Uhr"
-                android:textSize="15sp"
                 android:layout_centerVertical="true"
-                android:paddingLeft="10dp"/>
+                android:hint="@string/polls_headerhint"
+                android:paddingLeft="10dp"
+                android:textColor="@color/weiß"
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/umfrageitemoptions"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/ic_settings_black_24dp">
+                app:srcCompat="@drawable/icon_itemdropdown">
 
             </ImageView>
         </RelativeLayout>
@@ -49,30 +50,31 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
-                app:srcCompat="@mipmap/ic_insert_drive_file_black_24dp"/>
+                app:srcCompat="@drawable/icon_poll" />
 
             <TextView
                 android:id="@+id/tv_umfrageitemtopic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/iv_umfrageitemimage"
-                android:textSize="15sp"
-                android:text="Mathe auf diesen Montag verschieben?"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:ellipsize="end"
                 android:maxLines="3"
-                android:ellipsize="end"/>
+                android:text="Mathe auf diesen Montag verschieben?"
+                android:textColor="@color/weiß"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_umfrageitemmore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mehr..."
-                android:layout_toRightOf="@id/iv_umfrageitemimage"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="25dp"
-                android:textSize="18sp"
-                />
+                android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:text="mehr..."
+                android:textColor="@color/weiß"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>
