@@ -16,15 +16,16 @@
         <include
             layout="@layout/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/include4" />
 
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"
             android:layout_above="@+id/bottom_navigation_view"
-            android:animateLayoutChanges="true">
+            android:animateLayoutChanges="true"
+            android:layout_below="@+id/include4">
 
         </FrameLayout>
 
