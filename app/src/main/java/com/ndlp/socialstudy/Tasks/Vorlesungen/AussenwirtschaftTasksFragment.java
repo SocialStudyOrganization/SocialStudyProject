@@ -65,11 +65,11 @@ public class AussenwirtschaftTasksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_aussenwirtschaft_tasks, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_dokumentendarstellung, container, false);
 
 
         //  initialize the recyclerView of the data files
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_tasksAussenwirtschaft);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_dokumentendarstellung);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);

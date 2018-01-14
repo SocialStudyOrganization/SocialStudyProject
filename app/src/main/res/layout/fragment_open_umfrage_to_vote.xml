@@ -2,12 +2,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_login_light"
     tools:context="com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.OpenUmfrageToVoteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hier wird dann die Umfrage angezeigt" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_umfrageanzeigentopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="Thema der Umfrage"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/umfrageanzeigenprogress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_umfrageanzeigentopic"
+            android:hint="Frage 2/12"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:id="@+id/tv_umfrageanzeigenfrage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:hint="Frage1 der Umfrage"
+            android:layout_below="@id/umfrageanzeigenprogress"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/umfrageanzeigeneinsenden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Antwort einsenden"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:id="@+id/umfrageanzeigennächstefrage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/umfrageanzeigeneinsenden"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_below="@+id/rv_umfrageanzeigenrecyclerview" />
+
+        <ImageView
+            android:id="@+id/umfrageanzeigenvorherigefrage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@id/umfrageanzeigeneinsenden"
+            android:src="?android:attr/homeAsUpIndicator"
+            android:layout_below="@+id/rv_umfrageanzeigenrecyclerview" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_umfrageanzeigenrecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_umfrageanzeigenfrage"
+            android:layout_above="@id/umfrageanzeigeneinsenden"
+            android:layout_marginTop="20dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </FrameLayout>

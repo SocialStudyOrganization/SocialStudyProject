@@ -209,6 +209,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 this.startActivity(intent);
                 break;
             }
+            case R.id.nav_account: {
+                Intent intent = new Intent(MainActivity.this, MyAccount.class);
+                this.startActivity(intent);
+                break;
+            }
+            case R.id.nav_einstellungen: {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                this.startActivity(intent);
+                break;
+            }
+
 
         }
 

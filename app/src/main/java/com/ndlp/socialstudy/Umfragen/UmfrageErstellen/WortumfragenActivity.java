@@ -161,6 +161,7 @@ public class WortumfragenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentback = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
                 startActivity(intentback);
+                finish();
 
             }
         });

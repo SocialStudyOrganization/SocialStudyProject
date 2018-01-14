@@ -97,10 +97,24 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
         datatoserverarray.clear();
 
+        final TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
+
 
         newUmfrageRecyclerAdapter = new NewUmfrageRecyclerAdapter(this, wortumfragenobjects);
         rv_newUmfrage.setAdapter(newUmfrageRecyclerAdapter);
         rv_newUmfrage.setLayoutManager(new LinearLayoutManager(this));
+
+        if (!tinyDB.getString("ueberschrift").isEmpty()){
+            et_umfrageueberschrift.setText(tinyDB.getString("ueberschrift"));
+        }
+        if (!tinyDB.getString("datum").isEmpty()){
+            et_umfragedatum.setText(tinyDB.getString("datum"));
+        }
+        if (!tinyDB.getString("uhrzeit").isEmpty()){
+            et_umfragetime.setText(tinyDB.getString("uhrzeit"));
+        }
+
+
 
         //----------------------Handle back button pressed ----------------------------------------
 
@@ -113,7 +127,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
         //-----------------------Load Umfragenobjecte----------------------------------------
 
-        TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
+
         ArrayList<Integer> anzahleinzelnerUmfragenarray;
 
         if (!tinyDB.getListInt("AnzahlEinzelnerUmfragen").isEmpty())     {
@@ -152,6 +166,19 @@ public class NewUmfrageActivity extends AppCompatActivity {
         fabToOptionPoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!et_umfrageueberschrift.equals("") ){
+                    tinyDB.putString("ueberschrift", et_umfrageueberschrift.getText().toString());
+                }
+
+                if (!et_umfragedatum.equals("") ){
+                    tinyDB.putString("datum", et_umfragedatum.getText().toString());
+                }
+
+                if (!et_umfragetime.equals("") ){
+                    tinyDB.putString("uhrzeit", et_umfragetime.getText().toString());
+                }
+
                 Intent intent = new Intent(NewUmfrageActivity.this, WortumfragenActivity.class);
                 startActivity(intent);
                 finish();
@@ -205,7 +232,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
 
 
-                        TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
+                        final TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
                         ArrayList<Integer> anzahleinzelnerUmfragenarray;
                         anzahleinzelnerUmfragenarray = tinyDB.getListInt("AnzahlEinzelnerUmfragen");
 
@@ -266,6 +293,11 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
                                     if (success) {
                                         Toast.makeText(NewUmfrageActivity.this, jsonResponse.getString("error_msg"), LENGTH_LONG).show();
+
+                                        tinyDB.remove("ueberschrift");
+                                        tinyDB.remove("datum");
+                                        tinyDB.remove("uhrzeit");
+
                                         finish();
 
                                     } else {
@@ -314,6 +346,13 @@ public class NewUmfrageActivity extends AppCompatActivity {
                                 dialog.dismiss();
                                 break;
                             case BUTTON_POSITIVE:
+
+                                TinyDB tinyDB = new TinyDB(NewUmfrageActivity.this);
+
+                                tinyDB.remove("ueberschrift");
+                                tinyDB.remove("datum");
+                                tinyDB.remove("uhrzeit");
+
                                 finish();
                                 dialog.dismiss();
                                 break;
