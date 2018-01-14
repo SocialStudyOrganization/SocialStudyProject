@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Skripte.Vorlesungen.KonstruktionslehreSkripteFragment;
 import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
 import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.Wortumfragenobject;
 import com.ndlp.socialstudy.activity.TinyDB;
@@ -208,7 +211,12 @@ public class OpenUmfrageToVoteFragment extends Fragment {
                                     Toast.makeText(getContext(), "Vielen Dank für Ihre Teilnahme!", Toast.LENGTH_LONG).show();
                                     umfrageAnzeigenRecyclerAdapter.deleteArray();
 
-                                    //close fragment TODO
+                                    BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
+                                    FragmentManager fragmentManager = ((MainActivity) getContext()).getSupportFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.replace(R.id.frame_layout, basicUmfragenFragment);
+                                    fragmentTransaction.addToBackStack(null);
+                                    fragmentTransaction.commit();
 
                                 }else{
 
