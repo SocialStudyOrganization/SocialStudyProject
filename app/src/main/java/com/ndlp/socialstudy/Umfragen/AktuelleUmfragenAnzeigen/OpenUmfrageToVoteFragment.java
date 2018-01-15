@@ -211,6 +211,11 @@ public class OpenUmfrageToVoteFragment extends Fragment {
                                     Toast.makeText(getContext(), "Vielen Dank für Ihre Teilnahme!", Toast.LENGTH_LONG).show();
                                     umfrageAnzeigenRecyclerAdapter.deleteArray();
 
+                                    Integer matrikelnummer;
+                                    SharedPreferences sharedPrefLoginData = getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                                    matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
+
+
                                     BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
                                     FragmentManager fragmentManager = ((MainActivity) getContext()).getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

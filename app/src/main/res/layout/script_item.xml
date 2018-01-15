@@ -16,15 +16,50 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/icon_pdf" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="19dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="7dp"
+        app:srcCompat="@drawable/icon_arrow_upvotable" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="19dp"
+        android:layout_height="22dp"
+        android:layout_alignStart="@+id/imageView3"
+        android:paddingBottom="3dp"
+        app:srcCompat="@drawable/icon_arrow_downvotable"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/tv_upvotecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="0dp"
+        android:paddingTop="6dp"
+        android:text="4"
+        android:textColor="@color/weiß"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/script_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_alignRight="@id/imageView3"
+        android:layout_marginEnd="30dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/script_icon"
         android:maxLines="1"
+        android:ellipsize="end"
         android:text="Protokoll 18.01.1997"
         android:textColor="@color/weiß"
         android:textSize="18sp" />
@@ -47,44 +82,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/script_icon"
-        android:layout_alignEnd="@+id/script_name"
+        android:layout_toEndOf="@id/script_date"
         android:layout_marginBottom="0dp"
-        android:layout_marginEnd="170dp"
+        android:layout_marginStart="30dp"
         android:text="user"
         android:textColor="@color/weiß"
         android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="19dp"
-        android:layout_height="22dp"
-        android:layout_alignEnd="@+id/script_name"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="7dp"
-        app:srcCompat="@drawable/icon_arrow_upvotable" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="19dp"
-        android:layout_height="22dp"
-        android:layout_alignStart="@+id/imageView3"
-        android:layout_alignTop="@+id/script_user"
-        android:paddingBottom="3dp"
-        app:srcCompat="@drawable/icon_arrow_downvotable"
-        android:layout_alignParentBottom="true" />
-
-    <TextView
-        android:id="@+id/tv_upvotecount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/script_name"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="0dp"
-        android:paddingTop="6dp"
-        android:text="4"
-        android:textColor="@color/weiß"
-        android:textSize="18sp" />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.Skripte;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -73,6 +74,10 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
         holder.scriptName.setText(currentScript.getScriptName());
         holder.scriptDate.setText(currentScript.getScriptDate());
         holder.scriptUser.setText(currentScript.getScriptUser());
+
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(), "fonts/Quicksand-Regular.otf");
+
+        holder.scriptName.setTypeface(quicksand_regular);
 
         final String whichFormat = currentScript.getScriptFormat();
         switch (whichFormat) {

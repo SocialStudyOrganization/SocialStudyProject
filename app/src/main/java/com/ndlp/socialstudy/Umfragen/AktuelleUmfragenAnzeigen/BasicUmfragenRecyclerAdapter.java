@@ -29,6 +29,8 @@ import com.ndlp.socialstudy.LoginSystem.RegisterActivity;
 import com.ndlp.socialstudy.LoginSystem.RegisterRequest;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Umfragen.UmfrageAuswerten.UmfrageAuswertenFragment;
+import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
 import com.ndlp.socialstudy.activity.TinyDB;
 
 
@@ -155,13 +157,26 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                                             answerIDs.clear();
                                         }
 
+                                        if (jsonResponse.getString("alreadyvoted?").equals("ja")){
+                                            MainActivity myActivity = (MainActivity)context;
+                                            UmfrageAuswertenFragment umfrageAuswertenFragment = new UmfrageAuswertenFragment();
+                                            myActivity.getSupportFragmentManager().beginTransaction()
+                                                    .replace(R.id.frame_layout, umfrageAuswertenFragment)
+                                                    .addToBackStack(null)
+                                                    .commit();
+                                        }else{
+                                            MainActivity myActivity = (MainActivity)context;
+                                            OpenUmfrageToVoteFragment openUmfrageToVoteFragment = new OpenUmfrageToVoteFragment();
+                                            myActivity.getSupportFragmentManager().beginTransaction()
+                                                    .replace(R.id.frame_layout, openUmfrageToVoteFragment)
+                                                    .addToBackStack(null)
+                                                    .commit();
+                                        }
 
-                                        MainActivity myActivity = (MainActivity)context;
-                                        OpenUmfrageToVoteFragment openUmfrageToVoteFragment = new OpenUmfrageToVoteFragment();
-                                        myActivity.getSupportFragmentManager().beginTransaction()
-                                                .replace(R.id.frame_layout, openUmfrageToVoteFragment)
-                                                .addToBackStack(null)
-                                                .commit();
+
+
+
+
 
                                     } else {
 
@@ -184,8 +199,15 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
 
+                        Integer userint;
+
+                        SharedPreferences sharedPrefLoginData = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                        userint = sharedPrefLoginData.getInt("matrikelnummer", 1);
+                        String user = userint.toString();
+
                         Map<String, String> params = new HashMap<>();
                         params.put("topic", current.getTopic());
+                        params.put("matrikelnummer", user);
                         Log.i("TOpic: " , current.getTopic());
 
                         return params;

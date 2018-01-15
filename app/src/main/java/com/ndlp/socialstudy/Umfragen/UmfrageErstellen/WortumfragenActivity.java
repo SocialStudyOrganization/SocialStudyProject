@@ -1,8 +1,10 @@
 package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,9 @@ import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TinyDB;
 
 import java.util.ArrayList;
+
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
 
 public class WortumfragenActivity extends AppCompatActivity {
 
@@ -168,6 +173,30 @@ public class WortumfragenActivity extends AppCompatActivity {
 
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case BUTTON_NEGATIVE:
+                                dialog.dismiss();
+                                break;
+                            case BUTTON_POSITIVE:
+                                Intent intentback = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
+                                startActivity(intentback);
+                                finish();
+                                dialog.dismiss();
+                                break;
+                        }
+
+                    }
+                }).create().show();
     }
 
 }

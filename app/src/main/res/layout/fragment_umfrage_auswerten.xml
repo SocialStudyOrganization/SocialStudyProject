@@ -1,0 +1,72 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ndlp.socialstudy.Umfragen.UmfrageAuswerten.UmfrageAuswertenFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_umfrageauswertentopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="Thema der Umfrage"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/umfrageauswertenprogress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_umfrageauswertentopic"
+            android:hint="Frage 2/12"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:id="@+id/tv_umfrageauswertenfrage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:hint="Frage1 der Umfrage"
+            android:layout_below="@id/umfrageauswertenprogress"
+            android:textSize="20sp" />
+
+
+
+        <ImageView
+            android:id="@+id/umfrageauswertennächstefrage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@android:drawable/ic_menu_send"/>
+
+        <ImageView
+            android:id="@+id/umfrageauswertenvorherigefrage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp"
+            android:src="?android:attr/homeAsUpIndicator"
+             />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/umfrageauswertenpiechart"
+            android:layout_below="@id/tv_umfrageauswertenfrage"
+            android:layout_above="@id/umfrageauswertennächstefrage"
+            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
