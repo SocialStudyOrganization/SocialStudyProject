@@ -110,6 +110,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
 
                                         tinyDB.remove("umfang");
                                         tinyDB.remove("topic");
+                                        tinyDB.remove("teilnehmerzahl");
 
                                         Integer deletezaehler;
 
@@ -123,6 +124,8 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
 
                                         tinyDB.putInt("umfang", jsonResponse.getInt("umfang"));
                                         Integer umfang = jsonResponse.getInt("umfang");
+                                        String teilnehmerzahl = jsonResponse.getString("teilnehmerzahl");
+                                        tinyDB.putString("teilnehmerzahl", teilnehmerzahl);
 
                                         Integer zaehler;
                                         ArrayList<String> antworten = new ArrayList<>();

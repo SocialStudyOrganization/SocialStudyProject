@@ -23,10 +23,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
@@ -38,12 +44,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
+import static com.github.mikephil.charting.components.Legend.LegendPosition.RIGHT_OF_CHART;
+import static com.github.mikephil.charting.components.Legend.LegendPosition.RIGHT_OF_CHART_CENTER;
 
 
 public class UmfrageAuswertenFragment extends Fragment {
@@ -58,6 +67,7 @@ public class UmfrageAuswertenFragment extends Fragment {
     Integer umfang;
     TextView tv_topic;
     TextView tv_frage;
+    TextView tv_teilnehmer;
     TextView tv_progress;
     View rootView;
 
@@ -82,6 +92,7 @@ public class UmfrageAuswertenFragment extends Fragment {
         tv_topic = (TextView) rootView.findViewById(R.id.tv_umfrageauswertentopic);
         tv_frage = (TextView) rootView.findViewById(R.id.tv_umfrageauswertenfrage);
         tv_progress = (TextView) rootView.findViewById(R.id.umfrageauswertenprogress);
+        tv_teilnehmer = (TextView) rootView.findViewById(R.id.umfrageauswertenteilnehmerview);
 
         TinyDB tinyDB = new TinyDB(getContext());
 
@@ -136,6 +147,7 @@ public class UmfrageAuswertenFragment extends Fragment {
         tv_topic.setText(tinyDB.getString("topic"));
         tv_frage.setText(question);
         tv_progress.setText(currentpageint + "/" + umfang);
+        tv_teilnehmer.setText("Es haben " + tinyDB.getString("teilnehmerzahl") + " Personen abgestimmt bis jetzt!");
 
         //holt die möglichen antworten
         answers.clear();
@@ -202,13 +214,30 @@ public class UmfrageAuswertenFragment extends Fragment {
                                 Log.i("PIE", "" + pieEntries);
 
 
-                                PieDataSet pieDataSet = new PieDataSet(pieEntries, "Umfrageergebnis");
+                                PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
                                 pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                                pieDataSet.setValueFormatter(new PercentFormatter());
                                 PieData pieData = new PieData(pieDataSet);
+
+                                // this increases the values text size
+                                pieData.setValueTextSize(20f);
 
                                 PieChart pieChart = (PieChart) rootView.findViewById(R.id.umfrageauswertenpiechart);
                                 pieChart.setData(pieData);
-                                pieChart.animateY(3000);
+                                pieChart.animateY(2000);
+
+                                // configure pie chart
+                                pieChart.setUsePercentValues(true);
+
+                                //hole
+                                pieChart.setDrawHoleEnabled(true);
+                                pieChart.setHoleRadius(7);
+                                pieChart.setTransparentCircleRadius(10);
+
+                                Legend legend = pieChart.getLegend();
+                                legend.setPosition(RIGHT_OF_CHART_CENTER);
+
+
                                 pieChart.invalidate();
 
                             } else {
@@ -247,6 +276,37 @@ public class UmfrageAuswertenFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(request);
 
+    }
+
+    //adds % after value
+    public class PercentFormatter implements IValueFormatter, IAxisValueFormatter
+    {
+
+        protected DecimalFormat mFormat;
+
+        public PercentFormatter() {
+            mFormat = new DecimalFormat("###,###,##0.0");
+        }
+
+        public PercentFormatter(DecimalFormat format) {
+            this.mFormat = format;
+        }
+
+        // IValueFormatter
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            return mFormat.format(value) + " %";
+        }
+
+        // IAxisValueFormatter
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            return mFormat.format(value) + " %";
+        }
+
+        public int getDecimalDigits() {
+            return 1;
+        }
     }
 
 

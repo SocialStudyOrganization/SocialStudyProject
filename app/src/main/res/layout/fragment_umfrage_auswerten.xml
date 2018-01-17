@@ -59,6 +59,17 @@
             android:src="?android:attr/homeAsUpIndicator"
              />
 
+        <TextView
+            android:id="@+id/umfrageauswertenteilnehmerview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Es haben 10 Personen an der Umfrage bis jetzt teilgenommen"
+            android:maxEms="10"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            />
+
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/umfrageauswertenpiechart"
             android:layout_below="@id/tv_umfrageauswertenfrage"
