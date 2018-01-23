@@ -1,10 +1,8 @@
-package com.ndlp.socialstudy.Tasks;
+package com.ndlp.socialstudy.Answers;
 
-import android.content.Context;
+
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,16 +13,15 @@ import android.view.ViewGroup;
 
 import com.ndlp.socialstudy.GeneralFileFolder.VorlesungenObject;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Skripte.SkripteVorlesungenRecyclerAdapter;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 
 import java.util.ArrayList;
 
 
-public class TasksVorlesungenFragment extends Fragment {
-    public static TasksVorlesungenFragment newInstance() {
-        TasksVorlesungenFragment tasksVorlesungenFragment = new TasksVorlesungenFragment();
-        return tasksVorlesungenFragment;
+public class AnswersVorlesungenFragment extends Fragment {
+    public static AnswersVorlesungenFragment newInstance() {
+        AnswersVorlesungenFragment fragment = new AnswersVorlesungenFragment();
+        return fragment;
     }
 
     @Override
@@ -32,16 +29,17 @@ public class TasksVorlesungenFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_vorlesungen_darstellen, container, false);
 
-        RecyclerView recyclerView;
-        TasksVorlesungenRecyclerAdapter adapter;
+        RecyclerView rv_recyclerviewclasses;
+        AnswersVorlesungenRecyclerAdapter adapter;
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_vorlesungen_darstellen);
+
+        rv_recyclerviewclasses = (RecyclerView) rootView.findViewById(R.id.rv_vorlesungen_darstellen);
+
 
         ArrayList<VorlesungenObject> data = new ArrayList<>();
         String[] titles = {"Konstruktionslehre", "Außenwirtschaft", "Informatik", "Elektrotechnik", "Marketing", "Rechnungswesen"};
@@ -56,19 +54,17 @@ public class TasksVorlesungenFragment extends Fragment {
 
 
         //  calls method getData() and transfers titles to AnswersVorlesungenRecyclerAdapter
-        adapter = new TasksVorlesungenRecyclerAdapter(getContext(), data);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new AnswersVorlesungenRecyclerAdapter(getContext(), data);
+        rv_recyclerviewclasses.setAdapter(adapter);
+        rv_recyclerviewclasses.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //  get a line divider between each class title, calls class DividerItemDecoration
         Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.line_divider);
-        recyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
+        rv_recyclerviewclasses.addItemDecoration(new DividerItemDecoration(dividerDrawable));
 
 
 
 
         return rootView;
-
-
     }
 }
