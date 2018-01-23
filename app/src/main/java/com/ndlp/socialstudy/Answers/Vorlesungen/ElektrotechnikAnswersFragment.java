@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Skripte.Vorlesungen;
+package com.ndlp.socialstudy.Answers.Vorlesungen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,16 +19,16 @@ import android.view.ViewGroup;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
-import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
+import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 
 
-public class AussenwirtschaftSkripteFragment extends Fragment {
-    public static AussenwirtschaftSkripteFragment newInstance() {
-        AussenwirtschaftSkripteFragment aussenwirtschaftSkripteFragment = new AussenwirtschaftSkripteFragment();
-        return aussenwirtschaftSkripteFragment;
+public class ElektrotechnikAnswersFragment extends Fragment {
+    public static ElektrotechnikAnswersFragment newInstance(){
+        ElektrotechnikAnswersFragment elektrotechnikFragment = new ElektrotechnikAnswersFragment();
+        return elektrotechnikFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -42,12 +42,12 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
     Uri imageUri;
 
     //  location of the php script on server
-    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_answers.php";
 
     public String skriptname;
     public String format;
-    public String category = "aussenwirtschaft";
-    public String subFolder = "Skripte";
+    public String category = "Elektrotechnik";
+    public String subFolder = "Answers";
     public String date;
     public String time;
     public String user;
@@ -85,7 +85,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
         user = sharedPrefLoginData.getString("firstname", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
@@ -177,6 +176,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
 
     }
+
 
 
 }

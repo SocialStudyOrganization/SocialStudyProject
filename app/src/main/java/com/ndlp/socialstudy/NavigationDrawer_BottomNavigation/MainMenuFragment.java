@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ndlp.socialstudy.Answers.AnswersVorlesungenFragment;
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
@@ -92,18 +93,18 @@ public class MainMenuFragment extends Fragment {
             }
         });
 
-/*        b_toAnswers.setOnClickListener(new View.OnClickListener() {
+       b_toAnswers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnswerClassesFragment answerClassesFragment = new AnswerClassesFragment();
+                AnswersVorlesungenFragment answersVorlesungenFragment = new AnswersVorlesungenFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, answerClassesFragment)
+                        .replace(R.id.frame_layout, answersVorlesungenFragment)
                         .addToBackStack(null)
                         .commit();
             }
         });
 
-*/
+
 
         b_tomfragen.setOnClickListener(new View.OnClickListener() {
             @Override

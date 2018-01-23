@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.ndlp.socialstudy.Answers.AnswersDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.SkripteDataIntoDatabase;
 import com.ndlp.socialstudy.Tasks.TasksDataIntoDatabase;
 
@@ -190,6 +191,14 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
             RequestQueue queue = Volley.newRequestQueue(context);
             queue.add(tasksDataIntoDatabase);
         }
+
+        if (subFolder == "Answers"){
+            //  starts the request to upload skriptname category, date, time, user to server
+            AnswersDataIntoDatabase answersDataIntoDatabase = new AnswersDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(answersDataIntoDatabase);
+        }
+
 
     }
 

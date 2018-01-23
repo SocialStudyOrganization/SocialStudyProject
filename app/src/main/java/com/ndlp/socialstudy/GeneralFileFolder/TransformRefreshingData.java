@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.ndlp.socialstudy.Answers.AnswersObject;
+import com.ndlp.socialstudy.Answers.IndividualAnswersRecyclerAdapter;
 import com.ndlp.socialstudy.Skripte.IndividualSkripteRecyclerAdapter;
 import com.ndlp.socialstudy.Skripte.SkripteObject;
 import com.ndlp.socialstudy.Tasks.IndividualTasksRecyclerAdapter;
@@ -31,9 +33,11 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
     private ProgressDialog pd;
     private ArrayList<SkripteObject> skriptarrayList = new ArrayList<>();
     private ArrayList<TaskObject> taskarrayList = new ArrayList<>();
+    private ArrayList<AnswersObject> answerarrayList = new ArrayList<>();
 
     private IndividualSkripteRecyclerAdapter skripteRecyclerAdapter = new IndividualSkripteRecyclerAdapter();
     private IndividualTasksRecyclerAdapter tasksRecyclerAdapter = new IndividualTasksRecyclerAdapter();
+    private IndividualAnswersRecyclerAdapter answersRecyclerAdapter = new IndividualAnswersRecyclerAdapter();
 
     //  Constructor
     public TransformRefreshingData(Context context, JSONArray jsonData, RecyclerView recyclerView, String subFolder) {
@@ -83,6 +87,14 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
                 recyclerView.setAdapter(tasksRecyclerAdapter);
             }
 
+            if (subFolder == "Answers"){
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                answersRecyclerAdapter.setContext(context);
+                answersRecyclerAdapter.setAnswersList(answerarrayList);
+                answersRecyclerAdapter.setSubFolder(subFolder);
+                recyclerView.setAdapter(answersRecyclerAdapter);
+            }
+
         }
     }
 
@@ -123,6 +135,23 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
                 e.printStackTrace();
             }
 
+        }
+
+        if (subFolder == "Answers") {
+            try {
+                JSONObject jo;
+                answerarrayList.clear();
+                for (int i = 0; i < jsonData.length(); i++) {
+                    jo = jsonData.getJSONObject(i);
+                    AnswersObject answersObject = new AnswersObject(jo.getInt("answer_id"), jo.getString("answername")
+                            , jo.getString("format"), jo.getString("category"), jo.getString("date"), jo.getString("user"));
+                    answerarrayList.add(answersObject);
+                    answersRecyclerAdapter.notifyDataSetChanged();
+                }
+                return true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         return false;

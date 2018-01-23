@@ -44,7 +44,7 @@ public class SkripteVorlesungenFragment extends Fragment {
 
 
         ArrayList<VorlesungenObject> data = new ArrayList<>();
-        String[] titles = {"Konstruktionslehre", "Außenwirtschaft", "Informatik"};
+        String[] titles = {"Konstruktionslehre", "Außenwirtschaft", "Informatik", "Elektrotechnik", "Marketing", "Rechnungswesen"};
 
         //  For each String in String[] titles create a classObject -> class VorlesungenObject
         for (String title : titles) {
@@ -55,7 +55,7 @@ public class SkripteVorlesungenFragment extends Fragment {
         }
 
 
-        //  calls method getData() and transfers titles to SkripteVorlesungenRecyclerAdapter
+        //  calls method getData() and transfers titles to AnswersVorlesungenRecyclerAdapter
         adapter = new SkripteVorlesungenRecyclerAdapter(getContext(), data);
         rv_recyclerviewclasses.setAdapter(adapter);
         rv_recyclerviewclasses.setLayoutManager(new LinearLayoutManager(getContext()));
