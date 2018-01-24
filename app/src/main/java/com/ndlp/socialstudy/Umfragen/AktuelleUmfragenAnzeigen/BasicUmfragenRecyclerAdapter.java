@@ -245,9 +245,6 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.umfragen_auswerten:
-                                //handle menu1 click
-                                break;
                             case R.id.umfragen_löschen:
                                 DeleteUmfrage deleteUmfrage = new DeleteUmfrage(context, current.getTopic());
                                 break;
