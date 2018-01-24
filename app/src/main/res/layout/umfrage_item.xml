@@ -50,6 +50,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
                 app:srcCompat="@drawable/icon_poll" />
 
             <TextView
@@ -61,6 +62,7 @@
                 android:layout_toRightOf="@id/iv_umfrageitemimage"
                 android:ellipsize="end"
                 android:maxLines="3"
+                android:paddingStart="4dp"
                 android:text="Mathe auf diesen Montag verschieben?"
                 android:textColor="@color/weiß"
                 android:textSize="16sp" />
@@ -72,9 +74,10 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="25dp"
                 android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:paddingStart="4dp"
                 android:text="mehr..."
                 android:textColor="@color/weiß"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
 
         </RelativeLayout>

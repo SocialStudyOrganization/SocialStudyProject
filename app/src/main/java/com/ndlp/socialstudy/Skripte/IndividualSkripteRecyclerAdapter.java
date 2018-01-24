@@ -71,18 +71,22 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
         final SkripteObject currentScript = scriptObjects.get(position);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        holder.scriptName.setTypeface(quicksand_regular);
+        holder.scriptDate.setTypeface(quicksand_regular);
+        holder.scriptUser.setTypeface(quicksand_regular);
+
         holder.scriptName.setText(currentScript.getScriptName());
         holder.scriptDate.setText(currentScript.getScriptDate());
         holder.scriptUser.setText(currentScript.getScriptUser());
 
-        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(), "fonts/Quicksand-Regular.otf");
-
-        holder.scriptName.setTypeface(quicksand_regular);
-
         final String whichFormat = currentScript.getScriptFormat();
         switch (whichFormat) {
             case "PDF":
-                imageName = "ic_picture_as_pdf_black_24dp";
+                imageName = "icon_pdf";
             case "Image":
                 imageName = "ic_photo_library_black_24dp";
         }

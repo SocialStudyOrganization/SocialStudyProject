@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Tasks;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -67,6 +68,14 @@ public class IndividualTasksRecyclerAdapter extends RecyclerView.Adapter<Individ
 
         final TaskObject currentTask = taskObjects.get(position);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        holder.taskDate.setTypeface(quicksand_regular);
+        holder.taskName.setTypeface(quicksand_regular);
+        holder.taskUser.setTypeface(quicksand_regular);
+
         holder.taskName.setText(currentTask.getTaskName());
         holder.taskDate.setText(currentTask.getTaskDate());
         holder.taskUser.setText(currentTask.getTaskUser());
@@ -74,7 +83,7 @@ public class IndividualTasksRecyclerAdapter extends RecyclerView.Adapter<Individ
         final String whichFormat = currentTask.getTaskFormat();
         switch (whichFormat) {
             case "PDF":
-                imageName = "ic_picture_as_pdf_black_24dp";
+                imageName = "icon_pdf";
             case "Image":
                 imageName = "ic_photo_library_black_24dp";
         }

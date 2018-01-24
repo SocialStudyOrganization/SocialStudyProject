@@ -37,11 +37,33 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_newUmfrageeinreichen"
+        android:layout_width="306dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_dark_button">
+
+        <TextView
+            android:id="@+id/tv_newPollEinreichen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Einreichen"
+            android:textColor="@color/weiß"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/rl_newUmfrage_containerdatetime"
         android:layout_width="315dp"
         android:layout_height="425dp"
+        android:layout_alignBottom="@+id/rl_newUmfrageeinreichen"
         android:layout_below="@id/rl_newUmfrageTopBar"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
@@ -78,7 +100,7 @@
                 android:paddingLeft="4dp"
                 android:textColor="@color/weiß"
                 android:textColorHint="@color/weiß"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/iv_newUmfrageDateIcon"
@@ -103,7 +125,7 @@
                 android:paddingLeft="4dp"
                 android:textColor="@color/weiß"
                 android:textColorHint="@color/weiß"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/iv_newUmfrageTimeIcon"
@@ -129,7 +151,7 @@
                 android:paddingLeft="4dp"
                 android:textColor="@color/weiß"
                 android:textColorHint="@color/weiß"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
@@ -149,26 +171,6 @@
 
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/rl_newUmfrageeinreichen"
-        android:layout_width="306dp"
-        android:layout_height="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/shape_dark_button">
-
-        <TextView
-            android:id="@+id/tv_newPollEinreichen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Einreichen"
-            android:textColor="@color/weiß"
-            android:textSize="16sp" />
-    </RelativeLayout>
 
     <include layout="@layout/fab_newumfragemenu"></include>
 

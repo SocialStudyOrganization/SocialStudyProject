@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,13 @@ public class NewUmfrageRecyclerAdapter extends RecyclerView.Adapter<NewUmfrageRe
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Wortumfragenobject current = data.get(position);
+
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        holder.newUmfrageitem_header.setTypeface(quicksand_regular);
+
         holder.newUmfrageitem_header.setText(current.getWortumFrageFrage());
 
     }

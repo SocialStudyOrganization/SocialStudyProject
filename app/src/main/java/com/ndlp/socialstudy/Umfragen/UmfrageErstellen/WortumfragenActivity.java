@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Umfragen.UmfrageErstellen;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +21,8 @@ import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TinyDB;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import static android.content.DialogInterface.BUTTON_NEGATIVE;
@@ -34,6 +37,9 @@ public class WortumfragenActivity extends AppCompatActivity {
     Button b_addItem;
     RecyclerView rv_myOptionPollRecyclerView;
     TextView tv_newPollEinreichen;
+    TextView tv_wortumfragetopbar;
+    TextView tv_wortabfragecontainerhead;
+    EditText et_wortumfrage;
 
     String itemTitle;
     String wortfrage;
@@ -44,12 +50,28 @@ public class WortumfragenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wortumfrage);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+
         iv_goBackOptionPoll = (ImageView) findViewById(R.id.iv_goBacktoNeueUmfrage);
         et_optionPollQuestion = (EditText) findViewById(R.id.et_wortumfrage);
         et_iteminput = (EditText) findViewById(R.id.et_iteminput);
         b_addItem = (Button) findViewById(R.id.b_addItem);
         rv_myOptionPollRecyclerView = (RecyclerView) findViewById(R.id.rv_myOptionPollRecyclerView);
         tv_newPollEinreichen = (TextView) findViewById(R.id.tv_newPollEinreichen);
+        tv_wortumfragetopbar=(TextView) findViewById(R.id.tv_wortumfragetopbar);
+        tv_wortabfragecontainerhead=(TextView) findViewById(R.id.tv_wortabfragecontainerhead);
+        et_wortumfrage=(EditText) findViewById(R.id.et_wortumfrage);
+
+
+
+        //assigning typefaces
+        tv_wortumfragetopbar.setTypeface(quicksand_regular);
+        tv_newPollEinreichen.setTypeface(quicksand_regular);
+        tv_wortabfragecontainerhead.setTypeface(quicksand_regular);
+        et_iteminput.setTypeface(quicksand_regular);
+        b_addItem.setTypeface(quicksand_regular);
+        et_wortumfrage.setTypeface(quicksand_regular);
 
         //intern
         final WortumfrageOptionenRecyclerAdapter adapter;

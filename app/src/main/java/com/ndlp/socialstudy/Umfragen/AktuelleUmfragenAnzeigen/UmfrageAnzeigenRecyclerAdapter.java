@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,13 @@ public class UmfrageAnzeigenRecyclerAdapter extends RecyclerView.Adapter<Umfrage
         final UmfrageAnzeigenObject current = data.get(position);
 
         String text = current.getText();
+
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        holder.tv_text.setTypeface(quicksand_regular);
+        holder.checkBox.setTypeface(quicksand_regular);
 
         holder.tv_text.setText(current.getText());
 
