@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.R;
 
+import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 
 
@@ -70,6 +73,8 @@ public class AussenwirtschaftTasksFragment extends Fragment {
 
         //  initialize the recyclerView of the data files
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_dokumentendarstellung);
+        Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.line_divider);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
@@ -81,7 +86,7 @@ public class AussenwirtschaftTasksFragment extends Fragment {
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        user = sharedPrefLoginData.getString("username", "");
+        user = sharedPrefLoginData.getString("firstname", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
         new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);

@@ -1,5 +1,6 @@
 package com.ndlp.socialstudy.Skripte.Vorlesungen;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -19,17 +20,17 @@ import android.view.ViewGroup;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
-import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
+import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 
-
-public class AussenwirtschaftSkripteFragment extends Fragment {
-    public static AussenwirtschaftSkripteFragment newInstance() {
-        AussenwirtschaftSkripteFragment aussenwirtschaftSkripteFragment = new AussenwirtschaftSkripteFragment();
-        return aussenwirtschaftSkripteFragment;
+public class MarketingSkripteFragment extends Fragment {
+    public static MarketingSkripteFragment newInstance(){
+        MarketingSkripteFragment marketingSkripteFragment = new MarketingSkripteFragment();
+        return marketingSkripteFragment;
     }
+
 
     //--------------------Variablendeklaration-----------------------------------------
 
@@ -46,7 +47,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
     public String skriptname;
     public String format;
-    public String category = "aussenwirtschaft";
+    public String category = "marketing";
     public String subFolder = "Skripte";
     public String date;
     public String time;
@@ -85,7 +86,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
         user = sharedPrefLoginData.getString("firstname", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView

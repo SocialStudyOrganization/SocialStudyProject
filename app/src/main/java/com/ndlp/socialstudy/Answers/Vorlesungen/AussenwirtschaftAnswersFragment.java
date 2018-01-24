@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Skripte.Vorlesungen;
+package com.ndlp.socialstudy.Answers.Vorlesungen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,16 +19,16 @@ import android.view.ViewGroup;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
-import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
+import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 
 
-public class AussenwirtschaftSkripteFragment extends Fragment {
-    public static AussenwirtschaftSkripteFragment newInstance() {
-        AussenwirtschaftSkripteFragment aussenwirtschaftSkripteFragment = new AussenwirtschaftSkripteFragment();
-        return aussenwirtschaftSkripteFragment;
+public class AussenwirtschaftAnswersFragment extends Fragment {
+    public static AussenwirtschaftAnswersFragment newInstance() {
+        AussenwirtschaftAnswersFragment aussenwirtschaftAnswersFragment = new AussenwirtschaftAnswersFragment();
+        return aussenwirtschaftAnswersFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -42,12 +42,12 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
     Uri imageUri;
 
     //  location of the php script on server
-    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_answers.php";
 
     public String skriptname;
     public String format;
     public String category = "aussenwirtschaft";
-    public String subFolder = "Skripte";
+    public String subFolder = "Answers";
     public String date;
     public String time;
     public String user;
@@ -74,6 +74,8 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_dokumentendarstellung);
         Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.line_divider);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
+
+
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
 
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
@@ -85,7 +87,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
         user = sharedPrefLoginData.getString("firstname", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView

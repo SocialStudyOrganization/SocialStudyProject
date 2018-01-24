@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Skripte.Vorlesungen;
+package com.ndlp.socialstudy.Tasks.Vorlesungen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,16 +19,16 @@ import android.view.ViewGroup;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
-import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
+import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 
 
-public class AussenwirtschaftSkripteFragment extends Fragment {
-    public static AussenwirtschaftSkripteFragment newInstance() {
-        AussenwirtschaftSkripteFragment aussenwirtschaftSkripteFragment = new AussenwirtschaftSkripteFragment();
-        return aussenwirtschaftSkripteFragment;
+public class RechnungswesenTasksFragment extends Fragment {
+    public static RechnungswesenTasksFragment newInstance() {
+        RechnungswesenTasksFragment rechnungswesenTasksFragment = new RechnungswesenTasksFragment();
+        return rechnungswesenTasksFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -42,12 +42,12 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
     Uri imageUri;
 
     //  location of the php script on server
-    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_tasks.php";
 
     public String skriptname;
     public String format;
-    public String category = "aussenwirtschaft";
-    public String subFolder = "Skripte";
+    public String category = "rechnungswesen";
+    public String subFolder = "Tasks";
     public String date;
     public String time;
     public String user;
@@ -85,7 +85,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
         user = sharedPrefLoginData.getString("firstname", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
@@ -95,6 +94,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                // Refresh items
                 new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -104,6 +104,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 //  get all files on the device with type pdf -> highlighted and clickable
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -167,8 +168,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category,
-                        date, time, user, subFolder, urlAddress, mRecyclerView);
+                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
                 fileUploader.execute();
 
 
