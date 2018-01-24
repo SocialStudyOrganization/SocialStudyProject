@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="@color/grün"
+    android:layout_height="35dp"
+    android:background="@color/transparent"
     android:orientation="vertical">
 
     <CheckBox
@@ -11,21 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="10dp" />
 
     <TextView
         android:id="@+id/votingitemtext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="100dp"
-        android:hint="Janis"
-        android:textSize="30sp"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_toLeftOf="@id/votingitemcheckbox"/>
-
-
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_toLeftOf="@id/votingitemcheckbox"
+        android:hint="Janis"
+        android:textColor="@color/weiß"
+        android:textSize="16sp" />
 
 
 </RelativeLayout>

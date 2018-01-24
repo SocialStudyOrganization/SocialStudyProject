@@ -23,6 +23,7 @@
             android:background="@drawable/icon_arrowback" />
 
         <TextView
+            android:id="@+id/tv_wortumfragetopbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
@@ -37,70 +38,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="315dp"
-        android:layout_height="425dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/shape_course_button">
-
-        <EditText
-            android:id="@+id/et_wortumfrage"
-            android:layout_width="230dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/rl_optionPollTopBar"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_bluetextfeld"
-            android:hint="Fragestellung"
-            android:paddingLeft="4dp"
-            android:textColor="@color/weiß"
-            android:textColorHint="@color/weiß"
-            android:textSize="18sp" />
-
-        <RelativeLayout
-            android:id="@+id/rl_optionPolladdItemLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="70dp"
-            android:background="#2C3E50">
-
-            <EditText
-                android:id="@+id/et_iteminput"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:hint="Items eingeben"
-                android:inputType="textPersonName"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/b_addItem"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="10dp" />
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-
-            android:id="@+id/rv_myOptionPollRecyclerView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/rl_optionPolladdItemLayout"
-            android:layout_below="@id/et_wortumfrage"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
-
-        </android.support.v7.widget.RecyclerView>
-    </RelativeLayout>
-
-
-    <RelativeLayout
         android:id="@+id/rl_optionPollSubmitLayout"
         android:layout_width="306dp"
         android:layout_height="36dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:background="@drawable/shape_dark_button">
 
@@ -110,9 +52,110 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Hinzufügen"
+            android:text="Einreichen"
             android:textColor="@color/weiß"
             android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="315dp"
+        android:layout_height="425dp"
+        android:layout_alignBottom="@id/rl_optionPollSubmitLayout"
+        android:layout_alignTop="@id/rl_optionPollTopBar"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/shape_course_button">
+
+        <TextView
+            android:id="@+id/tv_wortabfragecontainerhead"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:background="@drawable/shape_pollitem_head"
+            android:paddingLeft="7dp"
+            android:paddingTop="3dp"
+            android:text="Multiple Choice"
+            android:textColor="@color/weiß"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_optionPolladdItemLayout"
+            android:layout_width="306dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/shape_pollitem_head">
+
+            <EditText
+                android:id="@+id/et_iteminput"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="90dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/shape_bluetextfeld"
+                android:hint="Neue Antwort"
+                android:inputType="textPersonName"
+                android:paddingStart="4dp"
+                android:textColor="@color/weiß"
+                android:textColorHint="@color/weiß"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/b_addItem"
+                android:layout_width="62dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape_send_error_or_feedback"
+                android:text="Hinzufügen"
+                android:textAllCaps="false"
+                android:textColor="@color/weiß"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_questioncontainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/shape_pollitem_head">
+
+            <EditText
+                android:id="@+id/et_wortumfrage"
+                android:layout_width="230dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bluetextfeld"
+                android:hint="Fragestellung"
+                android:paddingLeft="4dp"
+                android:textColor="@color/weiß"
+                android:textColorHint="@color/weiß"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/rv_myOptionPollRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="95dp">
+
+        </android.support.v7.widget.RecyclerView>
+
     </RelativeLayout>
 
 

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -79,6 +80,14 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
         String user = current.getUser();
         String enddate = current.getEnddate();
         String endtime = current.getEndtime();
+
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        holder.header.setTypeface(quicksand_regular);
+        holder.topic.setTypeface(quicksand_regular);
+        holder.more.setTypeface(quicksand_regular);
 
         holder.header.setText(user + ", gültig bis: " + enddate + ", " + endtime + " Uhr");
         holder.topic.setText(current.getTopic());

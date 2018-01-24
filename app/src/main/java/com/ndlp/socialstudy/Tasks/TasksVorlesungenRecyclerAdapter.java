@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.Tasks;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,13 @@ public class TasksVorlesungenRecyclerAdapter extends RecyclerView.Adapter<TasksV
     public void onBindViewHolder(final TasksVorlesungenRecyclerAdapter.MyViewHolder holder, int position) {
 
         final VorlesungenObject current = data.get(position);
+
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        holder.className.setTypeface(quicksand_regular);
+
         holder.className.setText(current.getClassTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
