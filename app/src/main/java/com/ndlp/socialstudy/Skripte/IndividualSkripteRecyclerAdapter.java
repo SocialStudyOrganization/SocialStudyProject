@@ -84,6 +84,8 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
         holder.scriptUser.setText(currentScript.getScriptUser());
 
         final String whichFormat = currentScript.getScriptFormat();
+
+        /*
         switch (whichFormat) {
             case "PDF":
                 imageName = "icon_pdf";
@@ -93,7 +95,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
         int resourceId = context.getResources().getIdentifier(imageName, "drawable" , context.getPackageName());
         holder.scriptIcon.setImageDrawable(ContextCompat.getDrawable(context, resourceId));
-
+*/
 
 
         //WEBVIEW

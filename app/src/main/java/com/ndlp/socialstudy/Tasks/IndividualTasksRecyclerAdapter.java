@@ -81,7 +81,8 @@ public class IndividualTasksRecyclerAdapter extends RecyclerView.Adapter<Individ
         holder.taskUser.setText(currentTask.getTaskUser());
 
         final String whichFormat = currentTask.getTaskFormat();
-        switch (whichFormat) {
+
+        /*switch (whichFormat) {
             case "PDF":
                 imageName = "icon_pdf";
             case "Image":
@@ -90,7 +91,7 @@ public class IndividualTasksRecyclerAdapter extends RecyclerView.Adapter<Individ
 
         int resourceId = context.getResources().getIdentifier(imageName, "drawable" , context.getPackageName());
         holder.taskIcon.setImageDrawable(ContextCompat.getDrawable(context, resourceId));
-
+*/
 
 
         //WEBVIEW

@@ -78,7 +78,7 @@ public class IndividualAnswersRecyclerAdapter extends RecyclerView.Adapter<Indiv
         holder.answerName.setTypeface(quicksand_regular);
 
         final String whichFormat = currentScript.getAnswerFormat();
-        switch (whichFormat) {
+        /*switch (whichFormat) {
             case "PDF":
                 imageName = "ic_picture_as_pdf_black_24dp";
             case "Image":
@@ -87,7 +87,7 @@ public class IndividualAnswersRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
         int resourceId = context.getResources().getIdentifier(imageName, "drawable" , context.getPackageName());
         holder.answerIcon.setImageDrawable(ContextCompat.getDrawable(context, resourceId));
-
+*/
 
 
         //WEBVIEW
