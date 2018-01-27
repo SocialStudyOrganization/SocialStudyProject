@@ -38,7 +38,6 @@ public class IndividualTasksRecyclerAdapter extends RecyclerView.Adapter<Individ
         this.context = context;
         this.taskObjects = taskObjects;
         this.subFolder = subFolder;
-        //asdsadasd
     }
 
     //  set context constructor

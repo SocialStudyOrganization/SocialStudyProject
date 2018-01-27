@@ -6,12 +6,9 @@ import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.ndlp.socialstudy.Answers.AnswersObject;
-import com.ndlp.socialstudy.Answers.IndividualAnswersRecyclerAdapter;
+
 import com.ndlp.socialstudy.Skripte.IndividualSkripteRecyclerAdapter;
 import com.ndlp.socialstudy.Skripte.SkripteObject;
-import com.ndlp.socialstudy.Tasks.IndividualTasksRecyclerAdapter;
-import com.ndlp.socialstudy.Tasks.TaskObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,12 +29,8 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
     private RecyclerView recyclerView;
     private ProgressDialog pd;
     private ArrayList<SkripteObject> skriptarrayList = new ArrayList<>();
-    private ArrayList<TaskObject> taskarrayList = new ArrayList<>();
-    private ArrayList<AnswersObject> answerarrayList = new ArrayList<>();
 
     private IndividualSkripteRecyclerAdapter skripteRecyclerAdapter = new IndividualSkripteRecyclerAdapter();
-    private IndividualTasksRecyclerAdapter tasksRecyclerAdapter = new IndividualTasksRecyclerAdapter();
-    private IndividualAnswersRecyclerAdapter answersRecyclerAdapter = new IndividualAnswersRecyclerAdapter();
 
     //  Constructor
     public TransformRefreshingData(Context context, JSONArray jsonData, RecyclerView recyclerView, String subFolder) {
@@ -81,18 +74,18 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
 
             if (subFolder == "Tasks"){
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                tasksRecyclerAdapter.setContext(context);
-                tasksRecyclerAdapter.setTaskList(taskarrayList);
-                tasksRecyclerAdapter.setSubFolder(subFolder);
-                recyclerView.setAdapter(tasksRecyclerAdapter);
+                skripteRecyclerAdapter.setContext(context);
+                skripteRecyclerAdapter.setScriptList(skriptarrayList);
+                skripteRecyclerAdapter.setSubFolder(subFolder);
+                recyclerView.setAdapter(skripteRecyclerAdapter);
             }
 
             if (subFolder == "Answers"){
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                answersRecyclerAdapter.setContext(context);
-                answersRecyclerAdapter.setAnswersList(answerarrayList);
-                answersRecyclerAdapter.setSubFolder(subFolder);
-                recyclerView.setAdapter(answersRecyclerAdapter);
+                skripteRecyclerAdapter.setContext(context);
+                skripteRecyclerAdapter.setScriptList(skriptarrayList);
+                skripteRecyclerAdapter.setSubFolder(subFolder);
+                recyclerView.setAdapter(skripteRecyclerAdapter);
             }
 
         }
@@ -122,14 +115,16 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
         if (subFolder == "Tasks") {
             try {
                 JSONObject jo;
-                taskarrayList.clear();
+                skriptarrayList.clear();
+
                 for (int i = 0; i < jsonData.length(); i++) {
                     jo = jsonData.getJSONObject(i);
-                    TaskObject taskObject = new TaskObject(jo.getInt("task_id"), jo.getString("taskname")
+                    SkripteObject skripteObject = new SkripteObject(jo.getInt("task_id"), jo.getString("taskname")
                             , jo.getString("format"), jo.getString("category"), jo.getString("date"), jo.getString("user"));
-                    taskarrayList.add(taskObject);
-                    tasksRecyclerAdapter.notifyDataSetChanged();
+                    skriptarrayList.add(skripteObject);
+                    skripteRecyclerAdapter.notifyDataSetChanged();
                 }
+
                 return true;
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -140,13 +135,14 @@ public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
         if (subFolder == "Answers") {
             try {
                 JSONObject jo;
-                answerarrayList.clear();
+                skriptarrayList.clear();
+
                 for (int i = 0; i < jsonData.length(); i++) {
                     jo = jsonData.getJSONObject(i);
-                    AnswersObject answersObject = new AnswersObject(jo.getInt("answer_id"), jo.getString("answername")
+                    SkripteObject scriptObject = new SkripteObject(jo.getInt("answer_id"), jo.getString("answername")
                             , jo.getString("format"), jo.getString("category"), jo.getString("date"), jo.getString("user"));
-                    answerarrayList.add(answersObject);
-                    answersRecyclerAdapter.notifyDataSetChanged();
+                    skriptarrayList.add(scriptObject);
+                    skripteRecyclerAdapter.notifyDataSetChanged();
                 }
                 return true;
             } catch (JSONException e) {

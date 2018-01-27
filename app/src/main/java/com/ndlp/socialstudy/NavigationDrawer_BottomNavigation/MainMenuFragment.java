@@ -13,11 +13,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ndlp.socialstudy.Answers.AnswersVorlesungenFragment;
-import com.ndlp.socialstudy.LoginSystem.LoginActivity;
+
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
-import com.ndlp.socialstudy.Tasks.TasksVorlesungenFragment;
 import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
 
 import org.w3c.dom.Text;
@@ -70,11 +68,17 @@ public class MainMenuFragment extends Fragment {
         tv_umfragen.setTypeface(quicksand_regular);
         b_logout.setTypeface(quicksand_regular);
 
+
+
         b_toSkripte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle b = new Bundle();
+                b.clear();
+                b.putString("subFolder", "Skripte");
                 //Start fragment
                 SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
+                classesFragment.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, classesFragment)
                         .addToBackStack(null)
@@ -85,9 +89,14 @@ public class MainMenuFragment extends Fragment {
         b_toTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TasksVorlesungenFragment tasksVorlesungenFragment = new TasksVorlesungenFragment();
+                Bundle b = new Bundle();
+                b.clear();
+                b.putString("subFolder", "Tasks");
+
+                SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
+                classesFragment.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, tasksVorlesungenFragment)
+                        .replace(R.id.frame_layout, classesFragment)
                         .addToBackStack(null)
                         .commit();
             }
@@ -96,9 +105,14 @@ public class MainMenuFragment extends Fragment {
        b_toAnswers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AnswersVorlesungenFragment answersVorlesungenFragment = new AnswersVorlesungenFragment();
+                Bundle b = new Bundle();
+                b.clear();
+                b.putString("subFolder", "Answers");
+
+                SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
+                classesFragment.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, answersVorlesungenFragment)
+                        .replace(R.id.frame_layout, classesFragment)
                         .addToBackStack(null)
                         .commit();
             }

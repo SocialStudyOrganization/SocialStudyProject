@@ -26,6 +26,8 @@ public class SkripteVorlesungenFragment extends Fragment {
         return fragment;
     }
 
+    public String subFolder;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,9 @@ public class SkripteVorlesungenFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_vorlesungen_darstellen, container, false);
 
+        subFolder = getArguments().getString("subFolder");
+
+
         RecyclerView rv_recyclerviewclasses;
         SkripteVorlesungenRecyclerAdapter adapter;
 
@@ -44,7 +49,7 @@ public class SkripteVorlesungenFragment extends Fragment {
 
 
         ArrayList<VorlesungenObject> data = new ArrayList<>();
-        String[] titles = {"Konstruktionslehre", "Außenwirtschaft", "Informatik", "Elektrotechnik", "Marketing", "Rechnungswesen"};
+        String[] titles = {"konstruktionslehre", "aussenwirtschaft", "informatik", "elektrotechnik", "marketing", "rechnungswesen"};
 
         //  For each String in String[] titles create a classObject -> class VorlesungenObject
         for (String title : titles) {
@@ -56,7 +61,7 @@ public class SkripteVorlesungenFragment extends Fragment {
 
 
         //  calls method getData() and transfers titles to AnswersVorlesungenRecyclerAdapter
-        adapter = new SkripteVorlesungenRecyclerAdapter(getContext(), data);
+        adapter = new SkripteVorlesungenRecyclerAdapter(getContext(), data, subFolder);
         rv_recyclerviewclasses.setAdapter(adapter);
         rv_recyclerviewclasses.setLayoutManager(new LinearLayoutManager(getContext()));
 
