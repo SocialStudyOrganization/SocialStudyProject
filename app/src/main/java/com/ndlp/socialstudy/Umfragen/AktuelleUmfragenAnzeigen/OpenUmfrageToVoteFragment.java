@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +27,8 @@ import com.android.volley.toolbox.Volley;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.KonstruktionslehreSkripteFragment;
-import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
-import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.Wortumfragenobject;
 import com.ndlp.socialstudy.activity.TinyDB;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

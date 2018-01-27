@@ -12,9 +12,9 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.ndlp.socialstudy.Answers.AnswersDataIntoDatabase;
+import com.ndlp.socialstudy.Skripte.AnswersDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.SkripteDataIntoDatabase;
-import com.ndlp.socialstudy.Tasks.TasksDataIntoDatabase;
+import com.ndlp.socialstudy.Skripte.TasksDataIntoDatabase;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;

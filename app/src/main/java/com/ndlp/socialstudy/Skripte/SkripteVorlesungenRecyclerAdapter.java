@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Skripte;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -13,12 +14,6 @@ import android.widget.TextView;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.VorlesungenObject;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.AussenwirtschaftSkripteFragment;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.ElektrotechnikSkripteFragment;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.InformatikSkripteFragment;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.KonstruktionslehreSkripteFragment;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.MarketingSkripteFragment;
-import com.ndlp.socialstudy.Skripte.Vorlesungen.RechnungswesenSkripteFragment;
 
 import java.util.ArrayList;
 
@@ -31,12 +26,14 @@ public class SkripteVorlesungenRecyclerAdapter extends RecyclerView.Adapter<Skri
     private Context context;
 
     private ArrayList<VorlesungenObject> data;
+    private String subFolder;
 
 
     //  Konstruktor gets the data from ClassesActivity
-    public SkripteVorlesungenRecyclerAdapter(Context context, ArrayList<VorlesungenObject> data){
+    public SkripteVorlesungenRecyclerAdapter(Context context, ArrayList<VorlesungenObject> data, String subFolder){
         this.context = context;
         this.data = data;
+        this.subFolder = subFolder;
     }
 
 
@@ -63,68 +60,26 @@ public class SkripteVorlesungenRecyclerAdapter extends RecyclerView.Adapter<Skri
 
         holder.className.setText(current.getClassTitle());
 
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                switch (holder.getAdapterPosition()){
-                    case 0:
-                        KonstruktionslehreSkripteFragment konstruktionslehreSkripteFragment = new KonstruktionslehreSkripteFragment();
-                        FragmentManager fragmentManager0 = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction0 = fragmentManager0.beginTransaction();
-                        fragmentTransaction0.replace(R.id.frame_layout, konstruktionslehreSkripteFragment);
-                        fragmentTransaction0.addToBackStack(null);
-                        fragmentTransaction0.commit();
-                        break;
+                String vorlesungsname = holder.className.getText().toString();
 
-                    case 1:
-                        AussenwirtschaftSkripteFragment aussenwirtschaftSkripteFragment = new AussenwirtschaftSkripteFragment();
-                        FragmentManager fragmentManager1 = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                        fragmentTransaction1.replace(R.id.frame_layout, aussenwirtschaftSkripteFragment);
-                        fragmentTransaction1.addToBackStack(null);
-                        fragmentTransaction1.commit();
-                        break;
+                Bundle b = new Bundle();
 
-                    case 2:
-                        InformatikSkripteFragment informatikSkripteFragment = new InformatikSkripteFragment();
-                        FragmentManager fragmentManager2 = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
-                        fragmentTransaction2.replace(R.id.frame_layout, informatikSkripteFragment);
-                        fragmentTransaction2.addToBackStack(null);
-                        fragmentTransaction2.commit();
-                        break;
+                b.putString("category", vorlesungsname);
+                b.putString("subFolder", subFolder);
 
-                    case 3:
-                        ElektrotechnikSkripteFragment elektrotechnikSkripteFragment = new ElektrotechnikSkripteFragment();
-                        FragmentManager fragmentManager3 = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction3 = fragmentManager3.beginTransaction();
-                        fragmentTransaction3.replace(R.id.frame_layout, elektrotechnikSkripteFragment);
-                        fragmentTransaction3.addToBackStack(null);
-                        fragmentTransaction3.commit();
-                        break;
-
-                    case 4:
-                        MarketingSkripteFragment marketingSkripteFragment = new MarketingSkripteFragment();
-                        FragmentManager fragmentManager4 = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction4 = fragmentManager4.beginTransaction();
-                        fragmentTransaction4.replace(R.id.frame_layout, marketingSkripteFragment);
-                        fragmentTransaction4.addToBackStack(null);
-                        fragmentTransaction4.commit();
-                        break;
-
-                    case 5:
-                        RechnungswesenSkripteFragment rechnungswesenSkripteFragment = new RechnungswesenSkripteFragment();
-                        FragmentManager fragmentManager5 = ((MainActivity) context).getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction5 = fragmentManager5.beginTransaction();
-                        fragmentTransaction5.replace(R.id.frame_layout, rechnungswesenSkripteFragment);
-                        fragmentTransaction5.addToBackStack(null);
-                        fragmentTransaction5.commit();
-                        break;
-
-                    default:
-                        break;
-                }
+                SkripteFragment skripteFragment = new SkripteFragment();
+                skripteFragment.setArguments(b);
+                FragmentManager fragmentManager0 = ((MainActivity) context).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction0 = fragmentManager0.beginTransaction();
+                fragmentTransaction0.replace(R.id.frame_layout, skripteFragment);
+                fragmentTransaction0.addToBackStack(null);
+                fragmentTransaction0.commit();
 
             }
         });

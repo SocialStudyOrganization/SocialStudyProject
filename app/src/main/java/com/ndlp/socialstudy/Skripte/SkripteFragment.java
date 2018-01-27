@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Skripte.Vorlesungen;
+package com.ndlp.socialstudy.Skripte;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,19 +16,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.github.clans.fab.FloatingActionButton;
-import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 
 
-public class AussenwirtschaftSkripteFragment extends Fragment {
-    public static AussenwirtschaftSkripteFragment newInstance() {
-        AussenwirtschaftSkripteFragment aussenwirtschaftSkripteFragment = new AussenwirtschaftSkripteFragment();
-        return aussenwirtschaftSkripteFragment;
+
+
+public class SkripteFragment extends Fragment {
+    public static SkripteFragment newInstance() {
+        SkripteFragment skripteFragment = new SkripteFragment();
+        return skripteFragment;
     }
 
     //--------------------Variablendeklaration-----------------------------------------
@@ -42,12 +43,12 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
     Uri imageUri;
 
     //  location of the php script on server
-    final static String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+    public String urlAddress;
 
     public String skriptname;
     public String format;
-    public String category = "aussenwirtschaft";
-    public String subFolder = "Skripte";
+    public String category;
+    public String subFolder;
     public String date;
     public String time;
     public String user;
@@ -69,6 +70,19 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dokumentendarstellung, container, false);
 
+        category = getArguments().getString("category");
+        subFolder = getArguments().getString("subFolder");
+
+        if (subFolder.equals("Skripte")){
+            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+        }
+        if (subFolder.equals("Tasks")){
+            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_tasks.php";
+        }
+        if (subFolder.equals("Answers")){
+            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_answers.php";
+        }
+
 
         //  initialize the recyclerView of the data files
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_dokumentendarstellung);
@@ -85,7 +99,6 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
         user = sharedPrefLoginData.getString("firstname", "");
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
@@ -95,6 +108,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                // Refresh items
                 new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -104,6 +118,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
         floatingasPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 //  get all files on the device with type pdf -> highlighted and clickable
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -167,8 +182,7 @@ public class AussenwirtschaftSkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category,
-                        date, time, user, subFolder, urlAddress, mRecyclerView);
+                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
                 fileUploader.execute();
 
 
