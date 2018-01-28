@@ -39,6 +39,7 @@ import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
 import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
 import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.WortumfragenActivity;
+import com.testfairy.TestFairy;
 
 import static android.content.DialogInterface.BUTTON_NEGATIVE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TestFairy.begin(this, "5d4bc2caba9a886a78200e953219cebe4b7e7660");
 
         //declaring typefaces w/o regular because declared in applyFontToMenuItem
 

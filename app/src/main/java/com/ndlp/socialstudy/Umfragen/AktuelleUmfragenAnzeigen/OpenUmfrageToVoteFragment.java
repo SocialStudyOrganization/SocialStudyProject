@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -83,7 +84,15 @@ public class OpenUmfrageToVoteFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_umfrageanzeigenrecyclerview);
 
-        umfrageAnzeigenObjects = new ArrayList<>();
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        tv_topic.setTypeface(quicksand_regular);
+        tv_frage.setTypeface(quicksand_regular);
+        tv_progress.setTypeface(quicksand_regular);
+        b_einreichen.setTypeface(quicksand_regular);
+
         umfrageAnzeigenObjects.clear();
         umfrageAnzeigenRecyclerAdapter =
                 new UmfrageAnzeigenRecyclerAdapter(getContext(),umfrageAnzeigenObjects);
