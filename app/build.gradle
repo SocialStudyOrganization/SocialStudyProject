@@ -49,9 +49,11 @@ dependencies {
     compile 'com.github.clans:fab:1.6.2'
     compile 'com.github.barteksc:android-pdf-viewer:2.8.1'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    compile "net.gotev:uploadservice:3.1"
     compile 'testfairy:testfairy-android-sdk:1.+@aar'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 

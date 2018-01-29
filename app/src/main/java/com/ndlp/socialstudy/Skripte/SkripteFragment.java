@@ -13,10 +13,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.github.clans.fab.FloatingActionButton;
+import com.ndlp.socialstudy.GeneralFileFolder.ImageUpload;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
@@ -140,6 +142,12 @@ public class SkripteFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+                //Intent intent = new Intent(getActivity(), ImageUpload.class);
+                //intent.putExtra("category", category);
+                //getContext().startActivity(intent);
+
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -152,6 +160,8 @@ public class SkripteFragment extends Fragment {
 
                 startActivityForResult(Intent.createChooser(intent,
                         "Select Picture"), SELECT_PICTURE);
+
+
 
             }
         });
@@ -172,6 +182,9 @@ public class SkripteFragment extends Fragment {
 
 
                 fileUri = data.getData();
+
+                Log.i("File URI ", fileUri + "");
+
                 Cursor resultCursor = getActivity().getContentResolver().query(fileUri, null, null, null, null);
 
                 //  move to first row

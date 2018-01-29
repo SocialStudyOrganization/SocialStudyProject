@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.ndlp.socialstudy.GeneralFileFolder.OpenFileClass;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
@@ -78,6 +79,10 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
             }
 
             ftpClient.login(USERNAME, PASSWORT);
+
+            if (format.equals("Image")){
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            }
 
             //  passes Firewall
             ftpClient.enterLocalPassiveMode();                  //telling the server to open a data port to which the client will connect to conduct data transfers.

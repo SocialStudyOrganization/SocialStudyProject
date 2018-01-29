@@ -16,6 +16,7 @@ import com.ndlp.socialstudy.Skripte.AnswersDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.SkripteDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.TasksDataIntoDatabase;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.json.JSONException;
@@ -82,10 +83,11 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
         FTPClient ftpClient = new FTPClient();
         InputStream inputStream = null;
 
+
+
         //  connected zum Server + alles
         try {
             //  resolver Brechtigungen und liest die Datei ein
-            inputStream = context.getContentResolver().openInputStream(contentUri);
 
             ftpClient.connect(SERVER_IP);
             int reply = ftpClient.getReplyCode();
@@ -96,6 +98,13 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
             }
 
             ftpClient.login(USERNAME, PASSWORT);
+
+            if (format.equals("Image")){
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            }
+
+            inputStream = context.getContentResolver().openInputStream(contentUri);
+
 
             //  passes Firewall
             ftpClient.enterLocalPassiveMode();
