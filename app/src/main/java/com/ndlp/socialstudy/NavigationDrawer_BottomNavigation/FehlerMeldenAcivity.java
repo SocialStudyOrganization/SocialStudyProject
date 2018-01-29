@@ -23,7 +23,7 @@ public class FehlerMeldenAcivity extends AppCompatActivity {
 
     Toolbar mActionBarToolbar;
     Button b_fehlermelden;
-    String email = "patrick-nadler@gmx.de";
+    String email = "StudyWire@gmx.de";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

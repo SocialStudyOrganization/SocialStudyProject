@@ -22,7 +22,7 @@ public class FeedbackActivity extends AppCompatActivity {
 
     Toolbar mActionBarToolbar;
     Button b_feedbackgeben;
-    String email = "patrick-nadler@gmx.de";
+    String email = "StudyWire@gmx.de";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
