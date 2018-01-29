@@ -98,10 +98,13 @@ public class SkripteFragment extends Fragment {
         fileUri = null;
         imageUri = null;
         skriptname = null;
+        Integer matrikelnummer;
 
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        user = sharedPrefLoginData.getString("firstname", "");
+        matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
+
+        user = matrikelnummer + "";
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
         new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
