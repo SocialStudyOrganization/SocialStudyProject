@@ -18,12 +18,7 @@ import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
 import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
 
-import org.w3c.dom.Text;
 
-/**
- * Fragment to navigate between tasks, exercises, surveys, solutions
- * show classmembers with click on button
- */
 
 public class MainMenuFragment extends Fragment {
     public static MainMenuFragment newInstance() {
