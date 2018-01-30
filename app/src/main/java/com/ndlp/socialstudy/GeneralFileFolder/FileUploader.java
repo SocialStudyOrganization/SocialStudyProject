@@ -75,10 +75,15 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Upload in progress...");
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
     }
 
     //  Methoden to uploadTask
     protected Boolean doInBackground(String... params) {
+
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
 
         FTPClient ftpClient = new FTPClient();
         InputStream inputStream = null;
@@ -99,9 +104,8 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
             ftpClient.login(USERNAME, PASSWORT);
 
-            if (format.equals("Image")){
-                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            }
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
 
             inputStream = context.getContentResolver().openInputStream(contentUri);
 
