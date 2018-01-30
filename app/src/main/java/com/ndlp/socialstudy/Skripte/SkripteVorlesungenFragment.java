@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.GeneralFileFolder.VorlesungenObject;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,12 @@ public class SkripteVorlesungenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_vorlesungen_darstellen, container, false);
+
+        TinyDB tinyDB = new TinyDB(getContext());
+        tinyDB.remove("fileUri");
+        tinyDB.remove("format");
+        tinyDB.remove("filename");
+
 
         subFolder = getArguments().getString("subFolder");
 

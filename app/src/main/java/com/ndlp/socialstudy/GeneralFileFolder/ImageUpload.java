@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -15,13 +16,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Skripte.SkripteFragment;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -52,9 +56,12 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
     private static final String PASSWORT = "Nadipat2";
 
     private Uri filePath;
+    private String skriptbezeichnung;
+    private String extension;
     private Bitmap bitmap;
 
     private String category;
+    private String format;
     private String user;
     private String date;
     private String time;
@@ -69,6 +76,7 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
 
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
+        format = intent.getStringExtra("format");
 
         requestStoragePermission();
 
@@ -114,6 +122,17 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             filePath = data.getData();
+
+            Cursor resultCursor = this.getContentResolver().query(filePath, null, null, null, null);
+
+            //  move to first row
+            resultCursor.moveToFirst();
+
+            //  get PDF name out of the file and set it as PDFName
+            skriptbezeichnung = resultCursor.getString(resultCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+            String filenameArray[] = skriptbezeichnung.split("\\.");
+            extension = "." + filenameArray[filenameArray.length-1];
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.setImageBitmap(bitmap);
@@ -145,11 +164,12 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
     }
 
     private void uploadImage(){
-        String name  = editText.getText().toString().trim();
-        String path  = getPath(filePath);
+        String name  = editText.getText().toString().trim() + extension;
 
-        Log.i("File path ", path);
-        Log.i("File name ", name);
+        //real path
+        //String path  = getPath(filePath);
+        ///storage/emulated/0/DCIM/Camera/IMG_20180125_225916.jpg
+
 
         SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         user = sharedPrefLoginData.getString("firstname", "");
@@ -157,6 +177,24 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
         TImeDateRequest tImeDateRequest = new TImeDateRequest();
         date = tImeDateRequest.getDate();
         time = tImeDateRequest.getTime();
+
+        TinyDB tinyDB = new TinyDB(this);
+        tinyDB.putString("fileUri", filePath + "");
+        tinyDB.putString("format", format);
+        tinyDB.putString("filename", name);
+
+        //pull down keyboarrd
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+
+
+        finish();
+
+
+
 
 
     }

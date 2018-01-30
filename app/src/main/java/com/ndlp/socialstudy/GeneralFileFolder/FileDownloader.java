@@ -56,12 +56,16 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Download in Progress...");
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
 
     }
 
     @Override
     protected String doInBackground(String... params) {
 
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
 
         String path = params[0];
 
@@ -80,9 +84,9 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
 
             ftpClient.login(USERNAME, PASSWORT);
 
-            if (format.equals("Image")){
-                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            }
+
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
 
             //  passes Firewall
             ftpClient.enterLocalPassiveMode();                  //telling the server to open a data port to which the client will connect to conduct data transfers.

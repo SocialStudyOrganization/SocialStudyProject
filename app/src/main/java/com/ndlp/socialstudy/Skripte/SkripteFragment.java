@@ -24,8 +24,7 @@ import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
-
-
+import com.ndlp.socialstudy.activity.TinyDB;
 
 
 public class SkripteFragment extends Fragment {
@@ -42,6 +41,7 @@ public class SkripteFragment extends Fragment {
     private static final int READ_REQUEST_CODE = 1;
     private static final int SELECT_PICTURE = 1;
     Uri fileUri;
+    private String fileUriString;
     Uri imageUri;
 
     //  location of the php script on server
@@ -75,6 +75,13 @@ public class SkripteFragment extends Fragment {
         category = getArguments().getString("category");
         subFolder = getArguments().getString("subFolder");
 
+
+
+        fileUri = null;
+        skriptname = null;
+
+
+
         if (subFolder.equals("Skripte")){
             urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
         }
@@ -95,9 +102,7 @@ public class SkripteFragment extends Fragment {
         floatingasPDF = (FloatingActionButton) rootView.findViewById(R.id.floating_asPDFFile);
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
 
-        fileUri = null;
-        imageUri = null;
-        skriptname = null;
+
         Integer matrikelnummer;
 
         //  gets the username out of sharedPrefs LoginData
@@ -146,11 +151,12 @@ public class SkripteFragment extends Fragment {
             public void onClick(View v) {
 
 
-                //Intent intent = new Intent(getActivity(), ImageUpload.class);
-                //intent.putExtra("category", category);
-                //getContext().startActivity(intent);
+                Intent intent = new Intent(getActivity(), ImageUpload.class);
+                intent.putExtra("category", category);
+                intent.putExtra("format", "Image");
+                getContext().startActivity(intent);
 
-
+/*
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -165,11 +171,37 @@ public class SkripteFragment extends Fragment {
                         "Select Picture"), SELECT_PICTURE);
 
 
-
+*/
             }
         });
 
+
+
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+
+            TinyDB tinyDB = new TinyDB(getContext());
+
+            if (!tinyDB.getString("fileUri").equals("")) {
+
+                format = tinyDB.getString("format");
+                fileUriString = tinyDB.getString("fileUri");
+                skriptname = tinyDB.getString("filename");
+                fileUri = Uri.parse(fileUriString);
+
+                if (format.equals("Image")) {
+                    TImeDateRequest tImeDateRequest = new TImeDateRequest();
+                    date = tImeDateRequest.getDate();
+                    time = tImeDateRequest.getTime();
+                    uploadImage();
+                }
+            }
+
+
+        super.onResume();
     }
 
     //  if we receive a result from volley this gets called
@@ -206,6 +238,11 @@ public class SkripteFragment extends Fragment {
         }
 
 
+    }
+
+    private void uploadImage(){
+        FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
+        fileUploader.execute();
     }
 
 
