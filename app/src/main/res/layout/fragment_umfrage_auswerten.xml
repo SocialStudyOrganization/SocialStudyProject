@@ -2,82 +2,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ndlp.socialstudy.Umfragen.UmfrageAuswerten.UmfrageAuswertenFragment">
+    android:background="@drawable/gradient_login_light"
+    tools:context="com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.OpenUmfrageToVoteFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/weiß">
 
-        <TextView
-            android:id="@+id/tv_umfrageauswertentopic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:hint="Thema der Umfrage"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/umfrageauswertenprogress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/tv_umfrageauswertentopic"
-            android:hint="Frage 2/12"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp" />
-
-
-        <TextView
-            android:id="@+id/tv_umfrageauswertenfrage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:hint="Frage1 der Umfrage"
-            android:layout_below="@id/umfrageauswertenprogress"
-            android:textSize="20sp" />
-
-
-
-        <ImageView
-            android:id="@+id/umfrageauswertennächstefrage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:src="@android:drawable/ic_menu_send"/>
-
-        <ImageView
-            android:id="@+id/umfrageauswertenvorherigefrage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp"
-            android:src="?android:attr/homeAsUpIndicator"
-             />
-
-        <TextView
-            android:id="@+id/umfrageauswertenteilnehmerview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Es haben 10 Personen an der Umfrage bis jetzt teilgenommen"
-            android:maxEms="10"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            />
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/umfrageauswertenpiechart"
-            android:layout_below="@id/tv_umfrageauswertenfrage"
-            android:layout_above="@id/umfrageauswertennächstefrage"
-            android:layout_marginTop="10dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_course_button">
 
+            <RelativeLayout
+                android:id="@+id/rl_container"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_pollitem_head">
+
+                <TextView
+                    android:id="@+id/umfrageauswertenprogress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Frage 2/12"
+                    android:textColor="@color/weiß"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_umfrageauswertentopic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:hint="Thema der Umfrage"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:textColor="@color/weiß"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_umfrageauswertenfrage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="85dp"
+                    android:layout_marginStart="15dp"
+                    android:ellipsize="end"
+                    android:hint="Frage1 der Umfrage"
+                    android:lines="2"
+                    android:textColor="@color/weiß"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/umfrageauswertennächstefrage"
+                android:layout_width="27dp"
+                android:layout_height="17dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/icon_fwarrow" />
+
+            <ImageView
+                android:id="@+id/umfrageauswertenvorherigefrage"
+                android:layout_width="27dp"
+                android:layout_height="17dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="25dp"
+                android:src="@drawable/icon_bwarrow" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/umfrageauswertenpiechart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/umfrageauswertenteilnehmerview"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:maxEms="10"
+                android:text="Es haben 10 Personen an der Umfrage bis jetzt teilgenommen"
+                android:textAlignment="center"
+                android:textColor="@color/weiß" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </FrameLayout>
+
+
+

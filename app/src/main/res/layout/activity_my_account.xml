@@ -2,75 +2,131 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_feedback_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MyAccount">
+    android:background="@color/dunkelblau"
+    tools:context="com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.FehlerMeldenAcivity">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/dunkelblau"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:id="@+id/tv_toolbar_title_workaround_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="36dp"
+                android:text="Mein Account"
+                android:textAlignment="viewStart"
+                android:textColor="@color/weiß"
+                android:textSize="22sp" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="@drawable/toolbar_dropshadow" />
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="My Account"
-        android:textSize="60sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/b_buttonLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="88dp"
-        android:text="LOGOUT" />
-
-    <Button
-        android:id="@+id/b_buttonsendaccoundata"
-        android:layout_above="@id/b_buttonLogout"
+        android:id="@+id/tv_accountname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="Send me my password" />
+        android:layout_marginTop="75dp"
+        android:text="Vorname, Name"
+        android:maxLines="1"
+        android:lines="1"
 
-    <Button
-        android:id="@+id/b_changepassword"
-        android:layout_above="@id/b_buttonsendaccoundata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="Change my Password" />
+        android:textColor="@color/weiß"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tv_accountemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:hint="TextView"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="xyz@lehre.dhbw-stuttgart.de"
 
-    <TextView
-        android:id="@+id/tv_accountname"
-        android:layout_below="@id/tv_accountemail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="TextView"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
-
+        android:textColor="@color/weiß"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tv_accountmatrikelnummer"
-        android:layout_below="@id/tv_accountname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="TextView"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="111111"
+
+        android:textColor="@color/weiß"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/b_buttonsendaccountdata"
+        android:layout_width="200dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/tv_accountmatrikelnummer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/shape_send_error_or_feedback"
+        android:text="Passwort anzeigen"
+        android:textAllCaps="false"
+        android:textColor="@color/weiß" />
+
+    <Button
+        android:id="@+id/b_changepassword"
+        android:layout_width="200dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/tv_accountmatrikelnummer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="86dp"
+        android:background="@drawable/shape_send_error_or_feedback"
+        android:text="Passwort ändern"
+        android:textAllCaps="false"
+        android:textColor="@color/weiß" />
+
+    <Button
+        android:id="@+id/b_buttonLogout"
+        android:layout_width="200dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/tv_accountmatrikelnummer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/shape_send_error_or_feedback"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="@color/weiß" />
+
+
 </RelativeLayout>
