@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Umfragen.UmfrageAuswerten;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -93,6 +94,15 @@ public class UmfrageAuswertenFragment extends Fragment {
         tv_frage = (TextView) rootView.findViewById(R.id.tv_umfrageauswertenfrage);
         tv_progress = (TextView) rootView.findViewById(R.id.umfrageauswertenprogress);
         tv_teilnehmer = (TextView) rootView.findViewById(R.id.umfrageauswertenteilnehmerview);
+
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
+
+        //assigning typefaces
+        tv_topic.setTypeface(quicksand_regular);
+        tv_frage.setTypeface(quicksand_regular);
+        tv_progress.setTypeface(quicksand_regular);
+        tv_teilnehmer.setTypeface(quicksand_regular);
 
         TinyDB tinyDB = new TinyDB(getContext());
 
