@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * transforms the given data and sends it to the recyclerview
- */
+ * */
 
 
 public class TransformRefreshingData extends AsyncTask<Void,Void,Boolean> {
