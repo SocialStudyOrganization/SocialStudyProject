@@ -237,7 +237,6 @@ public class SkripteFragment extends Fragment {
             }
         }
 
-
     }
 
     private void uploadImage(){
