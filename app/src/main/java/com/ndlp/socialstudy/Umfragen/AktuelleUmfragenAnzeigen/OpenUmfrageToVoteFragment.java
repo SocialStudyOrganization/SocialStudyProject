@@ -93,9 +93,9 @@ public class OpenUmfrageToVoteFragment extends Fragment {
         tv_progress.setTypeface(quicksand_regular);
         b_einreichen.setTypeface(quicksand_regular);
 
+        umfrageAnzeigenObjects = new ArrayList<>();
         umfrageAnzeigenObjects.clear();
-        umfrageAnzeigenRecyclerAdapter =
-                new UmfrageAnzeigenRecyclerAdapter(getContext(),umfrageAnzeigenObjects);
+        umfrageAnzeigenRecyclerAdapter = new UmfrageAnzeigenRecyclerAdapter(getContext(),umfrageAnzeigenObjects);
 
         recyclerView.setAdapter(umfrageAnzeigenRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
