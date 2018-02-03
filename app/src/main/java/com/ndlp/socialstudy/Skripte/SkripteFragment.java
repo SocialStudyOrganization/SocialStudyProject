@@ -42,7 +42,6 @@ public class SkripteFragment extends Fragment {
     private static final int SELECT_PICTURE = 1;
     Uri fileUri;
     private String fileUriString;
-    Uri imageUri;
 
     //  location of the php script on server
     public String urlAddress;
@@ -156,26 +155,9 @@ public class SkripteFragment extends Fragment {
                 intent.putExtra("format", "Image");
                 getContext().startActivity(intent);
 
-/*
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
 
-                format = "Image";
-
-                TImeDateRequest tImeDateRequest = new TImeDateRequest();
-                date = tImeDateRequest.getDate();
-                time = tImeDateRequest.getTime();
-
-                startActivityForResult(Intent.createChooser(intent,
-                        "Select Picture"), SELECT_PICTURE);
-
-
-*/
             }
         });
-
-
 
         return rootView;
     }
@@ -192,6 +174,10 @@ public class SkripteFragment extends Fragment {
                 skriptname = tinyDB.getString("filename");
                 fileUri = Uri.parse(fileUriString);
 
+                tinyDB.remove("format");
+                tinyDB.remove("fileUri");
+                tinyDB.remove("filename");
+
                 if (format.equals("Image")) {
                     TImeDateRequest tImeDateRequest = new TImeDateRequest();
                     date = tImeDateRequest.getDate();
@@ -199,7 +185,6 @@ public class SkripteFragment extends Fragment {
                     uploadImage();
                 }
             }
-
 
         super.onResume();
     }
