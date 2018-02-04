@@ -1,7 +1,6 @@
 package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -19,7 +18,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
@@ -31,17 +29,12 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
-import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
-import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.WortumfragenActivity;
-
-import static android.content.DialogInterface.BUTTON_NEGATIVE;
-import static android.content.DialogInterface.BUTTON_POSITIVE;
 
 /**
  * Activity to handle the fragments with bottomNavigationView and navigationDrawer
