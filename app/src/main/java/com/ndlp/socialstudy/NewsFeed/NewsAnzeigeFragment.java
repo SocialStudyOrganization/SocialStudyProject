@@ -32,20 +32,9 @@ public class NewsAnzeigeFragment extends Fragment {
         String message = bundle.getString("message");
 
         TextView textView = (TextView) rootView.findViewById(R.id.tv_newsanzeigen);
-        Button button = (Button) rootView.findViewById(R.id.b_newsanzeigenzurück);
 
         textView.setText(message);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, newsFeedFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
 
         return rootView;
     }

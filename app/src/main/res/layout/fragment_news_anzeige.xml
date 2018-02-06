@@ -8,18 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/b_newsanzeigenzurück"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"/>
-
         <TextView
             android:id="@+id/tv_newsanzeigen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Hier sollte eigentlich der Text stehen :("
-            android:layout_above="@id/b_newsanzeigenzurück"/>
+            android:hint="Hier sollte eigentlich der Text stehen :("/>
 
     </RelativeLayout>
 
