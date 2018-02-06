@@ -122,12 +122,17 @@ public class WortumfragenActivity extends AppCompatActivity {
                 String lastcharacter = wortfrage.substring(wortfrage.length() - 1);
                 Integer anzahlfragezeichen = wortfrage.replaceAll("[^,?]+", "").length();
 
-                if (wortfrage.matches("") || arrayListWortUmfrage.isEmpty() || !lastcharacter.equals("?") || anzahlfragezeichen > 1) {
-                    Toast.makeText(WortumfragenActivity.this, "Fill everything in and check that your question contains exactly one '?' at the end!",
+                if (wortfrage.matches("") || arrayListWortUmfrage.isEmpty() || anzahlfragezeichen > 1) {
+                    Toast.makeText(WortumfragenActivity.this, "Fill everything in and check your inputs!",
                             Toast.LENGTH_SHORT).show();
 
                 }
                 else {
+
+                    if (!lastcharacter.equals("?")){
+                        wortfrage = wortfrage + "?";
+                    }
+
                     ArrayList<String> strings = new ArrayList<>();
 
                     for (WortumfragelistenObject wortumfragelistenObject : arrayListWortUmfrage) {
