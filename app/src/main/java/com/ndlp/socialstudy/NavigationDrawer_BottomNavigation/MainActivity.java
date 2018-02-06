@@ -13,6 +13,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -143,7 +144,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         //  get an transaction when switching the fragment -> UE seems less buggy
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        FragmentManager fm = getSupportFragmentManager();
+                        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                            fm.popBackStack();
+                        }
                         transaction.replace(R.id.frame_layout, selectedFragment);
+
                         transaction.commit();
                         return true;
                     }
@@ -151,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //  Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        //clean backstack
+
         transaction.replace(R.id.frame_layout, NewsFeedFragment.newInstance());
         transaction.commit();
 
@@ -274,21 +282,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
+
+        /*int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0){
+
+            //double back press to exit
+
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                finish();
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
+
+        }else{
+
+            getFragmentManager().popBackStack();
+
+        }*/
+
+        if (getFragmentManager().getBackStackEntryCount() > 0 ){
+            getFragmentManager().popBackStack();
+        } else {
             super.onBackPressed();
-            finish();
         }
 
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
     }
 
 

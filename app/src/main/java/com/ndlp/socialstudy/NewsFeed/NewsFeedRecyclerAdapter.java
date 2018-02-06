@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.NewsFeed;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     @Override
     public void onBindViewHolder(NewsFeedRecyclerAdapter.MyViewHolder holder, int position) {
 
-        NewsFeedObject currentObject = newsFeedObjectArrayList.get(position);
+        final NewsFeedObject currentObject = newsFeedObjectArrayList.get(position);
 
         String user = currentObject.getUser();
         String category = currentObject.getCategory();
@@ -63,6 +64,18 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "You clicked on more", Toast.LENGTH_LONG).show();
+
+
+
+                MainActivity mainActivity = (MainActivity)context;
+                NewsAnzeigeFragment newsAnzeigeFragment = new NewsAnzeigeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("message", currentObject.getMessage());
+                newsAnzeigeFragment.setArguments(bundle);
+                mainActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, newsAnzeigeFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
