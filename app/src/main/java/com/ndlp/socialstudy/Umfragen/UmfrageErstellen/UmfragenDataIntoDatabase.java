@@ -14,11 +14,12 @@ public class UmfragenDataIntoDatabase extends StringRequest{
     private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/UmfragenDataIntoDatabase.php";
     private Map<String, String> params;
 
-    public UmfragenDataIntoDatabase(String umfragethema, String erstelltamDate, String enddate, String endtime, String user, String arraytostring, String anzahlUmfragen, String onlyoneanswer, Response.Listener<String> listener) {
+    public UmfragenDataIntoDatabase(String umfragethema, String erstelltamDate, String enddate, String endtime, String user, String arraytostring, String anzahlUmfragen, String onlyoneanswer, String erstellzeit, Response.Listener<String> listener) {
         super(Request.Method.POST, Register_Request_URL, listener, null);
         params = new HashMap<>();
         params.put("umfragethema", umfragethema);
         params.put("erstelldatum", erstelltamDate);
+        params.put("erstellzeit", erstellzeit);
         params.put("enddate", enddate);
         params.put("endtime", endtime);
         params.put("user", user);

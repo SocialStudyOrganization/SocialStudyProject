@@ -180,8 +180,11 @@ public class NewUmfrageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!et_umfrageueberschrift.equals("") ){
+                if (!et_umfrageueberschrift.getText().toString().equals("") ){
                     tinyDB.putString("ueberschrift", et_umfrageueberschrift.getText().toString());
+                }else{
+                    tinyDB.putString("ueberschrift", "");
+
                 }
 
                 if (!et_umfragedatum.equals("") ){
@@ -214,7 +217,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
 
 
-                if (et_umfrageueberschrift.equals("") || et_umfragedatum.equals("") || et_umfragetime.equals("")
+                if (et_umfrageueberschrift.getText().toString().equals("") || et_umfragedatum.equals("") || et_umfragetime.equals("")
                          || wortumfragenobjects.isEmpty()){
 
                     Toast.makeText(NewUmfrageActivity.this, "You are missing some data", LENGTH_LONG).show();
@@ -247,6 +250,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
                         String erstelltamDate;
                         TImeDateRequest tImeDateRequest = new TImeDateRequest();
                         erstelltamDate = tImeDateRequest.getDate();
+                        String erstellzeit = tImeDateRequest.getTime();
 
                         //  gets the username out of sharedPrefs LoginData
 
@@ -342,7 +346,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
 
                         UmfragenDataIntoDatabase umfragendataintodatabase = new UmfragenDataIntoDatabase(umfragethema, erstelltamDate
-                            , enddate, endtime, user, arraytostring, anzahleinzelnerumfragen, onlyoneanswer, responseListener);
+                            , enddate, endtime, user, arraytostring, anzahleinzelnerumfragen, onlyoneanswer, erstellzeit, responseListener);
                         RequestQueue queue = Volley.newRequestQueue(NewUmfrageActivity.this);
                         queue.add(umfragendataintodatabase);
 
