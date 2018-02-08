@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
     TextView tv_einreichen;
     TextView tv_umfrageheaderbar;
     TextView tv_umfragecontainerhead;
+    CheckBox cb_eineAntwortzulassen;
 
     ImageView iv_newumfrageback;
     String wortfrage;
@@ -56,6 +58,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
     String umfragethema;
     String enddate;
     String endtime;
+    String onlyoneanswer;
 
 
     RecyclerView rv_newUmfrage;
@@ -86,6 +89,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
         iv_newumfrageback = (ImageView) findViewById(R.id.iv_newUmfrageback);
         tv_umfrageheaderbar = (TextView) findViewById(R.id.tv_umfrageheaderbar);
         tv_umfragecontainerhead = (TextView) findViewById(R.id.tv_umfragecontainerhead);
+        cb_eineAntwortzulassen = (CheckBox) findViewById(R.id.cb_onlyoneanswer);
 
         //assigning typefaces
         tv_umfrageheaderbar.setTypeface(quicksand_bold);
@@ -115,6 +119,12 @@ public class NewUmfrageActivity extends AppCompatActivity {
         }
         if (!tinyDB.getString("uhrzeit").isEmpty()){
             et_umfragetime.setText(tinyDB.getString("uhrzeit"));
+        }
+
+        if (!tinyDB.getString("onlyoneanswer").isEmpty()){
+            cb_eineAntwortzulassen.setChecked(true);
+        }else{
+            cb_eineAntwortzulassen.setChecked(false);
         }
 
 
@@ -182,6 +192,12 @@ public class NewUmfrageActivity extends AppCompatActivity {
                     tinyDB.putString("uhrzeit", et_umfragetime.getText().toString());
                 }
 
+                if (cb_eineAntwortzulassen.isChecked()){
+                    tinyDB.putString("onlyoneanswer", "ischecked");
+                }else{
+                    tinyDB.remove("onlyoneanswer");
+                }
+
                 Intent intent = new Intent(NewUmfrageActivity.this, WortumfragenActivity.class);
                 startActivity(intent);
                 finish();
@@ -209,6 +225,12 @@ public class NewUmfrageActivity extends AppCompatActivity {
                     umfragethema = et_umfrageueberschrift.getText().toString().trim();
                     enddate = et_umfragedatum.getText().toString().trim();
                     endtime = et_umfragetime.getText().toString().trim();
+
+                    if (cb_eineAntwortzulassen.isChecked()){
+                        onlyoneanswer = "1";
+                    }else{
+                        onlyoneanswer = "0";
+                    }
 
 
 
@@ -278,6 +300,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
                         Log.i("erstelltamDate:", erstelltamDate);
                         Log.i("enddate:", enddate);
                         Log.i("endtime:", endtime);
+                        Log.i("onlyoneanswer", onlyoneanswer);
                         Log.i("user:", user);
                         Log.i("arraytostring:", arraytostring);
 
@@ -319,7 +342,7 @@ public class NewUmfrageActivity extends AppCompatActivity {
 
 
                         UmfragenDataIntoDatabase umfragendataintodatabase = new UmfragenDataIntoDatabase(umfragethema, erstelltamDate
-                            , enddate, endtime, user, arraytostring, anzahleinzelnerumfragen, responseListener);
+                            , enddate, endtime, user, arraytostring, anzahleinzelnerumfragen, onlyoneanswer, responseListener);
                         RequestQueue queue = Volley.newRequestQueue(NewUmfrageActivity.this);
                         queue.add(umfragendataintodatabase);
 

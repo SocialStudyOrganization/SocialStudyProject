@@ -120,6 +120,9 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                                         tinyDB.remove("umfang");
                                         tinyDB.remove("topic");
                                         tinyDB.remove("teilnehmerzahl");
+                                        tinyDB.remove("onlyoneanswer");
+
+                                        tinyDB.putString("onlyoneanswer", current.getOnlyoneanswer());
 
                                         Integer deletezaehler;
 

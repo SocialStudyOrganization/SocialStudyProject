@@ -26,6 +26,9 @@ public class AppLogoFirstPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_logo_first_page);
 
+        CleanUmfragenNews cleanUmfragenNews = new CleanUmfragenNews(AppLogoFirstPage.this);
+        cleanUmfragenNews.deleteoldDataonServer();
+
         //  Show this Activity for x ms
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
