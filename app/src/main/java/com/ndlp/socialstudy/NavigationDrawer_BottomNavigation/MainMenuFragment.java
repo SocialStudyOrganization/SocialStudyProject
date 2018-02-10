@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.ShowKursmitglieder.KursmitgliederActivity;
 import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
 import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
 
@@ -42,7 +43,7 @@ public class MainMenuFragment extends Fragment {
         LinearLayout b_toTasks = (LinearLayout) rootView.findViewById(R.id.b_toTasks);
         LinearLayout b_toAnswers = (LinearLayout) rootView.findViewById(R.id.b_toAnswers);
         LinearLayout b_tomfragen = (LinearLayout) rootView.findViewById(R.id.b_toUmfragen);
-        Button b_logout = (Button) rootView.findViewById(R.id.b_logout);
+        Button b_kursmitglieder = (Button) rootView.findViewById(R.id.b_kursmitglieder);
         TextView tv_skripte = (TextView) rootView.findViewById(R.id.tv_skripte);
         TextView tv_answers = (TextView) rootView.findViewById(R.id.tv_answers);
         TextView tv_tasks =(TextView) rootView.findViewById(R.id.tv_tasks);
@@ -61,7 +62,7 @@ public class MainMenuFragment extends Fragment {
         tv_answers.setTypeface(quicksand_regular);
         tv_tasks.setTypeface(quicksand_regular);
         tv_umfragen.setTypeface(quicksand_regular);
-        b_logout.setTypeface(quicksand_regular);
+        b_kursmitglieder.setTypeface(quicksand_regular);
 
 
 
@@ -123,6 +124,14 @@ public class MainMenuFragment extends Fragment {
                         .replace(R.id.frame_layout, basicUmfragenFragment)
                         .addToBackStack(null)
                         .commit();
+            }
+        });
+
+        b_kursmitglieder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), KursmitgliederActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -14,6 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -21,7 +23,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -146,27 +147,18 @@
 
             </LinearLayout>
 
-            <RelativeLayout
+            <Button
+                android:id="@+id/b_kursmitglieder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                >
-
-                <Button
-                    android:id="@+id/b_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="42sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginEnd="11dp"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/shape_dark_button"
-                    android:text="@string/coursepage_coursemembers"
-                    android:textAllCaps="false"
-                    android:textColor="@color/weiß"
-                    android:textSize="16sp" />
-            </RelativeLayout>
+                android:layout_height="42sp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/shape_dark_button"
+                android:text="@string/coursepage_coursemembers"
+                android:textAllCaps="false"
+                android:textColor="@color/weiß"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

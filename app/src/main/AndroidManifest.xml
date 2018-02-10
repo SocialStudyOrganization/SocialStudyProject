@@ -25,45 +25,65 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".activity.AppLogoFirstPage"
+        <activity
+            android:name=".activity.AppLogoFirstPage"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginSystem.LoginActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LoginSystem.RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.AboutUsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.FeedbackActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.FehlerMeldenAcivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".tutorialsheets.TutorialsheetsSlider"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Umfragen.UmfrageErstellen.NewUmfrageActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LoginSystem.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginSystem.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.FehlerMeldenAcivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tutorialsheets.TutorialsheetsSlider"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Umfragen.UmfrageErstellen.NewUmfrageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Umfragen.UmfrageErstellen.WortumfragenActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".GeneralFileFolder.PDFViewerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.MyAccount"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NavigationDrawer_BottomNavigation.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GeneralFileFolder.ImageUpload"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginSystem.VergessenScreen"
             android:screenOrientation="portrait"/>
-        <activity android:name=".GeneralFileFolder.PDFViewerActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.MyAccount"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.ChangePasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NavigationDrawer_BottomNavigation.SettingsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".GeneralFileFolder.ImageUpload"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".ShowKursmitglieder.KursmitgliederActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
 
         </activity>
     </application>

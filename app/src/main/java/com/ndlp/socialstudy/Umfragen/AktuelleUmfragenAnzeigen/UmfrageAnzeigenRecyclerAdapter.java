@@ -10,6 +10,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.activity.TinyDB;
+
 import java.util.ArrayList;
 
 

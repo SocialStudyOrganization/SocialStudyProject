@@ -104,6 +104,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        tv_passwordForgotten.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, VergessenScreen.class);
+                startActivity(intent);
+            }
+        });
+
         //  compare input data with server data
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override

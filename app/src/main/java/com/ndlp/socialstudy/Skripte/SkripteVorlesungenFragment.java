@@ -39,11 +39,6 @@ public class SkripteVorlesungenFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_vorlesungen_darstellen, container, false);
 
-        TinyDB tinyDB = new TinyDB(getContext());
-        tinyDB.remove("fileUri");
-        tinyDB.remove("format");
-        tinyDB.remove("filename");
-
 
         subFolder = getArguments().getString("subFolder");
 

@@ -86,7 +86,7 @@ public class OpenUmfrageToVoteFragment extends Fragment {
         recyclerView.setAdapter(umfrageAnzeigenRecyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        TinyDB tinyDB = new TinyDB(getContext());
+        final TinyDB tinyDB = new TinyDB(getContext());
 
         umfang = tinyDB.getInt("umfang");
 
@@ -135,12 +135,30 @@ public class OpenUmfrageToVoteFragment extends Fragment {
                 ArrayList<Integer> checked_ids = new ArrayList<Integer>();
                 checked_ids = umfrageAnzeigenRecyclerAdapter.passIdsToActivity();
 
-                Log.i("Ausgewählte Antworten:", checked_items + "");
-                Log.i("Ausgewählte Antworten:", checked_ids + "");
+                String onlyoneanswer = tinyDB.getString("onlyoneanswer");
 
-                String checked_idsString = checked_ids + "";
+                //Handler für nur eine zulässige Anztwort
 
-                uploadVote(checked_idsString);
+                if (onlyoneanswer.equals("1") && checked_ids.size()> 1){
+                    //nur eine Antwort ist gestattet
+
+                    Toast.makeText(getContext(), "Es ist nur eine Antwort gestattet", LENGTH_LONG).show();
+
+
+                }else{
+                    //mehrere Antworten sind gestattet
+
+                    Log.i("Ausgewählte Antworten:", checked_items + "");
+                    Log.i("Ausgewählte Antworten:", checked_ids + "");
+
+                    String checked_idsString = checked_ids + "";
+
+                    uploadVote(checked_idsString);
+                }
+
+
+
+
 
 
             }

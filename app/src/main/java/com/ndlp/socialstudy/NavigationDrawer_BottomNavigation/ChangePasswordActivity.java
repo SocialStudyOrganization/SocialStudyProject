@@ -3,12 +3,15 @@ package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +39,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     String urladdress = "http://hellownero.de/SocialStudy/PHP-Dateien/ChangePassword.php";
 
+    Toolbar mActionBarToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +49,28 @@ public class ChangePasswordActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         matrikelnummer = intent.getStringExtra("Matrikelnummer");
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
+
+        //  set toolbar and adjust title
+        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mActionBarToolbar);
+        getSupportActionBar().setTitle("");
+
+
         Button b_changepassword = (Button) findViewById(R.id.b_sendnewpassword);
         final EditText et_oldpassword = (EditText) findViewById(R.id.et_oldpassword);
         final EditText et_newpassword1 = (EditText) findViewById(R.id.et_newpassword1);
         final EditText et_newpassword2 = (EditText) findViewById(R.id.et_newpassword2);
+        TextView textView = (TextView) findViewById(R.id.tv_toolbar_title_workaround_changepw);
+        textView.setTypeface(quicksand_bold);
+
+        b_changepassword.setTypeface(quicksand_regular);
+        et_oldpassword.setTypeface(quicksand_regular);
+        et_newpassword1.setTypeface(quicksand_regular);
+        et_newpassword2.setTypeface(quicksand_regular);
+
 
         Toast.makeText(ChangePasswordActivity.this, matrikelnummer, Toast.LENGTH_LONG).show();
 

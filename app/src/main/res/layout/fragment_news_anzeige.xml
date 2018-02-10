@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ndlp.socialstudy.NewsFeed.NewsAnzeigeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_newsanzeigen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Hier sollte eigentlich der Text stehen :("/>
+
+    </RelativeLayout>
+
+
+</FrameLayout>
