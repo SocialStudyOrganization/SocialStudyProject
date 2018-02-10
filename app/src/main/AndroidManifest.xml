@@ -76,8 +76,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".GeneralFileFolder.ImageUpload"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".LoginSystem.VergessenScreen"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginSystem.VergessenScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ShowKursmitglieder.KursmitgliederActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+
+        </activity>
     </application>
 
 </manifest>

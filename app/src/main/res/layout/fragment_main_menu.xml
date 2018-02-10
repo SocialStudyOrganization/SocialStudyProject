@@ -148,7 +148,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/b_logout"
+                android:id="@+id/b_kursmitglieder"
                 android:layout_width="match_parent"
                 android:layout_height="42sp"
                 android:layout_marginEnd="11dp"

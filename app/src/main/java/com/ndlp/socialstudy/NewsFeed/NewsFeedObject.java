@@ -4,19 +4,14 @@ package com.ndlp.socialstudy.NewsFeed;
 
 public class NewsFeedObject {
 
-    private String user, category, uploaddate, uploadtime, topic, message;
+    private String category, uploaddate, uploadtime, topic, message;
 
-    public NewsFeedObject(String user, String category, String uploaddate, String uploadtime, String topic, String message){
-        this.user = user;
+    public NewsFeedObject(String category, String uploaddate, String uploadtime, String topic, String message){
         this.category = category;
         this.uploaddate = uploaddate;
         this.uploadtime = uploadtime;
         this.topic = topic;
         this.message = message;
-    }
-
-    public String getUser(){
-        return user;
     }
 
     public String getCategory(){

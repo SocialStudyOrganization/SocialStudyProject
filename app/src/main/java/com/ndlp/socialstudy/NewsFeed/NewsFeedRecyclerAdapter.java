@@ -49,7 +49,6 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
         final NewsFeedObject currentObject = newsFeedObjectArrayList.get(position);
 
-        String user = currentObject.getUser();
         String category = currentObject.getCategory();
         String uploaddate = currentObject.getUploaddate();
         String uploadtime = currentObject.getUploadtime();
@@ -57,7 +56,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
 
 
-        holder.tv_header.setText(user + ", am: " + uploaddate + ", " + uploadtime);
+        holder.tv_header.setText(category + ", am: " + uploaddate + ", " + uploadtime);
         holder.tv_topic.setText(currentObject.getTopic());
 
         holder.tv_more.setOnClickListener(new View.OnClickListener() {

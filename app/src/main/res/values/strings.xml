@@ -67,6 +67,7 @@
     <string name="navigation_aboutus">Über uns</string>
     <string name="polls_headerhint">Name, deadline</string>
     <string name="poll_bezeichnunghint">Bezeichnung</string>
+    <string name="title_activity_kursmitglieder">KursmitgliederActivity</string>
 </resources>
 
 

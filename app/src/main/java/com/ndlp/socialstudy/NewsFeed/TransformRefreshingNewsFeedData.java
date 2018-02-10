@@ -63,7 +63,7 @@ public class TransformRefreshingNewsFeedData extends AsyncTask<Void, Void, Boole
             newsFeedObjectArrayList.clear();
             for (int i = 0; i < jsonArray.length(); i++) {
                 jo = jsonArray.getJSONObject(i);
-                NewsFeedObject newsFeedObject = new NewsFeedObject( jo.getString("matrikelnummer"), jo.getString("category")
+                NewsFeedObject newsFeedObject = new NewsFeedObject( jo.getString("category")
                         , jo.getString("uploaddate"), jo.getString("uploadtime") ,jo.getString("topic"), jo.getString("message"));
                 newsFeedObjectArrayList.add(newsFeedObject);
                 newsFeedRecyclerAdapter.notifyDataSetChanged();
