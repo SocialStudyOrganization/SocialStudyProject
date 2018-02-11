@@ -160,7 +160,15 @@ public class UmfrageAuswertenFragment extends Fragment {
         tv_topic.setText(tinyDB.getString("topic"));
         tv_frage.setText(question);
         tv_progress.setText(currentpageint + "/" + umfang);
-        tv_teilnehmer.setText("Es haben " + tinyDB.getString("teilnehmerzahl") + " Personen abgestimmt bis jetzt!");
+
+        String teilnehmerzahl = tinyDB.getString("teilnehmerzahl");
+        if (teilnehmerzahl.equals("1")){
+            tv_teilnehmer.setText("Es hat " + teilnehmerzahl + " Person abgestimmt bis jetzt!");
+
+        }else{
+            tv_teilnehmer.setText("Es haben " + teilnehmerzahl + " Personen abgestimmt bis jetzt!");
+
+        }
 
         //holt die möglichen antworten
         answers.clear();
