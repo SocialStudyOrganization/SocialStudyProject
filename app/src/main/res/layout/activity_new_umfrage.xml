@@ -153,6 +153,19 @@
                 android:textColorHint="@color/weiß"
                 android:textSize="14sp" />
 
+            <CheckBox
+                android:id="@+id/cb_onlyoneanswer"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/et_headingNewUmfrage"
+                android:layout_marginTop="9dp"
+                android:buttonTint="@color/weiß"
+                android:maxEms="10"
+                android:text="nur eine Antwort zulassen"
+                android:textColor="@color/weiß"
+                android:textSize="12sp" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -173,17 +186,6 @@
 
 
     <include layout="@layout/fab_newumfragemenu"></include>
-
-    <CheckBox
-        android:id="@+id/cb_onlyoneanswer"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:maxEms="10"
-        android:text="nur eine Antwort zulassen"
-        android:textSize="12dp"
-        android:layout_alignTop="@+id/rl_newUmfrage_containerdatetime"
-        android:layout_alignEnd="@+id/rl_newUmfrageeinreichen" />
 
 
 </RelativeLayout>

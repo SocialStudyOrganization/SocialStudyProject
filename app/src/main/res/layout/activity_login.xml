@@ -10,163 +10,122 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="128dp"
-            android:src="@drawable/ic_supervisor_account_black_48dp"/>
-
-        <!--
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="128dp"
-            android:text="ICON"
-            android:textColor="@color/weiß"
-            android:textSize="30sp" /> -->
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="310dp"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="235dp"
-            android:layout_marginLeft="33dp"
-            android:layout_marginRight="33dp"
-            android:background="@drawable/shape_loginbox"
-            android:ems="10"
-            android:hint="@string/login_email_hint"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="36dp"
-            android:textColor="@color/weiß"
-            android:textColorHint="@color/weiß"
-            android:textSize="16sp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="310dp"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="172dp"
-            android:layout_marginLeft="33dp"
-            android:layout_marginRight="33dp"
-            android:background="@drawable/shape_loginbox"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:hint="@string/login_passwordhint"
-            android:paddingLeft="36dp"
-            android:textColor="@color/weiß"
-            android:textColorHint="@color/weiß"
-            android:textSize="16sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <CheckBox
-            android:id="@+id/cb_rememberMe"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="130dp"
-            android:layout_marginEnd="69dp"
-            android:textColor="@color/weiß" />
-
-        <TextView
-            android:id="@+id/tv_RememberMe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="137dp"
-            android:text="@string/login_stay_registered"
-            android:textColor="@color/weiß" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="235dp"
         android:layout_marginLeft="33dp"
-        android:layout_marginRight="33dp">
+        android:layout_marginRight="33dp"
+        android:background="@drawable/shape_loginbox"
+        android:ems="10"
+        android:hint="@string/login_email_hint"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="36dp"
+        android:textColor="@color/weiß"
+        android:textColorHint="@color/weiß"
+        android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/bLogin"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="70dp"
-            android:background="@drawable/shape_loginbutton"
-            android:text="@string/loginscreen_button_text"
-            android:textAllCaps="false"
-            android:textColor="@color/weiß"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="172dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="33dp"
+        android:background="@drawable/shape_loginbox"
+        android:ems="10"
+        android:hint="@string/login_passwordhint"
+        android:inputType="textPassword"
+        android:paddingLeft="36dp"
+        android:textColor="@color/weiß"
+        android:textColorHint="@color/weiß"
+        android:textSize="16sp" />
 
-    </RelativeLayout>
+    <CheckBox
+        android:id="@+id/cb_rememberMe"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="130dp"
+        android:layout_marginEnd="69dp"
+        android:buttonTint="@color/weiß"
+        android:textColor="@color/weiß" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:id="@+id/tv_passwordForgotten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp"
-            android:text="@string/login_passwordforgotten_link"
-            android:textColor="@color/weiß" />
-
-    </RelativeLayout>
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tv_RememberMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="137dp"
+        android:text="@string/login_stay_registered"
+        android:textColor="@color/weiß" />
 
-        <TextView
-            android:id="@+id/tvRegisterHere"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:ems="10"
-            android:gravity="right"
-            android:paddingBottom="5sp"
-            android:text="@string/login_registerlink"
-            android:textAlignment="center"
-            android:textColor="@color/weiß"
-            android:textSize="14sp" />
-    </RelativeLayout>
+    <Button
+        android:id="@+id/bLogin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginStart="33dp"
+        android:background="@drawable/shape_loginbutton"
+        android:text="@string/loginscreen_button_text"
+        android:textAllCaps="false"
+        android:textColor="@color/weiß"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_passwordForgotten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:text="@string/login_passwordforgotten_link"
+        android:textColor="@color/weiß" />
+
+    <TextView
+        android:id="@+id/tvRegisterHere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:gravity="right"
+        android:paddingBottom="5sp"
+        android:text="@string/login_registerlink"
+        android:textAlignment="center"
+        android:textColor="@color/weiß"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="13dp"
+        android:layout_height="16dp"
+        android:layout_alignStart="@id/etPassword"
+        android:layout_alignTop="@id/etPassword"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@drawable/icon_passwordlock" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="13dp"
+        android:layout_height="17dp"
+        android:layout_alignStart="@id/etEmail"
+        android:layout_alignTop="@id/etEmail"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@drawable/icon_user" />
 
 
 </RelativeLayout>

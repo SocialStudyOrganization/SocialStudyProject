@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Slide1"
+        android:text="Slide2"
         android:textSize="50sp" />
+
 </RelativeLayout>
