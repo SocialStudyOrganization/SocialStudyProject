@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
+import com.ndlp.socialstudy.NewsFeed.NotificationFragment;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
 
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     boolean doubleBackToExitPressedOnce = false;
+
+    BottomNavigationView topnavigationview;
+    Fragment selectedFragment;
 
     private Toolbar mToolbar;
 
@@ -106,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          * BottomNavigationView
          */
 
+        topnavigationview = (BottomNavigationView) findViewById(R.id.top_navigation_view);
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation_view);
 
@@ -129,16 +135,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Fragment selectedFragment = null;
+                        selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.action_item1:
                                 selectedFragment = NewsFeedFragment.newInstance();
+                                topnavigationview.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.action_item2:
                                 selectedFragment = MainMenuFragment.newInstance();
+                                topnavigationview.setVisibility(View.GONE);
                                 break;
                             case R.id.action_item3:
                                 selectedFragment = CalendarFragment.newInstance();
+                                topnavigationview.setVisibility(View.GONE);
                                 break;
                         }
 
@@ -153,7 +162,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         transaction.commit();
                         return true;
                     }
-                });
+        });
+
+        topnavigationview.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectedFragment = null;
+                switch (item.getItemId()) {
+                    case R.id.navigaton_item_news:
+                        selectedFragment = NewsFeedFragment.newInstance();
+                        break;
+                    case R.id.navigation_item_notification:
+                        selectedFragment = NotificationFragment.newInstance();
+                        break;
+
+                }
+
+                //  get an transaction when switching the fragment -> UE seems less buggy
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                FragmentManager fm = getSupportFragmentManager();
+                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                    fm.popBackStack();
+                }
+                transaction.replace(R.id.frame_layout, selectedFragment);
+
+                transaction.commit();
+                return true;
+            }
+        });
 
         //  Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -27,6 +27,7 @@ public class NewsFeedFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     NewsFeedRecyclerAdapter newsFeedRecyclerAdapter;
     ArrayList<NewsFeedObject> newsFeedObjectsArrayList;
+    String source = "News";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,13 +52,13 @@ public class NewsFeedFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new RefreshNewsFeedFromDatabase(getActivity(), mRecyclerViewNewsFeed);
+                new RefreshNewsFeedFromDatabase(getActivity(), mRecyclerViewNewsFeed, source);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
 
 
-        new RefreshNewsFeedFromDatabase(getActivity(), mRecyclerViewNewsFeed);
+        new RefreshNewsFeedFromDatabase(getActivity(), mRecyclerViewNewsFeed, source);
 
         return rootView;
     }

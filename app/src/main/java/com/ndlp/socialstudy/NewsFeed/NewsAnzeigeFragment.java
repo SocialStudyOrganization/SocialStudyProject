@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.NewsFeed;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class NewsAnzeigeFragment extends Fragment {
         TextView textView = (TextView) rootView.findViewById(R.id.tv_newsanzeigen);
 
         textView.setText(message);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
 
         return rootView;

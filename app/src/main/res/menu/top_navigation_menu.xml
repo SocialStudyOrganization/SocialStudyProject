@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- icons müssen aus drawable eingefügt werden-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigaton_item_news"
+        android:title="News" />
+    <item
+        android:id="@+id/navigation_item_notification"
+        android:title="Notifications" />
+
+</menu>
