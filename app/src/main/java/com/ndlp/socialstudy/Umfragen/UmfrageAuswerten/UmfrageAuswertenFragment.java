@@ -2,8 +2,10 @@ package com.ndlp.socialstudy.Umfragen.UmfrageAuswerten;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.solver.SolverVariable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -24,8 +26,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -213,11 +217,17 @@ public class UmfrageAuswertenFragment extends Fragment {
 
                                 Log.i("PIE", "" + pieEntries);
 
-
+                                Typeface quicksand_regular=Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
                                 PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
                                 pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
                                 pieDataSet.setValueFormatter(new PercentFormatter());
                                 PieData pieData = new PieData(pieDataSet);
+
+                                //formatting
+                                pieDataSet.setColors(new int[]{R.color.rot, R.color.dunkelblau, R.color.grün, R.color.gelb,R.color.dunkelrot, R.color.dunkelgrün, R.color.dunkelgelb}, getContext());
+                                pieData.setValueTypeface(quicksand_regular);
+                                pieDataSet.setValueTypeface(quicksand_regular);
+
 
                                 // this increases the values text size
                                 pieData.setValueTextSize(20f);
@@ -225,17 +235,20 @@ public class UmfrageAuswertenFragment extends Fragment {
                                 PieChart pieChart = (PieChart) rootView.findViewById(R.id.umfrageauswertenpiechart);
                                 pieChart.setData(pieData);
                                 pieChart.animateY(2000);
+                                pieChart.setDescription(null);
 
                                 // configure pie chart
                                 pieChart.setUsePercentValues(true);
+                                pieChart.setTouchEnabled(false);
+
+
 
                                 //hole
-                                pieChart.setDrawHoleEnabled(true);
-                                pieChart.setHoleRadius(7);
-                                pieChart.setTransparentCircleRadius(10);
+                                pieChart.setDrawHoleEnabled(false);
+
 
                                 Legend legend = pieChart.getLegend();
-                                legend.setPosition(RIGHT_OF_CHART_CENTER);
+                                legend.setEnabled(false);
 
 
                                 pieChart.invalidate();

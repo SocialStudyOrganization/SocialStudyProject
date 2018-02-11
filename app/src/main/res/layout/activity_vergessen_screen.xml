@@ -4,61 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dunkelblau"
     tools:context="com.ndlp.socialstudy.LoginSystem.VergessenScreen">
 
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="118dp"
-        android:text="Eingeben deiner Email-Addresse"
-        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="68dp"
-        android:text="Wir werden dein Passwort an deine DBW-Email schicken" />
+        android:layout_marginTop="40dp"
+        android:text="@string/passwortvergessen_text"
+        android:textColor="@color/weiß"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_emailvergessen"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/shape_loginbox"
+        android:ems="10"
+        android:hint="@string/register_mail"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="36dp"
+        android:textColor="@color/weiß"
+        android:textColorHint="@color/weiß"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/b_passwortabsenden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="124dp"
-        android:layout_alignParentEnd="true"
-        android:hint="Absenden" />
+        android:layout_width="310dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/et_emailvergessen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/shape_loginbutton"
+        android:text="Passwort anfragen"
+        android:textAllCaps="false"
+        android:textColor="@color/weiß"
+        android:textColorHint="@color/weiß"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/b_passwortabbrechen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/b_passwortabsenden"
+        android:layout_below="@id/b_passwortabsenden"
         android:layout_marginStart="18dp"
-        android:text="Abbrechen" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/b_passwortabbrechen"
-        android:layout_marginTop="52dp"
-        android:text="SocialStudy" />
-
-    <EditText
-        android:id="@+id/et_emailvergessen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
+        android:background="@color/transparent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="62dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Deine Email" />
+        android:textAllCaps="false"
+        android:text="Abbrechen"
+        android:textColor="@color/weiß" />
+
 </RelativeLayout>
