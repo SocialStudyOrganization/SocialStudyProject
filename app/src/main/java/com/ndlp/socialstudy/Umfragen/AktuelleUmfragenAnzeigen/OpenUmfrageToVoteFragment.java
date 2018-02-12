@@ -183,6 +183,7 @@ public class OpenUmfrageToVoteFragment extends Fragment {
     public void getData(Integer currentpageint){
         TinyDB tinyDB = new TinyDB(getContext());
         String question = tinyDB.getString("question" + currentpageint);
+        String questionid = tinyDB.getString("questionid" + currentpageint);
         ArrayList<String> answers = new ArrayList<>();
         ArrayList<Integer> answerIDs = new ArrayList<>();
         answers = tinyDB.getListString("answers" + currentpageint);
@@ -190,6 +191,8 @@ public class OpenUmfrageToVoteFragment extends Fragment {
 
         Log.i("answers", answers + "");
         Log.i("answerIDs", answerIDs + "");
+        Log.i("question", question);
+        Log.i("questionID", questionid);
 
 
         tv_topic.setText(tinyDB.getString("topic"));

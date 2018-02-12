@@ -54,9 +54,9 @@ public class CleanUmfragenNews {
                             if (success) {
 
                                 try {
-                                    String topic = jsonResponse.getString("topic");
+                                    Integer surveyid = jsonResponse.getInt("surveyid");
 
-                                    DeleteUmfrage deleteUmfrage = new DeleteUmfrage(context, topic);
+                                    DeleteUmfrage deleteUmfrage = new DeleteUmfrage(context, surveyid);
 
                                 }catch(Exception e){
                                     Log.i("exception", e.toString());

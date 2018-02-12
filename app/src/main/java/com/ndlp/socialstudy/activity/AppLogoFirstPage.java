@@ -29,7 +29,7 @@ import com.ndlp.socialstudy.tutorialsheets.TutorialsheetsSlider;
 
 public class AppLogoFirstPage extends AppCompatActivity {
 
-    //
+
     public String user;
 
     @Override
@@ -78,8 +78,7 @@ public class AppLogoFirstPage extends AppCompatActivity {
             public void run() {
                 LoginData();
             }
-        }, 3000);
-
+        }, 1000);
 
     }
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +17,7 @@ import com.ndlp.socialstudy.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by ndlp on 04.02.2018.
- */
+
 
 public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecyclerAdapter.MyViewHolder> {
 
@@ -65,12 +64,10 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
         holder.tv_header.setText(category + ", am: " + uploaddate + ", " + uploadtime);
         holder.tv_topic.setText(currentObject.getTopic());
-        holder.tv_more.setOnClickListener(new View.OnClickListener() {
+
+        holder.rl_box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "You clicked on more", Toast.LENGTH_LONG).show();
-
-
 
                 MainActivity mainActivity = (MainActivity)context;
                 NewsAnzeigeFragment newsAnzeigeFragment = new NewsAnzeigeFragment();
@@ -87,7 +84,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.iv_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "You clicked on Options", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Work in progress...", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -104,6 +101,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         TextView tv_header;
         TextView tv_more;
         ImageView iv_image;
+        RelativeLayout rl_box;
 
 
         public MyViewHolder(View itemView) {
@@ -114,6 +112,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
             tv_topic = (TextView) itemView.findViewById(R.id.tv_umfrageitemtopic);
             tv_more = (TextView) itemView.findViewById(R.id.tv_umfrageitemmore);
             iv_image = (ImageView) itemView.findViewById(R.id.iv_umfragenImage);
+            rl_box = (RelativeLayout) itemView.findViewById(R.id.rl_umfragebox);
 
         }
 

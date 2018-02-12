@@ -72,8 +72,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
         et_newpassword2.setTypeface(quicksand_regular);
 
 
-        Toast.makeText(ChangePasswordActivity.this, matrikelnummer, Toast.LENGTH_LONG).show();
-
 
         b_changepassword.setOnClickListener(new View.OnClickListener() {
             @Override

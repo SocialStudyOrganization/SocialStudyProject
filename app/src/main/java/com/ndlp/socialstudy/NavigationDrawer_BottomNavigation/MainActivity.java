@@ -374,33 +374,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
 
-        /*int count = getFragmentManager().getBackStackEntryCount();
-
-        if (count == 0){
-
-            //double back press to exit
-
-            if (doubleBackToExitPressedOnce) {
-                super.onBackPressed();
-                finish();
-            }
-
-            this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce=false;
-                }
-            }, 2000);
-
-        }else{
-
-            getFragmentManager().popBackStack();
-
-        }*/
 
         if (getFragmentManager().getBackStackEntryCount() > 0 ){
             getFragmentManager().popBackStack();

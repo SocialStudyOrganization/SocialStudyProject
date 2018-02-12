@@ -11,8 +11,9 @@ public class GeneralObject {
     private String endtime;
     private String topic;
     private String onlyoneanswer;
+    private Integer survey_id;
 
-    public GeneralObject(String type, String user, String enddate, String endtime, String topic, String onlyoneanswer) {
+    public GeneralObject(String type, String user, String enddate, String endtime, String topic, String onlyoneanswer, Integer survey_id) {
 
         this.type = type;
         this.user = user;
@@ -20,6 +21,7 @@ public class GeneralObject {
         this.endtime = endtime;
         this.topic = topic;
         this.onlyoneanswer = onlyoneanswer;
+        this.survey_id = survey_id;
     }
 
     public String getType(){
@@ -39,6 +41,10 @@ public class GeneralObject {
     }
     public String getOnlyoneanswer(){
         return onlyoneanswer;
+    }
+
+    public Integer getSurvey_id(){
+        return survey_id;
     }
 
 

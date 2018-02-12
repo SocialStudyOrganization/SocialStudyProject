@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +81,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
         String user = current.getUser();
         String enddate = current.getEnddate();
         String endtime = current.getEndtime();
+        String survey_id = current.getSurvey_id() + "";
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
@@ -92,7 +94,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
         holder.header.setText(user + ", gültig bis: " + enddate + ", " + endtime + " Uhr");
         holder.topic.setText(current.getTopic());
 
-        holder.more.setOnClickListener(new View.OnClickListener() {
+        holder.rl_umfragrbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -119,6 +121,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
 
                                         tinyDB.remove("umfang");
                                         tinyDB.remove("topic");
+                                        tinyDB.remove("survey_id");
                                         tinyDB.remove("teilnehmerzahl");
                                         tinyDB.remove("onlyoneanswer");
 
@@ -152,10 +155,13 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                                                 }
                                                 tinyDB.putListString("answers" + zaehler, antworten);
                                                 tinyDB.putString("question" + zaehler, jsonResponse.getString("question" + zaehler));
+                                                tinyDB.putString("questionid" + zaehler, jsonResponse.getString("questionid" + zaehler));
                                                 tinyDB.putString("topic", current.getTopic().toString());
+                                                tinyDB.putString("survey_id", current.getSurvey_id().toString());
 
                                                 Log.i("question" + zaehler, tinyDB.getString("question" + zaehler));
                                                 Log.i("answers" + zaehler, tinyDB.getListString("answers" + zaehler).toString());
+                                                Log.i("questionid" + zaehler, tinyDB.getString("questionid" + zaehler));
                                             }
                                             if (jArrayIDs != null) {
                                                 for (int i=0;i<jArrayIDs.length();i++){
@@ -221,9 +227,10 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                         String user = userint.toString();
 
                         Map<String, String> params = new HashMap<>();
-                        params.put("topic", current.getTopic());
+                        params.put("survey_id", current.getSurvey_id()+"");
                         params.put("matrikelnummer", user);
-                        Log.i("TOpic: " , current.getTopic());
+                        Log.i("survey_id: " , current.getSurvey_id()+"");
+
 
                         return params;
                     }
@@ -249,7 +256,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.umfragen_löschen:
-                                DeleteUmfrage deleteUmfrage = new DeleteUmfrage(context, current.getTopic());
+                                DeleteUmfrage deleteUmfrage = new DeleteUmfrage(context, current.getSurvey_id());
                                 break;
                         }
                         return false;
@@ -259,7 +266,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
                 SharedPreferences prfs = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                 String shareduser = prfs.getString("firstname", "");
 
-                if (shareduser.equals(current.getUser())) {
+                if (shareduser.equals(current.getUser()) || shareduser.equals("Niklas") || shareduser.equals("Patrick")) {
                     popup.show();
 
                 }else {
@@ -285,6 +292,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
         TextView topic;
         TextView more;
         ImageView image;
+        RelativeLayout rl_umfragrbox;
 
 
         public MyViewHolder(View itemView) {
@@ -296,6 +304,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
             topic = (TextView) itemView.findViewById(R.id.tv_umfrageitemtopic);
             more = (TextView) itemView.findViewById(R.id.tv_umfrageitemmore);
             image = (ImageView) itemView.findViewById(R.id.iv_umfragenImage);
+            rl_umfragrbox = (RelativeLayout) itemView.findViewById(R.id.rl_umfragebox);
 
         }
 
