@@ -2,6 +2,7 @@ package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -69,12 +70,22 @@ public class OpenUmfrageToVoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_open_umfrage_to_vote, container, false);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Bold.otf");
+
+
         Button b_einreichen = (Button) rootView.findViewById(R.id.umfrageanzeigeneinsenden);
         ImageView iv_next = (ImageView) rootView.findViewById(R.id.umfrageanzeigennächstefrage);
         ImageView iv_previous = (ImageView) rootView.findViewById(R.id.umfrageanzeigenvorherigefrage);
         tv_topic = (TextView) rootView.findViewById(R.id.tv_umfrageanzeigentopic);
         tv_frage = (TextView) rootView.findViewById(R.id.tv_umfrageanzeigenfrage);
         tv_progress = (TextView) rootView.findViewById(R.id.umfrageanzeigenprogress);
+
+        tv_topic.setTypeface(quicksand_regular);
+        tv_frage.setTypeface(quicksand_regular);
+        tv_progress.setTypeface(quicksand_regular);
+        b_einreichen.setTypeface(quicksand_regular);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_umfrageanzeigenrecyclerview);
 

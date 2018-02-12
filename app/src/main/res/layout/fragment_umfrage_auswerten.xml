@@ -29,13 +29,27 @@
                 android:background="@drawable/shape_pollitem_head">
 
                 <TextView
+                    android:id="@+id/tv_umfrageauswertenfrage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="85dp"
+                    android:layout_marginStart="15dp"
+                    android:ellipsize="end"
+                    android:hint="Frage1 der Umfrage"
+                    android:lines="2"
+                    android:textColor="@color/weiß"
+                    android:textSize="14sp" />
+
+                <TextView
                     android:id="@+id/umfrageauswertenprogress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="27dp"
+                    android:layout_alignTop="@id/tv_umfrageauswertenfrage"
                     android:layout_marginEnd="15dp"
+                    android:layout_marginTop="2dp"
                     android:hint="1/1"
                     android:textColor="@color/weiß"
                     android:textSize="12sp" />
@@ -53,20 +67,6 @@
                     android:maxLines="2"
                     android:textColor="@color/weiß"
                     android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tv_umfrageauswertenfrage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="85dp"
-                    android:layout_marginStart="15dp"
-                    android:ellipsize="end"
-                    android:hint="Frage1 der Umfrage"
-                    android:lines="2"
-                    android:textColor="@color/weiß"
-                    android:textSize="14sp" />
 
             </RelativeLayout>
 

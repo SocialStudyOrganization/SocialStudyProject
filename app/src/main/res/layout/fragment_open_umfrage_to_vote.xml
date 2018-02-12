@@ -29,18 +29,6 @@
                 android:background="@drawable/shape_pollitem_head">
 
                 <TextView
-                    android:id="@+id/umfrageanzeigenprogress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="15dp"
-                    android:hint="Frage 2/12"
-                    android:textColor="@color/weiß"
-                    android:textSize="12sp" />
-
-                <TextView
                     android:id="@+id/tv_umfrageanzeigentopic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,6 +55,18 @@
                     android:lines="2"
                     android:textColor="@color/weiß"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/umfrageanzeigenprogress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/tv_umfrageanzeigenfrage"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="2dp"
+                    android:hint="1/1"
+                    android:textColor="@color/weiß"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 

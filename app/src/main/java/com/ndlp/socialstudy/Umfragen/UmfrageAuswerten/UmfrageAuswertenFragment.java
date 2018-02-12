@@ -91,12 +91,21 @@ public class UmfrageAuswertenFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_umfrage_auswerten, container, false);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Bold.otf");
+
         ImageView iv_next = (ImageView) rootView.findViewById(R.id.umfrageauswertennächstefrage);
         ImageView iv_previous = (ImageView) rootView.findViewById(R.id.umfrageauswertenvorherigefrage);
         tv_topic = (TextView) rootView.findViewById(R.id.tv_umfrageauswertentopic);
         tv_frage = (TextView) rootView.findViewById(R.id.tv_umfrageauswertenfrage);
         tv_progress = (TextView) rootView.findViewById(R.id.umfrageauswertenprogress);
         tv_teilnehmer = (TextView) rootView.findViewById(R.id.umfrageauswertenteilnehmerview);
+
+        tv_topic.setTypeface(quicksand_bold);
+        tv_teilnehmer.setTypeface(quicksand_regular);
+        tv_progress.setTypeface(quicksand_regular);
+        tv_frage.setTypeface(quicksand_regular);
 
         TinyDB tinyDB = new TinyDB(getContext());
 

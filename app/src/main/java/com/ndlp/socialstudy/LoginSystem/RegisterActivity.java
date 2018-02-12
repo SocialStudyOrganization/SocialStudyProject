@@ -2,12 +2,19 @@ package com.ndlp.socialstudy.LoginSystem;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.graphics.drawable.PaintDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -34,10 +41,31 @@ public class RegisterActivity extends AppCompatActivity {
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
         Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
-        Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
-        Typeface quicksand_italic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Italic.otf");
         Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
-        Typeface quicksand_lightitalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-LightItalic.otf");
+
+        //create BG gradient
+        RelativeLayout rl_background = (RelativeLayout) findViewById(R.id.rl_background);
+        ShapeDrawable.ShaderFactory shaderFactory = new ShapeDrawable.ShaderFactory() {
+            @Override
+            public Shader resize(int width, int height) {
+                LinearGradient linearGradient = new LinearGradient(width, 0, width, height,
+                        new int[] {
+                                ContextCompat.getColor(RegisterActivity.this, R.color.bgg_hellblau),
+                                ContextCompat.getColor(RegisterActivity.this, R.color.bgg_hellblau_alt),
+                                ContextCompat.getColor(RegisterActivity.this, R.color.bgg_dunkelblau),
+                                ContextCompat.getColor(RegisterActivity.this, R.color.bgg_dunkelgrau)
+                        },
+                        new float[] {
+                                0, 0.4f, 0.9f, 1 },
+                        Shader.TileMode.REPEAT);
+                return linearGradient;
+            }
+        };
+        PaintDrawable paint = new PaintDrawable();
+        paint.setShape(new RectShape());
+        paint.setShaderFactory(shaderFactory);
+
+        rl_background.setBackground(paint);
 
         //connect to xml widgets
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
