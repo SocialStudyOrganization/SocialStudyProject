@@ -39,9 +39,9 @@
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/top_navigation_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_below="@id/include4"
-            android:background="@color/schwarz"
+            android:background="@color/dunkelgraublau"
             app:itemTextColor="@color/weiß"
             app:menu="@menu/top_navigation_menu" />
 

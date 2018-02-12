@@ -6,14 +6,53 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_course_button">
+
+        <TextView
+            android:id="@+id/tv_newscontainerhead"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:background="@drawable/shape_pollitem_head"
+            android:paddingStart="10dp"
+            android:paddingTop="3dp"
+            android:text="Kategorie, Zeitpunkt"
+            android:textColor="@color/weiß"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/tv_newsThema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_newscontainerhead"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_pollitem_head"
+            android:paddingBottom="3dp"
+            android:paddingStart="10dp"
+            android:paddingTop="3dp"
+            android:text="Überschrift"
+            android:textColor="@color/weiß"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_newsanzeigen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Hier sollte eigentlich der Text stehen :("
-            android:scrollbars = "vertical"/>
+            android:layout_below="@id/tv_newsThema"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical"
+            android:text="Newstext"
+            android:textColor="@color/weiß" />
 
     </RelativeLayout>
 

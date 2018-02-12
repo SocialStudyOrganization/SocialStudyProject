@@ -8,6 +8,6 @@
         android:title="News" />
     <item
         android:id="@+id/navigation_item_notification"
-        android:title="Notifications" />
+        android:title="Benachrichtungen" />
 
 </menu>

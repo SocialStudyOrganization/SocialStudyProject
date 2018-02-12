@@ -1,5 +1,6 @@
 package com.ndlp.socialstudy.NewsFeed;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
@@ -29,13 +30,23 @@ public class NewsAnzeigeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news_anzeige, container, false);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getContext().getAssets(),  "fonts/Quicksand-Bold.otf");
+
         Bundle  bundle = getArguments();
         String message = bundle.getString("message");
 
-        TextView textView = (TextView) rootView.findViewById(R.id.tv_newsanzeigen);
+        TextView tv_newsanzeigen = (TextView) rootView.findViewById(R.id.tv_newsanzeigen);
+        TextView tv_newscontainerhead = (TextView) rootView.findViewById(R.id.tv_newscontainerhead);
+        TextView tv_newsThema = (TextView) rootView.findViewById(R.id.tv_newsThema);
 
-        textView.setText(message);
-        textView.setMovementMethod(new ScrollingMovementMethod());
+        tv_newsanzeigen.setTypeface(quicksand_regular);
+        tv_newscontainerhead.setTypeface(quicksand_regular);
+        tv_newsThema.setTypeface(quicksand_regular);
+
+        tv_newsanzeigen.setText(message);
+        tv_newsanzeigen.setMovementMethod(new ScrollingMovementMethod());
 
 
         return rootView;

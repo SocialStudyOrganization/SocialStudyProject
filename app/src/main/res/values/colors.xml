@@ -19,6 +19,7 @@
     <color name="dunkelrot">#DC3522</color>
     <color name="blau">#3498DB</color>
     <color name="dunkelblau">#2c3e50</color>
+    <color name="dunkelgraublau">#212F3A</color>
 
     <!-- Dark BG gradient -->
     <color name="bgg_hellblau">#2980B9</color>

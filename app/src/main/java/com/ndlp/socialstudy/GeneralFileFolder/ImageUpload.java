@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
@@ -20,6 +21,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ndlp.socialstudy.R;
@@ -44,9 +47,13 @@ import static android.provider.Telephony.Carriers.PASSWORD;
 
 public class ImageUpload extends AppCompatActivity implements View.OnClickListener {
 
-    private Button buttonChoose, buttonUpload;
+    private Button buttonChoose;
+    private RelativeLayout buttonUpload;
     private ImageView imageView;
     private EditText editText;
+    private TextView buttonlabel;
+    private TextView headerbar;
+    private TextView containerhead;
 
     private static final int STORAGE_PERMISSION_CODE = 1;
     private static final int PICK_IMAGE_REQUEST = 2;
@@ -74,6 +81,10 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_upload);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
+
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
         format = intent.getStringExtra("format");
@@ -81,9 +92,18 @@ public class ImageUpload extends AppCompatActivity implements View.OnClickListen
         requestStoragePermission();
 
         buttonChoose = (Button) findViewById(R.id.b_chooseImage);
-        buttonUpload = (Button) findViewById(R.id.b_uploadImage);
+        buttonUpload = (RelativeLayout) findViewById(R.id.b_uploadImage);
+        buttonlabel = (TextView) findViewById(R.id.tv_imageUploadeinreichen);
+        containerhead = (TextView) findViewById(R.id.tv_imageUploadcontainerhead);
+        headerbar = (TextView) findViewById(R.id.tv_imageUploadheaderbar);
         imageView = (ImageView) findViewById(R.id.iv_imagePreview);
         editText = (EditText) findViewById(R.id.et_imageName);
+
+        buttonChoose.setTypeface(quicksand_regular);
+        buttonlabel.setTypeface(quicksand_regular);
+        headerbar.setTypeface(quicksand_bold);
+        editText.setTypeface(quicksand_regular);
+        containerhead.setTypeface(quicksand_regular);
 
         buttonChoose.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);

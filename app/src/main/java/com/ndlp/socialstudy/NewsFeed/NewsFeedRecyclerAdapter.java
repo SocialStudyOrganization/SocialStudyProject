@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.NewsFeed;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,11 +55,16 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         String uploadtime = currentObject.getUploadtime();
         String topic = currentObject.getTopic();
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Bold.otf");
 
+        holder.tv_header.setTypeface(quicksand_regular);
+        holder.tv_topic.setTypeface(quicksand_regular);
+        holder.tv_more.setTypeface(quicksand_regular);
 
         holder.tv_header.setText(category + ", am: " + uploaddate + ", " + uploadtime);
         holder.tv_topic.setText(currentObject.getTopic());
-
         holder.tv_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
