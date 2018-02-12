@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
+    android:layout_marginTop="56dp"
+    android:background="#C3000000"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.ndlp.socialstudy.ShowKursmitglieder.KursmitgliederActivity"
-    tools:showIn="@layout/activity_kursmitglieder"
-    android:background="#D8000000"
-    android:layout_marginTop="56dp">
-
+    tools:showIn="@layout/activity_kursmitglieder">
 
 
     <android.support.v7.widget.RecyclerView
@@ -26,9 +25,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"/>
-
-
+        android:layout_marginBottom="10dp" />
 
 
 </RelativeLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_course_button">
+
+        <RelativeLayout
+            android:id="@+id/rl_umfrageitemtopbar"
+            android:layout_width="match_parent"
+            android:layout_height="26sp"
+            android:background="@drawable/shape_pollitem_head">
+
+            <TextView
+                android:id="@+id/tv_umfrageitemheader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:hint="@string/polls_headerhint"
+                android:paddingLeft="10dp"
+                android:textColor="@color/weiß"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/umfrageitemoptions"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/icon_itemdropdown">
+
+            </ImageView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rl_umfrageitemtopbar">
+
+            <ImageView
+                android:id="@+id/iv_umfrageitemimage"
+                android:layout_width="96dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                app:srcCompat="@drawable/icon_newsfeednonumber" />
+
+            <TextView
+                android:id="@+id/tv_umfrageitemtopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:paddingStart="4dp"
+                android:text="Mathe auf diesen Montag verschieben?"
+                android:textColor="@color/weiß"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_umfrageitemmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="25dp"
+                android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:paddingStart="4dp"
+                android:text="mehr..."
+                android:textColor="@color/weiß"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

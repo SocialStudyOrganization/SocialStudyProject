@@ -118,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bottomNavigationView.setItemBackgroundResource(R.drawable.mainactivitybackgroundhighlight);
         bottomNavigationView.setItemIconTintList(null);
 
+        topnavigationview.setItemBackgroundResource(R.drawable.mainactivitybackgroundhighlight_top);
+        topnavigationview.setItemIconTintList(null);
+
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         for (int i = 0; i < menuView.getChildCount(); i++) {
             final View iconView = menuView.getChildAt(i).findViewById(android.support.design.R.id.icon);

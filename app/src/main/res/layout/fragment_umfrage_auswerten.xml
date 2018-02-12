@@ -24,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="30dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/shape_pollitem_head">
 
