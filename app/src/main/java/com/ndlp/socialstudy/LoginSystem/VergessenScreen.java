@@ -3,7 +3,14 @@ package com.ndlp.socialstudy.LoginSystem;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.Typeface;
+import android.graphics.drawable.PaintDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +19,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -28,6 +37,7 @@ public class VergessenScreen extends AppCompatActivity {
 
     Button b_absenden, b_abbrechen;
     EditText et_email;
+    TextView tv_desc;
 
     String email;
 
@@ -36,9 +46,45 @@ public class VergessenScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vergessen_screen);
 
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
+        Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
+
+        //create BG gradient
+        RelativeLayout rl_background = (RelativeLayout) findViewById(R.id.rl_background);
+        ShapeDrawable.ShaderFactory shaderFactory = new ShapeDrawable.ShaderFactory() {
+            @Override
+            public Shader resize(int width, int height) {
+                LinearGradient linearGradient = new LinearGradient(width, 0, width, height,
+                        new int[] {
+                                ContextCompat.getColor(VergessenScreen.this, R.color.bgg_hellblau),
+                                ContextCompat.getColor(VergessenScreen.this, R.color.bgg_hellblau_alt),
+                                ContextCompat.getColor(VergessenScreen.this, R.color.bgg_dunkelblau),
+                                ContextCompat.getColor(VergessenScreen.this, R.color.bgg_dunkelgrau)
+                        },
+                        new float[] {
+                                0, 0.4f, 0.9f, 1 },
+                        Shader.TileMode.REPEAT);
+                return linearGradient;
+            }
+        };
+        PaintDrawable paint = new PaintDrawable();
+        paint.setShape(new RectShape());
+        paint.setShaderFactory(shaderFactory);
+
+        rl_background.setBackground(paint);
+
         b_abbrechen = (Button) findViewById(R.id.b_passwortabbrechen);
         b_absenden = (Button) findViewById(R.id.b_passwortabsenden);
         et_email = (EditText) findViewById(R.id.et_emailvergessen);
+        tv_desc = (TextView) findViewById(R.id.tv_pwvergessendesc);
+
+        b_abbrechen.setTypeface(quicksand_light);
+        b_absenden.setTypeface(quicksand_bold);
+        et_email.setTypeface(quicksand_regular);
+        tv_desc.setTypeface(quicksand_regular);
+
 
         b_absenden.setOnClickListener(new View.OnClickListener() {
             @Override
