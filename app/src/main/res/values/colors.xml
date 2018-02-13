@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2c3e50</color>
-    <color name="colorPrimaryDark">#31353D</color>
+    <color name="colorPrimaryDark">#212F3A</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Standard colors -->
@@ -28,7 +28,7 @@
     <color name="bgg_dunkelgrau">#31353D</color>
 
     <!-- Tutorialsheets background color-->
-    <color name="bg_screen1">#f64c73</color>
+    <color name="bg_screen1">#ac000000</color>
     <color name="bg_screen2">#20d2bb</color>
     <color name="bg_screen3">#3395ff</color>
     <color name="bg_screen4">#c873f4</color>

@@ -1,6 +1,7 @@
 package com.ndlp.socialstudy.ShowKursmitglieder;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
@@ -27,6 +29,7 @@ public class KursmitgliederActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kursmitglieder);
+
 
         ImageView imageView = (ImageView) findViewById(R.id.iv_quitkursmitglieder);
 
