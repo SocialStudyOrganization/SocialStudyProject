@@ -36,7 +36,7 @@ public class CleanUmfragenNews {
 
     public void deleteoldDataonServer(){
 
-        String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/deleteolddate.php";
+        String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/ServerBereinigen/deleteolddate.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, urlAddress,
 

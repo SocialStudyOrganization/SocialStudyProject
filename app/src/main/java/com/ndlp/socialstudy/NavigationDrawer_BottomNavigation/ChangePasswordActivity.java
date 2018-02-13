@@ -37,7 +37,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     String oldpassword, newpassword1, newpassword2, matrikelnummer;
 
-    String urladdress = "http://hellownero.de/SocialStudy/PHP-Dateien/ChangePassword.php";
+    String urladdress = "http://hellownero.de/SocialStudy/PHP-Dateien/Loginsystem/ChangePassword.php";
 
     Toolbar mActionBarToolbar;
 

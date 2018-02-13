@@ -19,7 +19,7 @@ import org.json.JSONException;
 
 public class RefreshUmfragenFromDatabase {
 
-    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/refreshUmfragen.php";
+    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/refreshUmfragen.php";
 
     public RefreshUmfragenFromDatabase(Context context, RecyclerView recyclerView){
         downloadData(context, recyclerView);

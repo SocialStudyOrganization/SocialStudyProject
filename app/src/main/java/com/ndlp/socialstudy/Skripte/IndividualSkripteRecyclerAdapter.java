@@ -32,6 +32,8 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
     private String imageName;
     private String subFolder;
     private String url;
+    SkripteObject currentScript;
+    String whichFormat;
 
     public IndividualSkripteRecyclerAdapter() {
     }
@@ -69,7 +71,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
     @Override
     public void onBindViewHolder(ScriptViewHolder holder, int position) {
 
-        final SkripteObject currentScript = scriptObjects.get(position);
+        currentScript = scriptObjects.get(position);
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
@@ -83,7 +85,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
         holder.scriptDate.setText(currentScript.getScriptDate());
         holder.scriptUser.setText(currentScript.getScriptUser());
 
-        final String whichFormat = currentScript.getScriptFormat();
+        whichFormat = currentScript.getScriptFormat();
 
 
         switch (whichFormat) {

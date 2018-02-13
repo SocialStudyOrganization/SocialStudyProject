@@ -3,6 +3,7 @@ package com.ndlp.socialstudy.NewsFeed;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,8 @@ public class NewsAnzeigeFragment extends Fragment {
 
         Bundle  bundle = getArguments();
         String message = bundle.getString("message");
+        String topic = bundle.getString("topic");
+        String header = bundle.getString("header");
 
         TextView tv_newsanzeigen = (TextView) rootView.findViewById(R.id.tv_newsanzeigen);
         TextView tv_newscontainerhead = (TextView) rootView.findViewById(R.id.tv_newscontainerhead);
@@ -45,9 +48,17 @@ public class NewsAnzeigeFragment extends Fragment {
         tv_newscontainerhead.setTypeface(quicksand_regular);
         tv_newsThema.setTypeface(quicksand_regular);
 
-        tv_newsanzeigen.setText(message);
+
         tv_newsanzeigen.setMovementMethod(new ScrollingMovementMethod());
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            tv_newsanzeigen.setText(Html.fromHtml(message,Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            tv_newsanzeigen.setText(Html.fromHtml(message));
+        }
+
+        tv_newscontainerhead.setText(header);
+        tv_newsThema.setText(topic);
 
         return rootView;
     }

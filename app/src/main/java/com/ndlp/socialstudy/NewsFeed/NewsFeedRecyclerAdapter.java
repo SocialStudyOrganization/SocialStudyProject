@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +41,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     @Override
     public NewsFeedRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.umfrage_item, null);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_item, null);
 
         return new NewsFeedRecyclerAdapter.MyViewHolder(itemView);
     }
@@ -65,17 +66,16 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
         holder.tv_header.setText(category + ", am: " + uploaddate + ", " + uploadtime);
         holder.tv_topic.setText(currentObject.getTopic());
-        holder.tv_more.setOnClickListener(new View.OnClickListener() {
+        holder.rl_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "You clicked on more", Toast.LENGTH_LONG).show();
-
-
 
                 MainActivity mainActivity = (MainActivity)context;
                 NewsAnzeigeFragment newsAnzeigeFragment = new NewsAnzeigeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("message", currentObject.getMessage());
+                bundle.putString("header", currentObject.getCategory() + ", " + currentObject.getUploaddate() + ", " + currentObject.getUploadtime());
+                bundle.putString("topic", currentObject.getTopic());
                 newsAnzeigeFragment.setArguments(bundle);
                 mainActivity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, newsAnzeigeFragment)
@@ -87,7 +87,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.iv_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "You clicked on Options", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Work in Progress", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -104,16 +104,18 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         TextView tv_header;
         TextView tv_more;
         ImageView iv_image;
+        RelativeLayout rl_news;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            tv_header = (TextView) itemView.findViewById(R.id.tv_umfrageitemheader);
-            iv_options = (ImageView) itemView.findViewById(R.id.umfrageitemoptions);
-            tv_topic = (TextView) itemView.findViewById(R.id.tv_umfrageitemtopic);
-            tv_more = (TextView) itemView.findViewById(R.id.tv_umfrageitemmore);
-            iv_image = (ImageView) itemView.findViewById(R.id.iv_umfragenImage);
+            tv_header = (TextView) itemView.findViewById(R.id.tv_newsitemheader);
+            iv_options = (ImageView) itemView.findViewById(R.id.newsoptions);
+            tv_topic = (TextView) itemView.findViewById(R.id.tv_newsitemtopic);
+            tv_more = (TextView) itemView.findViewById(R.id.tv_newsitemmore);
+            iv_image = (ImageView) itemView.findViewById(R.id.iv_newsitemimage);
+            rl_news = (RelativeLayout) itemView.findViewById(R.id.rl_newsitem);
 
         }
 

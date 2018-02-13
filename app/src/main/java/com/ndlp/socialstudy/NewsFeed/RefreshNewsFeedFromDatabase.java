@@ -25,7 +25,7 @@ public class RefreshNewsFeedFromDatabase {
 
     public String source;
 
-    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/refreshNewsFeed.php";
+    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/NewsFeed/refreshNewsFeed.php";
 
     public RefreshNewsFeedFromDatabase(Context context, RecyclerView recyclerView, String source){
         this.source = source;

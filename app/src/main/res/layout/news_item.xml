@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/rl_newsitem"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
@@ -14,13 +15,13 @@
         android:background="@drawable/shape_course_button">
 
         <RelativeLayout
-            android:id="@+id/rl_umfrageitemtopbar"
+            android:id="@+id/rl_newsitemtopbar"
             android:layout_width="match_parent"
             android:layout_height="26sp"
             android:background="@drawable/shape_pollitem_head">
 
             <TextView
-                android:id="@+id/tv_umfrageitemheader"
+                android:id="@+id/tv_newsitemheader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -30,7 +31,7 @@
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/umfrageitemoptions"
+                android:id="@+id/newsoptions"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_alignParentRight="true"
@@ -44,10 +45,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/rl_umfrageitemtopbar">
+            android:layout_below="@id/rl_newsitemtopbar">
 
             <ImageView
-                android:id="@+id/iv_umfrageitemimage"
+                android:id="@+id/iv_newsitemimage"
                 android:layout_width="96dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
@@ -55,12 +56,12 @@
                 app:srcCompat="@drawable/icon_newsfeednonumber" />
 
             <TextView
-                android:id="@+id/tv_umfrageitemtopic"
+                android:id="@+id/tv_newsitemtopic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:layout_toRightOf="@id/iv_newsitemimage"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:paddingStart="4dp"
@@ -69,12 +70,12 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_umfrageitemmore"
+                android:id="@+id/tv_newsitemmore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="25dp"
-                android:layout_toRightOf="@id/iv_umfrageitemimage"
+                android:layout_toRightOf="@id/iv_newsitemimage"
                 android:paddingStart="4dp"
                 android:text="mehr..."
                 android:textColor="@color/weiß"

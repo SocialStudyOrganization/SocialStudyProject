@@ -28,7 +28,7 @@ import static android.widget.Toast.LENGTH_LONG;
 public class DeleteUmfrage {
 
     final String topic;
-    private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/DeleteUmfrage.php";
+    private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/DeleteUmfrage.php";
 
     public DeleteUmfrage (Context context, String topic){
         this.topic = topic;

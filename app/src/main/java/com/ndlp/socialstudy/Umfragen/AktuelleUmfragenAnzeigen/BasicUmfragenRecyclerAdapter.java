@@ -96,7 +96,7 @@ public class BasicUmfragenRecyclerAdapter extends RecyclerView.Adapter<BasicUmfr
             @Override
             public void onClick(View v) {
 
-                String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/GetUmfrageToVote.php";
+                String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/GetUmfrageToVote.php";
 
                 StringRequest request = new StringRequest(Request.Method.POST, urlAddress,
 
