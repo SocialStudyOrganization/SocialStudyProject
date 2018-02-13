@@ -43,6 +43,13 @@
 
         <TextView
             android:id="@+id/tv_newsanzeigen"
+            android:textIsSelectable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:textColorLink="@color/dunkelblau"
+            android:linksClickable="true"
+            android:autoLink="web"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tv_newsThema"
