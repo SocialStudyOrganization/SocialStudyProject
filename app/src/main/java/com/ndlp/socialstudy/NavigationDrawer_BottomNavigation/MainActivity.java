@@ -23,13 +23,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,8 @@ import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
 import com.ndlp.socialstudy.NewsFeed.NotificationFragment;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
+
+import java.lang.reflect.Field;
 
 /**
  * Activity to handle the fragments with bottomNavigationView and navigationDrawer
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Toolbar mToolbar;
 
+    //nav draver view workaround
     private void applyFontToMenuItem(MenuItem mi) {
         Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
         SpannableString mNewTitle = new SpannableString(mi.getTitle());
@@ -60,18 +66,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mi.setTitle(mNewTitle);
     }
 
+    //top nav gravity
+    private static void adjustGravity(View v) {
+        if (v.getId() == android.support.design.R.id.smallLabel) {
+            ViewGroup parent = (ViewGroup) v.getParent();
+            parent.setPadding(0, 0, 0, 0);
+
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) parent.getLayoutParams();
+            params.gravity = Gravity.CENTER;
+            parent.setLayoutParams(params);
+        }
+
+        if (v instanceof ViewGroup) {
+            ViewGroup vg = (ViewGroup) v;
+
+            for (int i = 0; i < vg.getChildCount(); i++) {
+                adjustGravity(vg.getChildAt(i));
+            }
+        }
+    }
+
+    //top nav item width
+    private static void adjustWidth(BottomNavigationView nav) {
+        try {
+            Field menuViewField = nav.getClass().getDeclaredField("mMenuView");
+            menuViewField.setAccessible(true);
+            Object menuView = menuViewField.get(nav);
+
+            Field itemWidth = menuView.getClass().getDeclaredField("mActiveItemMaxWidth");
+            itemWidth.setAccessible(true);
+            itemWidth.setInt(menuView, Integer.MAX_VALUE);
+        }
+        catch (NoSuchFieldException e) {
+            // TODO
+        }
+        catch (IllegalAccessException e) {
+            // TODO
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //declaring typefaces w/o regular because declared in applyFontToMenuItem
-
+        //declaring typefaces
+        Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
         Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
-        Typeface quicksand_bolditalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-BoldItalic.otf");
-        Typeface quicksand_italic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Italic.otf");
-        Typeface quicksand_light = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Light.otf");
-        Typeface quicksand_lightitalic = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-LightItalic.otf");
 
         //  listener für click events in navigationDrawer -> calls method
         setNavigationViewListner();
@@ -120,6 +161,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         topnavigationview.setItemBackgroundResource(R.drawable.mainactivitybackgroundhighlight_top);
         topnavigationview.setItemIconTintList(null);
+
+        adjustWidth(topnavigationview);
+        adjustGravity(topnavigationview);
+
+        CustomTypefaceSpan typefaceSpan = new CustomTypefaceSpan("", quicksand_regular);
+        for (int i = 0; i <topnavigationview.getMenu().size(); i++) {
+            MenuItem menuItem = topnavigationview.getMenu().getItem(i);
+            SpannableStringBuilder spannableTitle = new SpannableStringBuilder(menuItem.getTitle());
+            spannableTitle.setSpan(typefaceSpan, 0, spannableTitle.length(), 0);
+            menuItem.setTitle(spannableTitle);
+        }
 
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         for (int i = 0; i < menuView.getChildCount(); i++) {

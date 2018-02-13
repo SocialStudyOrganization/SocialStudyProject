@@ -10,6 +10,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ll_topbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
@@ -26,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/dunkelblau"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
                 android:id="@+id/tv_toolbar_title_workaround_fehler"
@@ -58,7 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_below="@id/ll_topbar"
+        android:layout_marginTop="25dp"
         android:text="@string/fehler_text"
         android:textColor="@color/weiß"
         android:textSize="16sp" />
