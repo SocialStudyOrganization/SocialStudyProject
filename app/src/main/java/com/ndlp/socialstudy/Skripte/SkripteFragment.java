@@ -82,13 +82,13 @@ public class SkripteFragment extends Fragment {
 
 
         if (subFolder.equals("Skripte")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_skripte.php";
+            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_skripte.php";
         }
         if (subFolder.equals("Tasks")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_tasks.php";
+            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_tasks.php";
         }
         if (subFolder.equals("Answers")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/select_answers.php";
+            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_answers.php";
         }
 
 

@@ -16,17 +16,17 @@ import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
 
-    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Register.php";
+    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Loginsystem/Register.php";
     private Map<String, String> params;
 
     //  Constructor
     //  if volley is finished with the request it calls the listener in RegisterActivity
-    public RegisterRequest(String email, String password, int matrikelnummer, String firstName, String surname,Response.Listener<String> listener){
+    public RegisterRequest(String email, String password, String matrikelnummer, String firstName, String surname,Response.Listener<String> listener){
         super(Method.POST, Register_Request_URL, listener, null);
         params = new HashMap<>();
         params.put("email", email);
         params.put("password", password);
-        params.put("matrikelnummer", matrikelnummer + "");
+        params.put("matrikelnummer", matrikelnummer);
         params.put("firstName", firstName);
         params.put("surname", surname);
 

@@ -21,6 +21,7 @@ import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.tutorialsheets.TutorialsheetsSlider;
+import com.testfairy.TestFairy;
 
 /***
  * Activity to display an intro before starting the actual App
@@ -36,6 +37,9 @@ public class AppLogoFirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_logo_first_page);
+
+        TestFairy.begin(this, "ab6ad7265adebec9d50f5a02ce3ca3806289d3fe");
+
 
         //create BG gradient
         RelativeLayout rl_background = (RelativeLayout) findViewById(R.id.rl_background);
@@ -79,7 +83,6 @@ public class AppLogoFirstPage extends AppCompatActivity {
                 LoginData();
             }
         }, 1000);
-
     }
 
     public void LoginData() {

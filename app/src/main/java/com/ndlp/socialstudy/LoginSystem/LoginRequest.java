@@ -3,6 +3,7 @@ package com.ndlp.socialstudy.LoginSystem;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.ndlp.socialstudy.activity.PHPFileOrganizer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,9 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest{
 
-    private static final String LOGIN_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Login.php";
+    private static final String LOGIN_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Loginsystem/Login.php";
+
+
     private Map<String, String> params;
 
     //  Constructor

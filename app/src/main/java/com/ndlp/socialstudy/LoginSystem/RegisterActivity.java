@@ -9,21 +9,29 @@ import android.graphics.drawable.PaintDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.support.v4.content.ContextCompat;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ndlp.socialstudy.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Organizes the Registration of a new User
@@ -32,6 +40,9 @@ import org.json.JSONObject;
 
 
 public class RegisterActivity extends AppCompatActivity {
+
+    String email, password, firstName, surname;
+    String matrikelnummer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,47 +99,59 @@ public class RegisterActivity extends AppCompatActivity {
         bRegiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = etEmail.getText().toString();
-                final String password = etPassword.getText().toString();
-                final int matrikelnummer = Integer.parseInt(etMatrikelnummer.getText().toString());
-                final String firstName = etFirstName.getText().toString();
-                final String surname = etSurname.getText().toString();
+                email = etEmail.getText().toString();
+                password = etPassword.getText().toString();
+                matrikelnummer = etMatrikelnummer.getText().toString();
+                firstName = etFirstName.getText().toString();
+                surname = etSurname.getText().toString();
+
+                if (email.equals("") || password.equals("") || matrikelnummer.equals("")
+                        || firstName.equals("") || surname.equals("")){
+
+                    Toast.makeText(RegisterActivity.this, "Please complete all fields", Toast.LENGTH_LONG).show();
+
+                }else{
+                    //listens for response from volley happening through RegisterRequest
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
 
 
-                //listens for response from volley happening through RegisterRequest
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        //  this gets called on response
+                        @Override
+                        public void onResponse(String response) {
 
-                    //  this gets called on response
-                    @Override
-                    public void onResponse(String response) {
 
-                        //  check for boolean success from php
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
+                            Log.d("Response:", "Register Response: " + response);
+                            //  check for boolean success from php
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                Log.i("jsonResponse", jsonResponse.toString());
+                                boolean success = jsonResponse.getBoolean("success");
 
-                            //  if true from php start LoginActivity
-                            if (success){
-                                Toast.makeText(RegisterActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                RegisterActivity.this.startActivity(intent);
+
+                                //  if true from php start LoginActivity
+                                if (success){
+                                    Toast.makeText(RegisterActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    RegisterActivity.this.startActivity(intent);
+                                }
+
+                                //  if false build an AlertDialog
+                                else {
+                                    Toast.makeText(RegisterActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-
-                            //  if false build an AlertDialog
-                            else {
-                                Toast.makeText(RegisterActivity.this, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                };
+                    };
 
-                //  call register request and transfer string username and password
-                RegisterRequest registerRequest = new RegisterRequest(email, password, matrikelnummer, firstName, surname, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
+                    //  call register request and transfer string username and password
+                    RegisterRequest registerRequest = new RegisterRequest(email, password, matrikelnummer, firstName, surname, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                    queue.add(registerRequest);
+                }
+
             }
         });
     }
