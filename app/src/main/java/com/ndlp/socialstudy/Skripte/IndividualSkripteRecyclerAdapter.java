@@ -101,8 +101,6 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
 
 
-
-
         //WEBVIEW
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

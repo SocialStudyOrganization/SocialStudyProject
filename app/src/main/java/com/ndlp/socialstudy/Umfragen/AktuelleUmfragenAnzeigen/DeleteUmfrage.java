@@ -4,6 +4,7 @@ package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 import android.content.Context;
 
 
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,17 +28,19 @@ import static android.widget.Toast.LENGTH_LONG;
 
 public class DeleteUmfrage {
 
-    final String topic;
+    String topic;
+    private Integer survey_id;
     private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/DeleteUmfrage.php";
 
-    public DeleteUmfrage (Context context, String topic){
-        this.topic = topic;
+    public DeleteUmfrage (Context context, Integer survey_id){
+        this.survey_id = survey_id;
 
-        deleteUmfrage(context, topic);
+        deleteUmfrage(context, survey_id);
     }
 
-    private void deleteUmfrage(final Context context, final String topic)
+    private void deleteUmfrage(final Context context, Integer survey_id)
     {
+        final String surveyidstring = survey_id+"";
 
         StringRequest request = new StringRequest(Request.Method.POST, urlAddress,
 
@@ -77,7 +80,7 @@ public class DeleteUmfrage {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("topic", topic);
+                params.put("surveyid", surveyidstring);
 
                 return params;
             }

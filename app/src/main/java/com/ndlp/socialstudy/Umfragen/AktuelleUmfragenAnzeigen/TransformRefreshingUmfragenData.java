@@ -65,7 +65,8 @@ public class TransformRefreshingUmfragenData extends AsyncTask<Void,Void,Boolean
             for (int i = 0; i < jsonArray.length(); i++) {
                 jo = jsonArray.getJSONObject(i);
                 GeneralObject generalObject = new GeneralObject( "Umfrage", jo.getString("Matrikelnummer")
-                        , jo.getString("Enddate"), jo.getString("Endtime") ,jo.getString("SurveyTitle"), jo.getString("einzelantwort"));
+                        , jo.getString("Enddate"), jo.getString("Endtime") ,jo.getString("SurveyTitle"), jo.getString("einzelantwort")
+                , jo.getInt("Survey_ID"));
                 umfragenarraylist.add(generalObject);
                 basicUmfragenRecyclerAdapter.notifyDataSetChanged();
             }
