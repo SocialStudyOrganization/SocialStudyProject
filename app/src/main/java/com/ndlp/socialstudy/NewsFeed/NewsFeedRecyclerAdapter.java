@@ -92,6 +92,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         });
     }
 
+
+
     @Override
     public int getItemCount() {
         return newsFeedObjectArrayList.size();
