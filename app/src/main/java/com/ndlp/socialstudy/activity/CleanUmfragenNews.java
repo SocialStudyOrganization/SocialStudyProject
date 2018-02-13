@@ -28,6 +28,7 @@ public class CleanUmfragenNews {
 
     Context context;
 
+
     public CleanUmfragenNews(Context context) {
 
         this.context = context;
