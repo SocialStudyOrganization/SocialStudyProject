@@ -114,7 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
                     //listens for response from volley happening through RegisterRequest
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-
                         //  this gets called on response
                         @Override
                         public void onResponse(String response) {
