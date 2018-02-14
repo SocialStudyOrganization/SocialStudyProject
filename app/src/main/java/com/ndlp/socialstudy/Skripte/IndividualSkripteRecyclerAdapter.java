@@ -93,10 +93,12 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
                 imageName = "icon_pdf";
                 int resourceId = context.getResources().getIdentifier(imageName, "drawable" , context.getPackageName());
                 holder.scriptIcon.setImageDrawable(ContextCompat.getDrawable(context, resourceId));
+                break;
             case "Image":
                 imageName = "icon_img";
                 int resourceId2 = context.getResources().getIdentifier(imageName, "drawable" , context.getPackageName());
                 holder.scriptIcon.setImageDrawable(ContextCompat.getDrawable(context, resourceId2));
+                break;
         }
 
 
