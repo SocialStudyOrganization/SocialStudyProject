@@ -21,9 +21,7 @@ import com.ndlp.socialstudy.GeneralFileFolder.OpenFileClass;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
- * Class to handle the recyclerView
- */
+
 
 public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<IndividualSkripteRecyclerAdapter.ScriptViewHolder> {
 
