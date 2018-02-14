@@ -55,17 +55,17 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Download in Progress...");
-        progressDialog.show();
+        progressDialog.setMessage("Bei einem Skript dauert der Download etwas länger :)");
+
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
-
+//
+        progressDialog.show();
     }
 
     @Override
     protected String doInBackground(String... params) {
 
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setCancelable(false);
 
         String path = params[0];
 

@@ -74,16 +74,16 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Upload in progress...");
-        progressDialog.show();
+        progressDialog.setMessage("Bei einem Skript dauert der Upload etwas länger :)");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
+        progressDialog.show();
+
     }
 
     //  Methoden to uploadTask
     protected Boolean doInBackground(String... params) {
 
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setCancelable(false);
 
         FTPClient ftpClient = new FTPClient();
         InputStream inputStream = null;

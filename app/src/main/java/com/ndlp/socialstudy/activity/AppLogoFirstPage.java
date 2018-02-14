@@ -13,9 +13,9 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 
 import com.ndlp.socialstudy.LoginSystem.LoginActivity;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
@@ -26,7 +26,7 @@ import com.testfairy.TestFairy;
 /***
  * Activity to display an intro before starting the actual App
  * Handle the SharedPreferences (remember me) to navigate
- */
+ * */
 
 public class AppLogoFirstPage extends AppCompatActivity {
 
@@ -93,7 +93,7 @@ public class AppLogoFirstPage extends AppCompatActivity {
 
         //  navigate to TutorialsheetsSlider if nothing is existing in SharedPrefs
         if (user == ""){
-            Intent intent = new Intent(AppLogoFirstPage.this, TutorialsheetsSlider.class);
+            Intent intent = new Intent(AppLogoFirstPage.this, LoginActivity.class);
             AppLogoFirstPage.this.startActivity(intent);
             finish();
 
