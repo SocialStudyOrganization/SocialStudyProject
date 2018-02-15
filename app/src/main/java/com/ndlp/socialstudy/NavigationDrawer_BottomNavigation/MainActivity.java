@@ -1,7 +1,10 @@
 package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -40,6 +43,7 @@ import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
 import com.ndlp.socialstudy.NewsFeed.NotificationFragment;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
+import com.testfairy.TestFairy;
 
 import java.lang.reflect.Field;
 
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     boolean doubleBackToExitPressedOnce = false;
+    public static Activity fa;
 
     BottomNavigationView topnavigationview;
     Fragment selectedFragment;
@@ -109,6 +114,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //identifiying user to testfairy
+        SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        TestFairy.setUserId(sharedPrefLoginData.getString("firstname", "Unidentified User"));
+
+
+
+        //for closing activity when navigating to logout
+        fa = this;
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");

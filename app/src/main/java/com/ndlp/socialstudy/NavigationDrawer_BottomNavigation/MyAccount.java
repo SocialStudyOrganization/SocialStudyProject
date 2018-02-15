@@ -74,6 +74,8 @@ public class MyAccount extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
+                MainActivity.fa.finish();
+
                 Intent intent = new Intent(MyAccount.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

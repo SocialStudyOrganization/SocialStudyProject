@@ -97,7 +97,6 @@ public class AppLogoFirstPage extends AppCompatActivity {
             AppLogoFirstPage.this.startActivity(intent);
             finish();
 
-
         }
         //  navigate to MainActivity if a username is existing in SharedPrefs
         else {
