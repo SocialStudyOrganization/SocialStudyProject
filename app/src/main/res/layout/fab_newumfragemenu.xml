@@ -58,9 +58,9 @@
             android:id="@+id/floating_pollAsOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/icon_multiplechoice"
             fab:fab_size="mini"
-            fab:fab_label="as Option" />
+            fab:fab_label="Multiple Choice" />
 
 
 

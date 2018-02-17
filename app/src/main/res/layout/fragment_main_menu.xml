@@ -5,162 +5,172 @@
     android:layout_height="match_parent"
     tools:context="com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainMenuFragment">
 
+    <!--
+    -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="0dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
+            android:id="@+id/ll_cnt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/buttoncontainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:id="@+id/ll_oben"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="9dp"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="11dp"
-                    android:layout_marginTop="0dp"
+                <RelativeLayout
+                    android:id="@+id/b_toSkripte"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_course_button"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/b_toSkripte"
-                        android:layout_width="140dp"
-                        android:layout_height="200dp"
-                        android:background="@drawable/shape_course_button"
-                        android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/iv_skripte"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingBottom="13dp"
+                        app:srcCompat="@drawable/icon_script" />
 
-                        <ImageView
-                            android:id="@+id/iv_skripte"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="35dp"
-                            app:srcCompat="@drawable/icon_script" />
+                    <TextView
+                        android:id="@+id/tv_skripte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="18dp"
+                        android:text="Skripte"
+                        android:textAlignment="center"
+                        android:textColor="@color/weiß"
+                        android:textSize="16sp" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/tv_skripte"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="25dp"
-                            android:text="@string/coursepage_Scripts"
-                            android:textAlignment="center"
-                            android:textColor="@color/weiß"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/b_toAnswers"
-                        android:layout_width="140dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="22dp"
-                        android:background="@drawable/shape_course_button"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/iv_answers"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="35dp"
-                            app:srcCompat="@drawable/icon_solution" />
-
-                        <TextView
-                            android:id="@+id/tv_answers"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="25dp"
-                            android:text="@string/coursepage_solutions"
-                            android:textAlignment="center"
-                            android:textColor="@color/weiß"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
+                <RelativeLayout
+                    android:id="@+id/b_toTasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_course_button"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/b_toTasks"
-                        android:layout_width="140dp"
-                        android:layout_height="200dp"
-                        android:background="@drawable/shape_course_button"
-                        android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/iv_tasks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingBottom="13dp"
+                        app:srcCompat="@drawable/icon_exercise" />
 
-                        <ImageView
-                            android:id="@+id/iv_tasks"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="45dp"
-                            app:srcCompat="@drawable/icon_exercise" />
+                    <TextView
+                        android:id="@+id/tv_tasks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="18dp"
+                        android:text="Übungen"
+                        android:textAlignment="center"
+                        android:textColor="@color/weiß"
+                        android:textSize="16sp" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/tv_tasks"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="27dp"
-                            android:text="@string/coursepage_exercises"
-                            android:textAlignment="center"
-                            android:textColor="@color/weiß"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+            </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/b_toUmfragen"
-                        android:layout_width="140dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="22dp"
-                        android:background="@drawable/shape_course_button"
-                        android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_unten"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="9dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/iv_umfragen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="35dp"
-                            app:srcCompat="@drawable/icon_poll" />
+                <RelativeLayout
+                    android:id="@+id/b_toAnswers"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_course_button"
+                    android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tv_umfragen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="25dp"
-                            android:text="@string/coursepage_polls"
-                            android:textAlignment="center"
-                            android:textColor="@color/weiß"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_answers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingBottom="13dp"
+                        app:srcCompat="@drawable/icon_solution" />
 
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_answers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="18dp"
+                        android:text="Lösungen"
+                        android:textAlignment="center"
+                        android:textColor="@color/weiß"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/b_toUmfragen"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_course_button"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_umfragen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:paddingBottom="13dp"
+                        app:srcCompat="@drawable/icon_poll" />
+
+                    <TextView
+                        android:id="@+id/tv_umfragen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="18dp"
+                        android:text="Umfragen"
+                        android:textAlignment="center"
+                        android:textColor="@color/weiß"
+                        android:textSize="16sp" />
+                </RelativeLayout>
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/b_kursmitglieder"
                 android:layout_width="match_parent"
-                android:layout_height="42sp"
+                android:layout_height="42dp"
                 android:layout_marginEnd="11dp"
                 android:layout_marginStart="11dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/shape_dark_button"
-                android:text="@string/coursepage_coursemembers"
+                android:text="Kursmitglieder"
                 android:textAllCaps="false"
                 android:textColor="@color/weiß"
                 android:textSize="16sp" />
 
         </LinearLayout>
-
     </RelativeLayout>
 
 

@@ -39,11 +39,13 @@
 
     <RelativeLayout
         android:id="@+id/rl_optionPollSubmitLayout"
-        android:layout_width="306dp"
+        android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="28dp"
         android:background="@drawable/shape_dark_button">
 
         <TextView
@@ -59,14 +61,15 @@
 
     <RelativeLayout
         android:id="@+id/rl_container"
-        android:layout_width="315dp"
-        android:layout_height="425dp"
-        android:layout_alignBottom="@id/rl_optionPollSubmitLayout"
-        android:layout_alignTop="@id/rl_optionPollTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="76dp"
+        android:layout_below="@id/rl_optionPollTopBar"
+        android:layout_above="@id/rl_optionPollSubmitLayout"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/shape_course_button">
 
         <TextView
@@ -110,7 +113,7 @@
                 android:id="@+id/b_addItem"
                 android:layout_width="62dp"
                 android:layout_height="25dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/shape_send_error_or_feedback"
@@ -149,10 +152,11 @@
             android:id="@+id/rv_myOptionPollRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/rl_questioncontainer"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="95dp">
+            android:layout_marginTop="10dp">
 
         </android.support.v7.widget.RecyclerView>
 

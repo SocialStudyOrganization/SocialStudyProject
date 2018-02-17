@@ -55,6 +55,7 @@ public class WortumfragenActivity extends AppCompatActivity {
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Regular.otf");
+        Typeface quicksand_bold = Typeface.createFromAsset(getAssets(),  "fonts/Quicksand-Bold.otf");
 
         iv_goBackOptionPoll = (ImageView) findViewById(R.id.iv_goBacktoNeueUmfrage);
         et_optionPollQuestion = (EditText) findViewById(R.id.et_wortumfrage);
@@ -69,7 +70,7 @@ public class WortumfragenActivity extends AppCompatActivity {
 
 
         //assigning typefaces
-        tv_wortumfragetopbar.setTypeface(quicksand_regular);
+        tv_wortumfragetopbar.setTypeface(quicksand_bold);
         tv_newPollEinreichen.setTypeface(quicksand_regular);
         tv_wortabfragecontainerhead.setTypeface(quicksand_regular);
         et_iteminput.setTypeface(quicksand_regular);
