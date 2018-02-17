@@ -92,6 +92,7 @@ public class SkripteFragment extends Fragment {
         }
 
 
+
         //  initialize the recyclerView of the data files
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_dokumentendarstellung);
         Drawable dividerDrawable = ContextCompat.getDrawable(getContext(), R.drawable.line_divider);
