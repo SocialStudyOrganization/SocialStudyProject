@@ -161,14 +161,7 @@ public class UmfrageAuswertenFragment extends Fragment {
         tv_frage.setText(question);
         tv_progress.setText(currentpageint + "/" + umfang);
 
-        String teilnehmerzahl = tinyDB.getString("teilnehmerzahl");
-        if (teilnehmerzahl.equals("1")){
-            tv_teilnehmer.setText("Es hat " + teilnehmerzahl + " Person abgestimmt bis jetzt!");
 
-        }else{
-            tv_teilnehmer.setText("Es haben " + teilnehmerzahl + " Personen abgestimmt bis jetzt!");
-
-        }
 
         //holt die möglichen antworten
         answers.clear();
@@ -193,6 +186,16 @@ public class UmfrageAuswertenFragment extends Fragment {
 
 
                             if (success) {
+
+                                String teilnehmerzahl = jsonResponse.getString("teilnehmerzahl");
+
+                                if (teilnehmerzahl.equals("1")){
+                                    tv_teilnehmer.setText("Es hat " + teilnehmerzahl + " Person abgestimmt bis jetzt!");
+
+                                }else{
+                                    tv_teilnehmer.setText("Es haben " + teilnehmerzahl + " Personen abgestimmt bis jetzt!");
+
+                                }
 
                                 JSONArray jArrayanswertextarray = jsonResponse.getJSONArray("answertextarray");
                                 JSONArray jArrayumfragewertearray = jsonResponse.getJSONArray("umfragewertearray");

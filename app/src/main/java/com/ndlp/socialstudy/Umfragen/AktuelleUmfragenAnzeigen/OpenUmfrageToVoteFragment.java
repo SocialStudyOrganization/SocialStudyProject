@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Umfragen.UmfrageAuswerten.UmfrageAuswertenFragment;
 import com.ndlp.socialstudy.activity.TinyDB;
 
 import org.json.JSONException;
@@ -244,12 +245,13 @@ public class OpenUmfrageToVoteFragment extends Fragment {
                                     matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
 
 
-                                    BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
+                                    UmfrageAuswertenFragment umfrageAuswertenFragment = new UmfrageAuswertenFragment();
                                     FragmentManager fragmentManager = ((MainActivity) getContext()).getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                    fragmentTransaction.replace(R.id.frame_layout, basicUmfragenFragment);
+                                    fragmentTransaction.replace(R.id.frame_layout, umfrageAuswertenFragment);
                                     fragmentTransaction.addToBackStack(null);
                                     fragmentTransaction.commit();
+
 
                                 }else{
 
