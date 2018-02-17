@@ -140,7 +140,6 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
                 outputStream.write(buffer, 0, count);
             }
 
-
             return "Download Complete...";
 
         } catch (MalformedURLException e) {

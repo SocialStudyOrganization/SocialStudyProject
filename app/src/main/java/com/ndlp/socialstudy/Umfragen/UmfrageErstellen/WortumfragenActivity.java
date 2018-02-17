@@ -129,63 +129,71 @@ public class WortumfragenActivity extends AppCompatActivity {
                 }
                 else {
 
-                    if (!lastcharacter.equals("?")){
-                        wortfrage = wortfrage + "?";
+                    if (arrayListWortUmfrage.size() == 1){
+                        Toast.makeText(WortumfragenActivity.this, "Please give more than one option to choose from.",
+                                Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        if (!lastcharacter.equals("?")){
+                            wortfrage = wortfrage + "?";
+                        }
+
+                        ArrayList<String> strings = new ArrayList<>();
+
+                        for (WortumfragelistenObject wortumfragelistenObject : arrayListWortUmfrage) {
+                            strings.add(wortumfragelistenObject.getItemTitle());
+                        }
+
+                        TinyDB tinyDB = new TinyDB(WortumfragenActivity.this);
+                        ArrayList<Integer> anzahleinzelnerUmfragenarray = new ArrayList<>();
+
+                        if (tinyDB.getListInt("AnzahlEinzelnerUmfragen").isEmpty()) {
+                            anzahleinzelnerUmfragenarray.add(1);
+                            tinyDB.putListInt("AnzahlEinzelnerUmfragen", anzahleinzelnerUmfragenarray);
+
+                            int neuerEintrag;
+
+                            neuerEintrag = 1;
+
+                            double wortfragezahl;
+                            double optionenzahl;
+
+                            wortfragezahl = neuerEintrag + 0.1;
+                            optionenzahl = neuerEintrag + 0.2;
+
+                            tinyDB.putString("" + wortfragezahl, wortfrage);
+                            tinyDB.putListString("" + optionenzahl, strings);
+
+
+
+                        } else {
+
+                            anzahleinzelnerUmfragenarray = tinyDB.getListInt("AnzahlEinzelnerUmfragen");
+
+                            int neuerEintrag;
+
+                            neuerEintrag = anzahleinzelnerUmfragenarray.size() + 1;
+
+                            anzahleinzelnerUmfragenarray.add(neuerEintrag);
+                            tinyDB.putListInt("AnzahlEinzelnerUmfragen", anzahleinzelnerUmfragenarray);
+
+                            double wortfragezahl;
+                            double optionenzahl;
+
+                            wortfragezahl = neuerEintrag + 0.1;
+                            optionenzahl = neuerEintrag + 0.2;
+
+                            tinyDB.putString("" + wortfragezahl, wortfrage);
+                            tinyDB.putListString("" + optionenzahl, strings);
+                        }
+
+                        Intent intent = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                     }
 
-                    ArrayList<String> strings = new ArrayList<>();
 
-                    for (WortumfragelistenObject wortumfragelistenObject : arrayListWortUmfrage) {
-                        strings.add(wortumfragelistenObject.getItemTitle());
-                    }
-
-                    TinyDB tinyDB = new TinyDB(WortumfragenActivity.this);
-                    ArrayList<Integer> anzahleinzelnerUmfragenarray = new ArrayList<>();
-
-                    if (tinyDB.getListInt("AnzahlEinzelnerUmfragen").isEmpty()) {
-                        anzahleinzelnerUmfragenarray.add(1);
-                        tinyDB.putListInt("AnzahlEinzelnerUmfragen", anzahleinzelnerUmfragenarray);
-
-                        int neuerEintrag;
-
-                        neuerEintrag = 1;
-
-                        double wortfragezahl;
-                        double optionenzahl;
-
-                        wortfragezahl = neuerEintrag + 0.1;
-                        optionenzahl = neuerEintrag + 0.2;
-
-                        tinyDB.putString("" + wortfragezahl, wortfrage);
-                        tinyDB.putListString("" + optionenzahl, strings);
-
-
-
-                    } else {
-
-                        anzahleinzelnerUmfragenarray = tinyDB.getListInt("AnzahlEinzelnerUmfragen");
-
-                        int neuerEintrag;
-
-                        neuerEintrag = anzahleinzelnerUmfragenarray.size() + 1;
-
-                        anzahleinzelnerUmfragenarray.add(neuerEintrag);
-                        tinyDB.putListInt("AnzahlEinzelnerUmfragen", anzahleinzelnerUmfragenarray);
-
-                        double wortfragezahl;
-                        double optionenzahl;
-
-                        wortfragezahl = neuerEintrag + 0.1;
-                        optionenzahl = neuerEintrag + 0.2;
-
-                        tinyDB.putString("" + wortfragezahl, wortfrage);
-                        tinyDB.putListString("" + optionenzahl, strings);
-                    }
-
-                    Intent intent = new Intent(WortumfragenActivity.this, NewUmfrageActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
 
 
             }
