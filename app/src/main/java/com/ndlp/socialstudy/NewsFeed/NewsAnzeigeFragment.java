@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,6 @@ public class NewsAnzeigeFragment extends Fragment {
         tv_newscontainerhead.setTypeface(quicksand_regular);
         tv_newsThema.setTypeface(quicksand_regular);
 
-
         tv_newsanzeigen.setMovementMethod(new ScrollingMovementMethod());
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -56,6 +56,8 @@ public class NewsAnzeigeFragment extends Fragment {
         } else {
             tv_newsanzeigen.setText(Html.fromHtml(message));
         }
+
+        tv_newsanzeigen.setMovementMethod(LinkMovementMethod.getInstance());
 
         tv_newscontainerhead.setText(header);
         tv_newsThema.setText(topic);

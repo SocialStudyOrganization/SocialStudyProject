@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -39,10 +40,10 @@ public class MainMenuFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_main_menu, container, false);
 
         //  navigate to Classes in order to show Skripte
-        LinearLayout b_toSkripte = (LinearLayout) rootView.findViewById(R.id.b_toSkripte);
-        LinearLayout b_toTasks = (LinearLayout) rootView.findViewById(R.id.b_toTasks);
-        LinearLayout b_toAnswers = (LinearLayout) rootView.findViewById(R.id.b_toAnswers);
-        LinearLayout b_tomfragen = (LinearLayout) rootView.findViewById(R.id.b_toUmfragen);
+        RelativeLayout b_toSkripte = (RelativeLayout) rootView.findViewById(R.id.b_toSkripte);
+        RelativeLayout b_toTasks = (RelativeLayout) rootView.findViewById(R.id.b_toTasks);
+        RelativeLayout b_toAnswers = (RelativeLayout) rootView.findViewById(R.id.b_toAnswers);
+        RelativeLayout b_tomfragen = (RelativeLayout) rootView.findViewById(R.id.b_toUmfragen);
         Button b_kursmitglieder = (Button) rootView.findViewById(R.id.b_kursmitglieder);
         TextView tv_skripte = (TextView) rootView.findViewById(R.id.tv_skripte);
         TextView tv_answers = (TextView) rootView.findViewById(R.id.tv_answers);
