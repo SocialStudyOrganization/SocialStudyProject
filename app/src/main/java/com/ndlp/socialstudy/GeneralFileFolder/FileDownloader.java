@@ -8,9 +8,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import com.ndlp.socialstudy.GeneralFileFolder.OpenFileClass;
-
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
@@ -18,8 +15,11 @@ import org.apache.commons.net.ftp.FTPReply;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
+
+import static android.R.id.progress;
 
 //url, int for progress and return download complete string
 public class FileDownloader extends AsyncTask<String, Integer, String> {
@@ -31,6 +31,7 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
     String subFolder;
     String format;
     File my_clicked_file;
+    InputStream inputStream;
 
     //  Serverdata
     private static final String SERVER_IP = "w0175925.kasserver.com";
@@ -48,28 +49,28 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
         this.my_clicked_file = my_clicked_file;
     }
 
-    FTPClient ftpClient = new FTPClient();
-
     @Override
     protected void onPreExecute() {
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Download in Progress...");
-        progressDialog.setMessage("Bei einem Skript dauert der Download etwas länger :)");
-
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
-//
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.show();
     }
+
 
     @Override
     protected String doInBackground(String... params) {
 
+        FTPClient ftpClient = new FTPClient();
 
         String path = params[0];
 
         Log.i("Info:", path);
+
+        OutputStream outputStream = null;
 
         try {
 
@@ -82,7 +83,9 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
                 return "ERROR: FTP connection failed!";
             }
 
-            ftpClient.login(USERNAME, PASSWORT);
+            if (!ftpClient.login(USERNAME, PASSWORT)){
+                return "Error";
+            }
 
 
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
@@ -93,7 +96,9 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
 
             ftpClient.changeWorkingDirectory("/SocialStudy/" + subFolder);
 
+            long fileLength = ftpClient.mlistFile(fileName).getSize();
 
+            inputStream = ftpClient.retrieveFileStream(fileName);
 
             /**
              * Create new Folder
@@ -115,21 +120,25 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
              * Create an output file to store the file for download
              */
 
+
             transferring_file = new File(new_Folder, fileName);
 
+            outputStream = new FileOutputStream(transferring_file);
 
+            byte[] buffer = new byte[4096];
+            long total = 0;
+            int count;
+            while ((count = inputStream.read(buffer)) != -1) {
 
+                if (isCancelled())
+                    return null;
 
-            OutputStream outputStream = new FileOutputStream(transferring_file);
+                total += count;
 
-            if (!ftpClient.retrieveFile(fileName, outputStream)) {                                         //Retrieves a named file from the server and writes it to the given OutputStream.
-                                                                                                            //true if successful false if not
-                outputStream.close();
-                return "ERROR: Failed to retrieve file!";
+                if (fileLength > 0)
+                    publishProgress((int) (total * 100L / fileLength));
+                outputStream.write(buffer, 0, count);
             }
-
-            outputStream.close();
-
 
             return "Download Complete...";
 
@@ -139,14 +148,32 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
         } catch (IOException e) {
             e.printStackTrace();
             return "ERROR IOException" + e.getMessage();
+        } finally {
+
+            try {
+
+                if (inputStream != null)
+                    inputStream.close();
+                if (outputStream != null)
+                    outputStream.close();
+
+                ftpClient.logout();
+                ftpClient.disconnect();
+
+            } catch (IOException ignored) {}
+
         }
 
     }
 
     @Override
-    protected void onProgressUpdate(Integer... values) {
+    protected void onProgressUpdate(Integer... progress) {
         //this will update the progress bar
-        progressDialog.setProgress(values[0]);
+        super.onProgressUpdate(progress);
+
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMax(100);
+        progressDialog.setProgress(progress[0]);
     }
 
     @Override

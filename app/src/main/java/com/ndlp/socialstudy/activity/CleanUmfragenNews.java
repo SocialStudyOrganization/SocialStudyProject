@@ -56,7 +56,6 @@ public class CleanUmfragenNews {
 
                                 try {
                                     Integer surveyid = jsonResponse.getInt("surveyid");
-
                                     DeleteUmfrage deleteUmfrage = new DeleteUmfrage(context, surveyid);
 
                                 }catch(Exception e){

@@ -24,8 +24,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-
+import java.io.OutputStream;
 
 
 public class FileUploader extends AsyncTask<String, Integer, Boolean> {
@@ -74,7 +73,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Upload in progress...");
-        progressDialog.setMessage("Bei einem Skript dauert der Upload etwas länger :)");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
         progressDialog.show();
@@ -87,8 +86,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
         FTPClient ftpClient = new FTPClient();
         InputStream inputStream = null;
-
-
+        OutputStream outputStream = null;
 
         //  connected zum Server + alles
         try {
@@ -106,16 +104,39 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
-
-            inputStream = context.getContentResolver().openInputStream(contentUri);
-
-
             //  passes Firewall
             ftpClient.enterLocalPassiveMode();
 
             //  navigates to the folder on te server
             ftpClient.changeWorkingDirectory("/SocialStudy/" + subFolder);
-            return ftpClient.storeFile(fileName, inputStream);
+
+            inputStream = context.getContentResolver().openInputStream(contentUri);
+
+            outputStream = ftpClient.storeFileStream(fileName);
+
+            if (outputStream == null)
+                return false;
+
+            long fileLength = inputStream.available();
+            int total = 0;
+            int count;
+            byte[] buffer = new byte[4096];
+            while ((count = inputStream.read(buffer)) != -1) {
+
+                if (isCancelled())
+                    return false;
+
+                total += count;
+
+                if (fileLength > 0)
+                    publishProgress((int) (total * 100L / fileLength));
+                outputStream.write(buffer, 0, count);
+            }
+
+            inputStream.close();
+            outputStream.close();
+
+            return ftpClient.completePendingCommand();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,6 +148,9 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
                 //  control if inputstream has data, logouts from ftp and disconnects
                 if (inputStream != null)
                     inputStream.close();
+                if (outputStream != null)
+                    outputStream.close();
+
                 ftpClient.logout();
                 ftpClient.disconnect();
             } catch (IOException ignored) {
@@ -134,6 +158,16 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
             }
         }
 
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        //this will update the progress bar
+        super.onProgressUpdate(progress);
+
+        progressDialog.setIndeterminate(false);
+        progressDialog.setMax(100);
+        progressDialog.setProgress(progress[0]);
     }
 
 

@@ -1,9 +1,13 @@
 package com.ndlp.socialstudy.Skripte;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +20,15 @@ import android.widget.Toast;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.FileDownloader;
 import com.ndlp.socialstudy.GeneralFileFolder.OpenFileClass;
+import com.ndlp.socialstudy.Umfragen.UmfrageErstellen.NewUmfrageActivity;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 
 import java.io.File;
 import java.util.ArrayList;
 
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
 
 
 public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<IndividualSkripteRecyclerAdapter.ScriptViewHolder> {
@@ -32,6 +40,8 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
     private String url;
     SkripteObject currentScript;
     String whichFormat;
+    String fileName;
+    File my_clicked_file;
 
     public IndividualSkripteRecyclerAdapter() {
     }
@@ -108,7 +118,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
 
                 //pass subfolder
-                String fileName = currentScript.getScriptName();
+                fileName = currentScript.getScriptName();
 
                 //set subFolder so DownloadFiles gets the right subFolder we came from
                 try {
@@ -122,7 +132,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
                     }
 
 
-                    File my_clicked_file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                    my_clicked_file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                             + "/Android/data/" + context.getPackageName() + "/files/" + subFolder + "/" + fileName);
 
                     if (my_clicked_file.exists()) {
@@ -130,8 +140,51 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
                         openFileClass.openFile();
                     }
                     else {
-                        FileDownloader fileDownloader = new FileDownloader(context, fileName, subFolder, whichFormat, my_clicked_file);
-                        fileDownloader.execute(url);
+
+                        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                        if (activeNetwork != null) { // connected to the internet
+                            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+
+                                //connected to wifi
+                                FileDownloader fileDownloader = new FileDownloader(context, fileName, subFolder, whichFormat, my_clicked_file);
+                                fileDownloader.execute(url);
+
+                            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                                // connected to the mobile provider's data plan
+
+
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Datenverbrauch-Warnung")
+                                        .setMessage("Du bist derzeit nicht mit dem Wlan verbunden. Willst du die Datei über dein mobiles Internet downloaden?")
+                                        .setNegativeButton(android.R.string.no, null)
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                switch (which) {
+                                                    case BUTTON_NEGATIVE:
+                                                        dialog.dismiss();
+                                                        break;
+                                                    case BUTTON_POSITIVE:
+                                                        FileDownloader fileDownloader = new FileDownloader(context, fileName, subFolder, whichFormat, my_clicked_file);
+                                                        fileDownloader.execute(url);
+                                                        dialog.dismiss();
+                                                        break;
+                                                }
+
+                                            }
+                                        }).create().show();
+
+
+
+
+                            }
+                        } else {
+                            Toast.makeText(context, "You have currently no connection to the internet", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
                     }
 
                 } catch (Exception e){
