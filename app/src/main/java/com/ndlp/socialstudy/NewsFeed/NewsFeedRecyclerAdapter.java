@@ -3,6 +3,7 @@ package com.ndlp.socialstudy.NewsFeed;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,6 +91,51 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                 Toast.makeText(context, "Work in Progress", Toast.LENGTH_LONG).show();
             }
         });
+
+        String imageName = "icon_newsfeednonumber";
+        int resourceId;
+
+        switch (category) {
+            case "Aufgaben":
+                imageName = "icon_exercise";
+                break;
+            case "DHBW News":
+                imageName = "icon_dhbwnews";
+                break;
+            case "Kurssprecher":
+                imageName = "icon_newsfeednonumber";
+                break;
+            case "Lösungen":
+                imageName = "icon_solution";
+                break;
+            case "Loesungen":
+                imageName = "icon_solution";
+                break;
+            case "Partys":
+                imageName = "icon_party";
+                break;
+            case "Postfach":
+                imageName = "icon_inbox";
+                break;
+            case "Seminare":
+                imageName = "icon_newsfeednonumber";
+                break;
+            case "Skripe":
+                imageName = "icon_script";
+                break;
+            case "StuV":
+                imageName = "icon_dhbwstuv";
+                break;
+            case "Umfrage":
+                imageName = "icon_poll";
+                break;
+            case "DHBW":
+                imageName = "icon_dhbw";
+                break;
+
+        }
+        resourceId = context.getResources().getIdentifier(imageName, "drawable" , context.getPackageName());
+        holder.iv_image.setImageDrawable(ContextCompat.getDrawable(context, resourceId));
     }
 
 
