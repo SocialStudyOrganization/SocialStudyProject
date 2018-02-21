@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1041920300430",
+    "firebase_url": "https://studywire-195721.firebaseio.com",
+    "project_id": "studywire-195721",
+    "storage_bucket": "studywire-195721.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041920300430:android:e42eb6a8c7b96a25",
+        "android_client_info": {
+          "package_name": "com.ndlp.socialstudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041920300430-df3giip1k3i1q0009irechcldaocgkue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8w01qqFhB0Soa9C7l2YXd_2uVB5xfBew"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

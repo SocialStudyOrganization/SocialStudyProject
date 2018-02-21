@@ -39,6 +39,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
 import com.ndlp.socialstudy.NewsFeed.NotificationFragment;
 import com.ndlp.socialstudy.R;
@@ -119,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         TestFairy.setUserId(sharedPrefLoginData.getString("firstname", "Unidentified User"));
 
+
+        //firebase messaging handling notifications tokens in database eintragen
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
 
 
         //for closing activity when navigating to logout
