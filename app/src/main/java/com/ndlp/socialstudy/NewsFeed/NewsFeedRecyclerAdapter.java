@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,11 @@ import android.widget.Toast;
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by ndlp on 04.02.2018.
@@ -26,6 +31,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     private Context context;
     private ArrayList<NewsFeedObject> newsFeedObjectArrayList;
+
+    private String datestring, timestring, datetime;
 
     public NewsFeedRecyclerAdapter(Context context, ArrayList<NewsFeedObject> newsFeedObjectArrayList){
         this.context = context;
@@ -53,8 +60,26 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         final NewsFeedObject currentObject = newsFeedObjectArrayList.get(position);
 
         String category = currentObject.getCategory();
-        String uploaddate = currentObject.getUploaddate();
-        String uploadtime = currentObject.getUploadtime();
+        datetime = currentObject.getDatetime();
+
+        //chance datetime format (2018-02-28 11:32:00) into date and time
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+            Date d = format.parse(datetime);
+            DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+            DateFormat time = new SimpleDateFormat("HH:mm");
+            datestring = date.format(d);
+            timestring = time.format(d);
+            Log.i("date and time is: ", datestring+" " + timestring);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
         String topic = currentObject.getTopic();
 
         //declaring typefaces
@@ -65,17 +90,30 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.tv_topic.setTypeface(quicksand_regular);
         holder.tv_more.setTypeface(quicksand_regular);
 
-        holder.tv_header.setText(category + ", am: " + uploaddate + ", " + uploadtime);
+        holder.tv_header.setText(category + ", am: " + datestring + " um: " + timestring);
         holder.tv_topic.setText(currentObject.getTopic());
         holder.rl_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                try {
+                    datetime = currentObject.getDatetime();
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+                    Date d = format.parse(datetime);
+                    DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+                    DateFormat time = new SimpleDateFormat("HH:mm");
+                    datestring = date.format(d);
+                    timestring = time.format(d);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 MainActivity mainActivity = (MainActivity)context;
                 NewsAnzeigeFragment newsAnzeigeFragment = new NewsAnzeigeFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("message", currentObject.getMessage());
-                bundle.putString("header", currentObject.getCategory() + ", " + currentObject.getUploaddate() + ", " + currentObject.getUploadtime());
+                bundle.putString("header", currentObject.getCategory() + ", am: " + datestring + " um: " + timestring);
                 bundle.putString("topic", currentObject.getTopic());
                 newsAnzeigeFragment.setArguments(bundle);
                 mainActivity.getSupportFragmentManager().beginTransaction()

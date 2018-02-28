@@ -15,10 +15,11 @@ import okhttp3.RequestBody;
 
 public class UmfragenAsyncTask  extends AsyncTask<String, Integer, String> {
 
-    private String name;
+    private String name, kursid;
 
-    public UmfragenAsyncTask(String name){
+    public UmfragenAsyncTask(String name, String kursid){
         this.name = name;
+        this.kursid = kursid;
 
 
     }
@@ -33,6 +34,7 @@ public class UmfragenAsyncTask  extends AsyncTask<String, Integer, String> {
         RequestBody body = new FormBody.Builder()
                 .add("message", "Thema: " + name)
                 .add("title", "Neue Umfrage :)")
+                .add("kursid", kursid)
                 .build();
 
         Request request = new Request.Builder()

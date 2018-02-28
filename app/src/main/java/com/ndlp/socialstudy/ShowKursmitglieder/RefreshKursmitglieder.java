@@ -29,7 +29,6 @@ public class RefreshKursmitglieder {
 
     //  constructor
     public RefreshKursmitglieder(Context context, String urlAddress, String kursid, RecyclerView recyclerView) {
-
         this.urlAddress = urlAddress;
         this.kursid = kursid;
         downloadData(context, recyclerView);

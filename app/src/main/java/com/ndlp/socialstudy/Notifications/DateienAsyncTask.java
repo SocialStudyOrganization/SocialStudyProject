@@ -12,12 +12,13 @@ import okhttp3.RequestBody;
 
 public class DateienAsyncTask extends AsyncTask<String, Integer, String> {
 
-    private String subfolder, dateiname, categorie;
+    private String subfolder, dateiname, categorie, kursid;
 
-    public DateienAsyncTask(String dateiname, String categorie, String subfolder){
+    public DateienAsyncTask(String dateiname, String categorie, String subfolder, String kursid){
         this.dateiname = dateiname;
         this.categorie = categorie;
         this.subfolder = subfolder;
+        this.kursid = kursid;
 
     }
 
@@ -32,6 +33,7 @@ public class DateienAsyncTask extends AsyncTask<String, Integer, String> {
                 .add("message",
                         "Eine neue Datei " + dateiname + " bei den " + subfolder + " in " + categorie + " wurde hochgeladen!")
                 .add("title", "Neue Datei :)")
+                .add("kursid", kursid)
                 .build();
 
         Request request = new Request.Builder()
