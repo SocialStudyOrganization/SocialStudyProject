@@ -26,6 +26,7 @@ public class RefreshKursmitglieder {
 
     private String urlAddress, kursid;
 
+
     //  constructor
     public RefreshKursmitglieder(Context context, String urlAddress, String kursid, RecyclerView recyclerView) {
 
