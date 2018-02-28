@@ -24,12 +24,13 @@ import java.util.Map;
 
 public class RefreshKursmitglieder {
 
-    private String urlAddress;
+    private String urlAddress, kursid;
 
     //  constructor
-    public RefreshKursmitglieder(Context context, String urlAddress, RecyclerView recyclerView) {
+    public RefreshKursmitglieder(Context context, String urlAddress, String kursid, RecyclerView recyclerView) {
 
         this.urlAddress = urlAddress;
+        this.kursid = kursid;
         downloadData(context, recyclerView);
     }
 
@@ -63,6 +64,15 @@ public class RefreshKursmitglieder {
                         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("kursid", kursid);
+
+                return params;
+            }
 
 
         };

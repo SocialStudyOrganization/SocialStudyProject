@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,11 +18,16 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RefreshUmfragenFromDatabase {
 
     public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/refreshUmfragen.php";
+    public String kursid;
 
-    public RefreshUmfragenFromDatabase(Context context, RecyclerView recyclerView){
+    public RefreshUmfragenFromDatabase(Context context, String kursid, RecyclerView recyclerView){
+        this.kursid = kursid;
         downloadData(context, recyclerView);
     }
 
@@ -54,6 +60,15 @@ public class RefreshUmfragenFromDatabase {
                         Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("kursid", kursid);
+
+                return params;
+            }
 
         };
 

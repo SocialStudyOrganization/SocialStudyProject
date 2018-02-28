@@ -1,6 +1,8 @@
 package com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,6 +34,8 @@ public class BasicUmfragenFragment extends Fragment {
     RecyclerView mRecyclerViewUmfragen;
     SwipeRefreshLayout swipeRefreshLayout;
 
+    private String kursid;
+
 
     //---------------------------------ONCREATE-------------------------------------------------
     @Override
@@ -58,11 +62,13 @@ public class BasicUmfragenFragment extends Fragment {
         mRecyclerViewUmfragen.setAdapter(basicUmfragenRecyclerAdapter);
         mRecyclerViewUmfragen.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        kursid = sharedPrefLoginData.getString("kursid", "");
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new RefreshUmfragenFromDatabase(getActivity(), mRecyclerViewUmfragen);
+                new RefreshUmfragenFromDatabase(getActivity(), kursid, mRecyclerViewUmfragen);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -77,7 +83,9 @@ public class BasicUmfragenFragment extends Fragment {
             }
         });
 
-        new RefreshUmfragenFromDatabase(getActivity(), mRecyclerViewUmfragen);
+
+
+        new RefreshUmfragenFromDatabase(getActivity(), kursid, mRecyclerViewUmfragen);
 
         return rootView;
     }

@@ -1,6 +1,8 @@
 package com.ndlp.socialstudy.ShowKursmitglieder;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ public class KursmitgliederActivity extends Activity {
 
     public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Kursmitglieder/getKursmitglieder.php";
     RecyclerView mRecyclerView;
+    String kursid;
+    Integer kursidint;
 
 
 
@@ -37,7 +41,12 @@ public class KursmitgliederActivity extends Activity {
         Drawable dividerDrawable = ContextCompat.getDrawable(KursmitgliederActivity.this, R.drawable.line_divider);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(dividerDrawable));
 
-        new RefreshKursmitglieder(KursmitgliederActivity.this, urlAddress, mRecyclerView);
+        SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        kursid = sharedPrefLoginData.getString("kursid", "");
+
+
+
+        new RefreshKursmitglieder(KursmitgliederActivity.this, urlAddress, kursid, mRecyclerView);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

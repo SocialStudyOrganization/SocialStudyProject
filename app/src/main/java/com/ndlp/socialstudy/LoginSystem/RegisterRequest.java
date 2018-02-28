@@ -21,7 +21,7 @@ public class RegisterRequest extends StringRequest {
 
     //  Constructor
     //  if volley is finished with the request it calls the listener in RegisterActivity
-    public RegisterRequest(String email, String password, String matrikelnummer, String firstName, String surname,Response.Listener<String> listener){
+    public RegisterRequest(String email, String password, String matrikelnummer, String firstName, String surname, String kurs,Response.Listener<String> listener){
         super(Method.POST, Register_Request_URL, listener, null);
         params = new HashMap<>();
         params.put("email", email);
@@ -29,6 +29,7 @@ public class RegisterRequest extends StringRequest {
         params.put("matrikelnummer", matrikelnummer);
         params.put("firstName", firstName);
         params.put("surname", surname);
+        params.put("kurs", kurs);
 
     }
 
