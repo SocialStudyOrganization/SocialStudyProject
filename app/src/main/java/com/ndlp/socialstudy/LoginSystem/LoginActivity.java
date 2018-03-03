@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editorLoginData.putInt("matrikelnummer", jsonResponse.getInt("matrikelnummer"));
                                     editorLoginData.putString("surname", jsonResponse.getString("surname"));
                                     editorLoginData.putString("firstname", jsonResponse.getString("firstname"));
+                                    editorLoginData.putString("kursid", jsonResponse.getString("kursid") + "");
                                     editorLoginData.apply();
 
                                     //  check if rememberMe is checked and put it in sharedPrefrememberMe

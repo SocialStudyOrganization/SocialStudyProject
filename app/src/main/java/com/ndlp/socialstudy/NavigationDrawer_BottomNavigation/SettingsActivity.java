@@ -3,12 +3,17 @@ package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.activity.TinyDB;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    SwitchCompat notificationtrigger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,9 @@ public class SettingsActivity extends AppCompatActivity {
         tv_toolbar_title_workaround_settings.setTypeface(quicksand_bold);
         tv_notif.setTypeface(quicksand_regular);
         tv_wlan.setTypeface(quicksand_regular);
+
+
+
 
 
     }

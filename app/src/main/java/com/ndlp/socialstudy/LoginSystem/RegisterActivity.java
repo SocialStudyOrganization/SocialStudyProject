@@ -41,8 +41,10 @@ import java.io.UnsupportedEncodingException;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    String email, password, firstName, surname;
+    String email, password, firstName, surname, kurs;
     String matrikelnummer;
+
+    EditText et_kurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etMatrikelnummer = (EditText) findViewById(R.id.etMatrikelnummer);
         final EditText etFirstName = (EditText) findViewById(R.id.etFirstName);
         final EditText etSurname = (EditText) findViewById(R.id.etSurname);
+        et_kurs = (EditText) findViewById(R.id.etKurs);
 
         final Button bRegiser = (Button) findViewById(R.id.bRegister);
 
@@ -94,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
         etFirstName.setTypeface(quicksand_regular);
         etSurname.setTypeface(quicksand_regular);
         bRegiser.setTypeface(quicksand_bold);
+        et_kurs.setTypeface(quicksand_regular);
 
         //  transfer username and password toString
         bRegiser.setOnClickListener(new View.OnClickListener() {
@@ -104,11 +108,15 @@ public class RegisterActivity extends AppCompatActivity {
                 matrikelnummer = etMatrikelnummer.getText().toString();
                 firstName = etFirstName.getText().toString();
                 surname = etSurname.getText().toString();
+                kurs = et_kurs.getText().toString();
+
+                boolean isuppercase = kurs.equals(kurs.toUpperCase());
+
 
                 if (email.equals("") || password.equals("") || matrikelnummer.equals("")
-                        || firstName.equals("") || surname.equals("")){
+                        || firstName.equals("") || surname.equals("") || kurs.equals("") || !isuppercase){
 
-                    Toast.makeText(RegisterActivity.this, "Please complete all fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Please complete all fields and make sure that your kurs is in caps", Toast.LENGTH_LONG).show();
 
                 }else{
                     //listens for response from volley happening through RegisterRequest
@@ -146,7 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
                     };
 
                     //  call register request and transfer string username and password
-                    RegisterRequest registerRequest = new RegisterRequest(email, password, matrikelnummer, firstName, surname, responseListener);
+                    RegisterRequest registerRequest = new RegisterRequest(email, password, matrikelnummer, firstName, surname, kurs, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                     queue.add(registerRequest);
                 }

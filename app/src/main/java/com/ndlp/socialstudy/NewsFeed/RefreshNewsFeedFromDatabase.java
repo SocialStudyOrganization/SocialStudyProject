@@ -25,7 +25,7 @@ public class RefreshNewsFeedFromDatabase {
 
     public String source;
 
-    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/NewsFeed/refreshNewsFeed.php";
+    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/NewsFeed/refreshNewsFeedUpdated.php";
 
     public RefreshNewsFeedFromDatabase(Context context, RecyclerView recyclerView, String source){
         this.source = source;
@@ -43,6 +43,8 @@ public class RefreshNewsFeedFromDatabase {
                     public void onResponse(String response) {
 
                         try {
+
+                            Log.i("incomming array:", response.toString());
 
                             JSONArray jsonArray = new JSONArray(response);
 

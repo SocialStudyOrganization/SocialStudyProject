@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.ndlp.socialstudy.Notifications.DateienAsyncTask;
 import com.ndlp.socialstudy.Skripte.AnswersDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.SkripteDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.TasksDataIntoDatabase;
@@ -26,6 +27,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+
 
 public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
@@ -35,6 +41,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
     private String fileName;
     private String format;
     private String category;
+    private String kursid;
     private String date;
     private String time;
     private String user;
@@ -51,8 +58,9 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
     //  Constructor
     public FileUploader (Context context, Uri contentUri, String fileName, String format, String category,
-                      String date, String time, String user, String subFolder, String urlAddress, RecyclerView mRecyclerView) {
+                      String date, String time, String user, String subFolder, String urlAddress,String kursid, RecyclerView mRecyclerView) {
         this.context = context;
+        this.kursid = kursid;
         this.contentUri = contentUri;
         this.fileName = fileName;
         this.format = format;
@@ -184,8 +192,6 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
             //  calls method putIntoTable()
             putIntoTable();
 
-
-
         }
 
     }
@@ -210,8 +216,10 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
                     if (success) {
                         Toast.makeText(context, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
+                        new DateienAsyncTask(fileName, category, subFolder, kursid).execute();
+
                         //notify recycler adapter that dataset changed
-                        new RefreshfromDatabase(context, urlAddress, mRecyclerView, category, subFolder);
+                        new RefreshfromDatabase(context, urlAddress, mRecyclerView, category, subFolder, kursid);
 
                     } else {
                         Toast.makeText(context, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
@@ -248,5 +256,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
 
     }
+
+
 
 }

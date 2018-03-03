@@ -53,9 +53,11 @@ public class SkripteFragment extends Fragment {
     public String date;
     public String time;
     public String user;
+    public String kursid;
 
     RecyclerView mRecyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
+
 
 //---------------------------------ONCREATE----------------------------------------------------------
 
@@ -108,18 +110,20 @@ public class SkripteFragment extends Fragment {
         //  gets the username out of sharedPrefs LoginData
         SharedPreferences sharedPrefLoginData = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
+        kursid = sharedPrefLoginData.getString("kursid", "");
+
 
         user = matrikelnummer + "";
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
-        new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
+        new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder, kursid);
 
         //sets refreshlistener on Swiperefreshlayout
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Refresh items
-                new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder);
+                new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder, kursid);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -216,7 +220,7 @@ public class SkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
+                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, kursid, mRecyclerView);
                 fileUploader.execute();
 
 
@@ -226,7 +230,7 @@ public class SkripteFragment extends Fragment {
     }
 
     private void uploadImage(){
-        FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, mRecyclerView);
+        FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, kursid, mRecyclerView);
         fileUploader.execute();
     }
 

@@ -28,12 +28,12 @@ public class RefreshfromDatabase {
 
     private String urlAddress;
     private String category;
-    private String subFolder;
+    private String subFolder, kursid;
 
 
     //  constructor
-    public RefreshfromDatabase(Context context, String urlAddress, RecyclerView recyclerView, String category, String subFolder) {
-
+    public RefreshfromDatabase(Context context, String urlAddress, RecyclerView recyclerView, String category, String subFolder, String kursid) {
+        this.kursid = kursid;
         this.urlAddress = urlAddress;
         this.category = category;
         this.subFolder = subFolder;
@@ -77,6 +77,7 @@ public class RefreshfromDatabase {
 
                 Map<String, String> params = new HashMap<>();
                 params.put("category", category);
+                params.put("kursid", kursid);
 
                 return params;
             }

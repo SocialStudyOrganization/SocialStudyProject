@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
+import com.ndlp.socialstudy.Notifications.UmfragenAsyncTask;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 import com.ndlp.socialstudy.activity.TinyDB;
@@ -59,6 +60,8 @@ public class NewUmfrageActivity extends AppCompatActivity {
     String enddate;
     String endtime;
     String onlyoneanswer;
+
+    String kursid;
 
 
     RecyclerView rv_newUmfrage;
@@ -98,6 +101,10 @@ public class NewUmfrageActivity extends AppCompatActivity {
         et_umfragedatum.setTypeface(quicksand_regular);
         et_umfragetime.setTypeface(quicksand_regular);
         tv_einreichen.setTypeface(quicksand_regular);
+
+        //get kursid for notification
+        SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        kursid = sharedPrefLoginData.getString("kursid", "");
 
         final NewUmfrageRecyclerAdapter newUmfrageRecyclerAdapter;
         final ArrayList<Wortumfragenobject> wortumfragenobjects = new ArrayList<>();
@@ -327,6 +334,8 @@ public class NewUmfrageActivity extends AppCompatActivity {
                                         tinyDB.remove("ueberschrift");
                                         tinyDB.remove("datum");
                                         tinyDB.remove("uhrzeit");
+
+                                        new UmfragenAsyncTask(umfragethema, kursid).execute();
 
                                         finish();
 

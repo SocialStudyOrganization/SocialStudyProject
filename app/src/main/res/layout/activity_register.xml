@@ -22,12 +22,13 @@
             android:layout_marginTop="27dp"
             android:background="@drawable/shape_loginbox"
             android:ems="10"
-            android:hint="@string/register_mail"
+            android:hint="Deine DH-Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="36dp"
             android:textColor="@color/weiß"
             android:textColorHint="@color/weiß"
             android:textSize="16sp" />
+
 
         <EditText
             android:id="@+id/etMatrikelnummer"
@@ -64,6 +65,19 @@
             android:background="@drawable/shape_loginbox"
             android:ems="10"
             android:hint="@string/register_surname"
+            android:paddingLeft="36dp"
+            android:textColor="@color/weiß"
+            android:textColorHint="@color/weiß"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etKurs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/shape_loginbox"
+            android:ems="10"
+            android:hint="Kursbezeichnung"
             android:paddingLeft="36dp"
             android:textColor="@color/weiß"
             android:textColorHint="@color/weiß"

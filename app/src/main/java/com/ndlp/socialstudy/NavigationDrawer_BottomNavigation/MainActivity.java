@@ -39,13 +39,27 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
 import com.ndlp.socialstudy.NewsFeed.NotificationFragment;
+import com.ndlp.socialstudy.Notifications.MyFirebaseInstanceIdService;
+import com.ndlp.socialstudy.Notifications.RegisterTokenAsyncTask;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
+import com.ndlp.socialstudy.activity.TinyDB;
 import com.testfairy.TestFairy;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * Activity to handle the fragments with bottomNavigationView and navigationDrawer
@@ -60,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     BottomNavigationView topnavigationview;
     Fragment selectedFragment;
+
+    private String token;
 
     private Toolbar mToolbar;
 
@@ -118,6 +134,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //identifiying user to testfairy
         SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         TestFairy.setUserId(sharedPrefLoginData.getString("firstname", "Unidentified User"));
+
+
+        //firebase messaging handling notifications tokens in database eintragen
+        FirebaseApp.initializeApp(this);
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseInstanceId.getInstance().getToken();
+
+        //register token
+        TinyDB tinyDB = new TinyDB(this);
+        token = tinyDB.getString("notificationtoken");
+        Integer matrikelnummer;
+        matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
+
+        if (matrikelnummer != 1){
+            new RegisterTokenAsyncTask(token, matrikelnummer).execute();
+        }
+
+
+
 
 
 
