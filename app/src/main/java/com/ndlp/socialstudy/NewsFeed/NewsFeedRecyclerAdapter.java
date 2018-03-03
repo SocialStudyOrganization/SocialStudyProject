@@ -23,9 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by ndlp on 04.02.2018.
- */
+
 
 public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecyclerAdapter.MyViewHolder> {
 
@@ -76,8 +74,6 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
 
 
         String topic = currentObject.getTopic();
