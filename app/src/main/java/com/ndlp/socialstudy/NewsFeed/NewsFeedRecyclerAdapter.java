@@ -76,6 +76,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         }
 
 
+
+
         String topic = currentObject.getTopic();
 
         //declaring typefaces
