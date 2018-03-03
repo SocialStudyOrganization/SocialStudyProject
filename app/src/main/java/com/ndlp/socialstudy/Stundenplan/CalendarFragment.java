@@ -11,11 +11,24 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
-
+import java.io.IOException;
+import java.io.InputStream;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -83,7 +96,7 @@ public class CalendarFragment extends Fragment {
         else
             finalURL = currentURL;
 
-
+        //aaaa
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setHorizontalScrollBarEnabled(false);
 

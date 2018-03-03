@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.ndlp.socialstudy.Stundenplan.CalendarFragment">
 
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+        android:layout_height="match_parent" />
 </RelativeLayout>
