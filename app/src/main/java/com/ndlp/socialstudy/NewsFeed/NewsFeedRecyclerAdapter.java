@@ -52,6 +52,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         return new NewsFeedRecyclerAdapter.MyViewHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(NewsFeedRecyclerAdapter.MyViewHolder holder, int position) {
 
