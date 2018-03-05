@@ -56,6 +56,8 @@ public class RefreshfromDatabase {
 
                             JSONArray jsonArray = new JSONArray(response);
 
+                            Log.i("json Array: ", jsonArray.toString());
+
                             new TransformRefreshingData(context, jsonArray, recyclerView, subFolder).execute();
 
                         } catch (JSONException e) {
