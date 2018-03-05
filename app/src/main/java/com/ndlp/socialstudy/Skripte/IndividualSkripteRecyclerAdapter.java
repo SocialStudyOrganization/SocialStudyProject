@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
     private String imageName;
     private String subFolder;
     private String url;
-    SkripteObject currentScript;
+    //SkripteObject currentScript;
     String whichFormat;
     String fileName;
     File my_clicked_file;
@@ -79,7 +80,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
     @Override
     public void onBindViewHolder(ScriptViewHolder holder, int position) {
 
-        currentScript = scriptObjects.get(position);
+        final SkripteObject currentScript = scriptObjects.get(position);
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
@@ -95,6 +96,8 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
         whichFormat = currentScript.getScriptFormat();
 
+        Log.i("current Skript load: ", holder.scriptName.getText().toString());
+
 
         switch (whichFormat) {
             case "PDF":
@@ -108,7 +111,6 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
                 holder.scriptIcon.setImageDrawable(ContextCompat.getDrawable(context, resourceId2));
                 break;
         }
-
 
 
         //WEBVIEW
