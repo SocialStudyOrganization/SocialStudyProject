@@ -38,7 +38,7 @@ public class AppLogoFirstPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_logo_first_page);
 
-        TestFairy.begin(this, "ab6ad7265adebec9d50f5a02ce3ca3806289d3fe");
+        //TestFairy.begin(this, "ab6ad7265adebec9d50f5a02ce3ca3806289d3fe");
 
 
         //create BG gradient

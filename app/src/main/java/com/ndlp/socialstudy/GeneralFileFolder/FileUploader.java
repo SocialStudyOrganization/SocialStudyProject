@@ -216,7 +216,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
                     if (success) {
                         Toast.makeText(context, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
-                        new DateienAsyncTask(fileName, category, subFolder, kursid).execute();
+                        //new DateienAsyncTask(fileName, category, subFolder, kursid).execute();
 
                         //notify recycler adapter that dataset changed
                         new RefreshfromDatabase(context, urlAddress, mRecyclerView, category, subFolder, kursid);
