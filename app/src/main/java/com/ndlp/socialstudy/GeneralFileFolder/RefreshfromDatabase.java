@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ndlp.socialstudy.Skripte.IndividualSkripteRecyclerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,20 +30,22 @@ public class RefreshfromDatabase {
     private String urlAddress;
     private String category;
     private String subFolder, kursid;
+    private IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter;
 
 
     //  constructor
-    public RefreshfromDatabase(Context context, String urlAddress, RecyclerView recyclerView, String category, String subFolder, String kursid) {
+    public RefreshfromDatabase(Context context, String urlAddress, RecyclerView recyclerView, String category, String subFolder, String kursid, IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter) {
         this.kursid = kursid;
         this.urlAddress = urlAddress;
         this.category = category;
         this.subFolder = subFolder;
+        this.individualSkripteRecyclerAdapter = individualSkripteRecyclerAdapter;
 
-        downloadData(context, recyclerView);
+        downloadData(context, recyclerView, subFolder);
     }
 
 
-    private void downloadData(final Context context, final RecyclerView recyclerView)
+    private void downloadData(final Context context, final RecyclerView recyclerView, final String subFolder)
     {
 
         StringRequest request = new StringRequest(Request.Method.POST, urlAddress,
@@ -58,7 +61,7 @@ public class RefreshfromDatabase {
 
                             Log.i("json Array: ", jsonArray.toString());
 
-                            new TransformRefreshingData(context, jsonArray, recyclerView, subFolder).execute();
+                            new TransformRefreshingData(context, jsonArray, recyclerView, subFolder, individualSkripteRecyclerAdapter).execute();
 
                         } catch (JSONException e) {
                             Log.e(RefreshfromDatabase.class.getSimpleName(), e.getMessage());

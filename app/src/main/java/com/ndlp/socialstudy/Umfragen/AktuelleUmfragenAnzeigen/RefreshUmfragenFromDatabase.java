@@ -23,11 +23,13 @@ import java.util.Map;
 
 public class RefreshUmfragenFromDatabase {
 
-    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/refreshUmfragen.php";
-    public String kursid;
+    private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/refreshUmfragen.php";
+    private String kursid;
+    private BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter;
 
-    public RefreshUmfragenFromDatabase(Context context, String kursid, RecyclerView recyclerView){
+    public RefreshUmfragenFromDatabase(Context context, String kursid, RecyclerView recyclerView, BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter){
         this.kursid = kursid;
+        this.basicUmfragenRecyclerAdapter = basicUmfragenRecyclerAdapter;
         downloadData(context, recyclerView);
     }
 
@@ -45,7 +47,7 @@ public class RefreshUmfragenFromDatabase {
 
                             JSONArray jsonArray = new JSONArray(response);
 
-                            new TransformRefreshingUmfragenData(context, jsonArray, recyclerView).execute();
+                            new TransformRefreshingUmfragenData(context, jsonArray, recyclerView, basicUmfragenRecyclerAdapter).execute();
 
                         } catch (JSONException e) {
                             Log.e(RefreshUmfragenFromDatabase.class.getSimpleName(), e.getMessage());

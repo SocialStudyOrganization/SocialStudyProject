@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.ndlp.socialstudy.Notifications.DateienAsyncTask;
 import com.ndlp.socialstudy.Skripte.AnswersDataIntoDatabase;
+import com.ndlp.socialstudy.Skripte.IndividualSkripteRecyclerAdapter;
 import com.ndlp.socialstudy.Skripte.SkripteDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.TasksDataIntoDatabase;
 
@@ -48,6 +49,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
     private String subFolder;
     private String urlAddress;
     private RecyclerView mRecyclerView;
+    private IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter;
 
     ProgressDialog progressDialog;
     private PowerManager.WakeLock mWakeLock;
@@ -58,7 +60,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
     //  Constructor
     public FileUploader (Context context, Uri contentUri, String fileName, String format, String category,
-                      String date, String time, String user, String subFolder, String urlAddress,String kursid, RecyclerView mRecyclerView) {
+                      String date, String time, String user, String subFolder, String urlAddress,String kursid, RecyclerView mRecyclerView, IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter) {
         this.context = context;
         this.kursid = kursid;
         this.contentUri = contentUri;
@@ -71,6 +73,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
         this.subFolder = subFolder;
         this.urlAddress = urlAddress;
         this.mRecyclerView = mRecyclerView;
+        this.individualSkripteRecyclerAdapter = individualSkripteRecyclerAdapter;
     }
 
     @Override
@@ -187,7 +190,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
         if (result) {
             Toast.makeText(context, "Datei hochgeladen", Toast.LENGTH_LONG).show();
 
-        progressDialog.hide();
+        progressDialog.dismiss();
 
             //  calls method putIntoTable()
             putIntoTable();
@@ -216,10 +219,10 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
                     if (success) {
                         Toast.makeText(context, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
 
-                        //new DateienAsyncTask(fileName, category, subFolder, kursid).execute();
+                        new DateienAsyncTask(fileName, category, subFolder, kursid).execute();
 
                         //notify recycler adapter that dataset changed
-                        new RefreshfromDatabase(context, urlAddress, mRecyclerView, category, subFolder, kursid);
+                        new RefreshfromDatabase(context, urlAddress, mRecyclerView, category, subFolder, kursid, individualSkripteRecyclerAdapter);
 
                     } else {
                         Toast.makeText(context, jsonResponse.getString("error_msg"), Toast.LENGTH_LONG).show();
@@ -233,21 +236,21 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
         };
 
 
-        if (subFolder == "Skripte"){
+        if (subFolder.equals("Skripte")){
             //  starts the request to upload skriptname category, date, time, user to server
             SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
             RequestQueue queue = Volley.newRequestQueue(context);
             queue.add(skripteDataIntoDatabase);
         }
 
-        if (subFolder == "Tasks"){
+        if (subFolder.equals("Tasks")){
             //  starts the request to upload skriptname category, date, time, user to server
             TasksDataIntoDatabase tasksDataIntoDatabase = new TasksDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
             RequestQueue queue = Volley.newRequestQueue(context);
             queue.add(tasksDataIntoDatabase);
         }
 
-        if (subFolder == "Answers"){
+        if (subFolder.equals("Answers")){
             //  starts the request to upload skriptname category, date, time, user to server
             AnswersDataIntoDatabase answersDataIntoDatabase = new AnswersDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
             RequestQueue queue = Volley.newRequestQueue(context);

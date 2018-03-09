@@ -68,7 +68,7 @@ public class BasicUmfragenFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new RefreshUmfragenFromDatabase(getActivity(), kursid, mRecyclerViewUmfragen);
+                new RefreshUmfragenFromDatabase(getActivity(), kursid, mRecyclerViewUmfragen, basicUmfragenRecyclerAdapter);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -85,7 +85,7 @@ public class BasicUmfragenFragment extends Fragment {
 
 
 
-        new RefreshUmfragenFromDatabase(getActivity(), kursid, mRecyclerViewUmfragen);
+        new RefreshUmfragenFromDatabase(getActivity(), kursid, mRecyclerViewUmfragen, basicUmfragenRecyclerAdapter);
 
         return rootView;
     }
