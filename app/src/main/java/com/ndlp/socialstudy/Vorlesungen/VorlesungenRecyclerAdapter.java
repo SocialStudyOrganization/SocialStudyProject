@@ -1,4 +1,4 @@
-package com.ndlp.socialstudy.Skripte;
+package com.ndlp.socialstudy.Vorlesungen;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.ndlp.socialstudy.NavigationDrawer_BottomNavigation.MainActivity;
 import com.ndlp.socialstudy.R;
-import com.ndlp.socialstudy.GeneralFileFolder.VorlesungenObject;
+import com.ndlp.socialstudy.Skripte.SkripteFragment;
 
 import java.util.ArrayList;
 
@@ -21,19 +21,26 @@ import java.util.ArrayList;
  * Class handeling the RecyclerAdapter
  */
 
-public class SkripteVorlesungenRecyclerAdapter extends RecyclerView.Adapter<SkripteVorlesungenRecyclerAdapter.MyViewHolder> {
+public class VorlesungenRecyclerAdapter extends RecyclerView.Adapter<VorlesungenRecyclerAdapter.MyViewHolder> {
 
     private Context context;
-
-    private ArrayList<VorlesungenObject> data;
     private String subFolder;
+    private ArrayList<VorlesungenObject> vorlesungenObjects;
 
 
     //  Konstruktor gets the data from ClassesActivity
-    public SkripteVorlesungenRecyclerAdapter(Context context, ArrayList<VorlesungenObject> data, String subFolder){
+    public VorlesungenRecyclerAdapter(Context context, ArrayList<VorlesungenObject> vorlesungenObjects, String subFolder){
         this.context = context;
-        this.data = data;
         this.subFolder = subFolder;
+        this.vorlesungenObjects = vorlesungenObjects;
+    }
+
+    public void setVorlesungsList(ArrayList<VorlesungenObject> vorlesungenObjects){
+        this.vorlesungenObjects = vorlesungenObjects;
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 
 
@@ -50,15 +57,15 @@ public class SkripteVorlesungenRecyclerAdapter extends RecyclerView.Adapter<Skri
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        final VorlesungenObject current = data.get(position);
+        final VorlesungenObject current = vorlesungenObjects.get(position);
 
         //declaring typefaces
         Typeface quicksand_regular = Typeface.createFromAsset(context.getAssets(),  "fonts/Quicksand-Regular.otf");
 
         //assigning typefaces
-        holder.className.setTypeface(quicksand_regular);
-
-        holder.className.setText(current.getClassTitle());
+        holder.tv_className.setTypeface(quicksand_regular);
+        holder.tv_className.setText(current.getBezeichnung());
+        holder.tv_anzahl.setText(current.getAnzahl());
 
 
 
@@ -66,7 +73,7 @@ public class SkripteVorlesungenRecyclerAdapter extends RecyclerView.Adapter<Skri
             @Override
             public void onClick(View v) {
 
-                String vorlesungsname = holder.className.getText().toString();
+                String vorlesungsname = holder.tv_className.getText().toString();
 
                 Bundle b = new Bundle();
 
@@ -89,19 +96,21 @@ public class SkripteVorlesungenRecyclerAdapter extends RecyclerView.Adapter<Skri
     //  returns the total count of the items hold by the adapter
     @Override
     public int getItemCount() {
-        return data.size();
+        return vorlesungenObjects.size();
     }
 
     //  classifies the view holder and prevents always using findViewById
     class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView className;
+        TextView tv_className;
+        TextView tv_anzahl;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
 
-            className = (TextView) itemView.findViewById(R.id.tv_classname);
+            tv_className = (TextView) itemView.findViewById(R.id.tv_classname);
+            tv_anzahl = (TextView) itemView.findViewById(R.id.tv_anzahl);
 
 
         }

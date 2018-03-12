@@ -1,8 +1,6 @@
 package com.ndlp.socialstudy.NavigationDrawer_BottomNavigation;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,14 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.ShowKursmitglieder.KursmitgliederActivity;
-import com.ndlp.socialstudy.Skripte.SkripteVorlesungenFragment;
+import com.ndlp.socialstudy.Vorlesungen.VorlesungenFragment;
 import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
 
 
@@ -74,7 +71,7 @@ public class MainMenuFragment extends Fragment {
                 b.clear();
                 b.putString("subFolder", "Skripte");
                 //Start fragment
-                SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
+                VorlesungenFragment classesFragment = new VorlesungenFragment();
                 classesFragment.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, classesFragment)
@@ -88,9 +85,9 @@ public class MainMenuFragment extends Fragment {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 b.clear();
-                b.putString("subFolder", "Tasks");
+                b.putString("subFolder", "Aufgaben");
 
-                SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
+                VorlesungenFragment classesFragment = new VorlesungenFragment();
                 classesFragment.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, classesFragment)
@@ -104,9 +101,9 @@ public class MainMenuFragment extends Fragment {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 b.clear();
-                b.putString("subFolder", "Answers");
+                b.putString("subFolder", "Lösungen");
 
-                SkripteVorlesungenFragment classesFragment = new SkripteVorlesungenFragment();
+                VorlesungenFragment classesFragment = new VorlesungenFragment();
                 classesFragment.setArguments(b);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, classesFragment)

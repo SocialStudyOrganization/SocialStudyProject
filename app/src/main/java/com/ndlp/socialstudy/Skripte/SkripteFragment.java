@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
@@ -84,21 +85,8 @@ public class SkripteFragment extends Fragment {
         category = getArguments().getString("category");
         subFolder = getArguments().getString("subFolder");
 
+        urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_files.php";
 
-        fileUri = null;
-        skriptname = null;
-
-
-
-        if (subFolder.equals("Skripte")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_skripte.php";
-        }
-        if (subFolder.equals("Tasks")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_tasks.php";
-        }
-        if (subFolder.equals("Answers")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_answers.php";
-        }
 
 
 
@@ -124,6 +112,8 @@ public class SkripteFragment extends Fragment {
         matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
         kursid = sharedPrefLoginData.getString("kursid", "");
 
+        if (kursid.equals(""))
+            Toast.makeText(getContext(), "Versuch dich neu einzuloggen", Toast.LENGTH_LONG).show();
 
         user = Integer.toString(matrikelnummer);
 

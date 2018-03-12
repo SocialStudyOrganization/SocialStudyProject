@@ -26,7 +26,11 @@ import com.ndlp.socialstudy.activity.TinyDB;
 
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.content.DialogInterface.BUTTON_NEGATIVE;
 import static android.content.DialogInterface.BUTTON_POSITIVE;
@@ -43,9 +47,7 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
     String whichFormat;
     String fileName;
     File my_clicked_file;
-
-    public IndividualSkripteRecyclerAdapter() {
-    }
+    String datestring, timestring;
 
     //  conastructor
     public IndividualSkripteRecyclerAdapter(Context context, ArrayList<SkripteObject> scriptObjects, String subFolder) {
@@ -90,11 +92,27 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
         holder.scriptDate.setTypeface(quicksand_regular);
         holder.scriptUser.setTypeface(quicksand_regular);
 
-        holder.scriptName.setText(currentScript.getScriptName());
-        holder.scriptDate.setText(currentScript.getScriptDate());
-        holder.scriptUser.setText(currentScript.getScriptUser());
+        holder.scriptName.setText(currentScript.getFilename());
+        holder.scriptUser.setText(currentScript.getUser());
 
-        whichFormat = currentScript.getScriptFormat();
+        //timestamp to date
+        String timestamp = currentScript.getTimestamp();
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+            Date d = format.parse(timestamp);
+            DateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+            DateFormat time = new SimpleDateFormat("HH:mm");
+            datestring = date.format(d);
+            timestring = time.format(d);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        holder.scriptDate.setText(datestring);
+
+        whichFormat = currentScript.getFormat();
 
         Log.i("current Skript load: ", holder.scriptName.getText().toString());
 
@@ -120,9 +138,10 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
 
 
                 //pass subfolder
-                fileName = currentScript.getScriptName();
+                fileName = currentScript.getFilename();
 
                 //set subFolder so DownloadFiles gets the right subFolder we came from
+                url = "http://hellownero.de/SocialStudy/" + subFolder + "/" + fileName;
                 try {
                     switch (subFolder) {
                         case "Tasks":

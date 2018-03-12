@@ -13,10 +13,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.ndlp.socialstudy.Notifications.DateienAsyncTask;
-import com.ndlp.socialstudy.Skripte.AnswersDataIntoDatabase;
 import com.ndlp.socialstudy.Skripte.IndividualSkripteRecyclerAdapter;
 import com.ndlp.socialstudy.Skripte.SkripteDataIntoDatabase;
-import com.ndlp.socialstudy.Skripte.TasksDataIntoDatabase;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -27,11 +25,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 
 public class FileUploader extends AsyncTask<String, Integer, Boolean> {
@@ -236,26 +229,14 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
         };
 
 
-        if (subFolder.equals("Skripte")){
-            //  starts the request to upload skriptname category, date, time, user to server
-            SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(context);
-            queue.add(skripteDataIntoDatabase);
-        }
 
-        if (subFolder.equals("Tasks")){
-            //  starts the request to upload skriptname category, date, time, user to server
-            TasksDataIntoDatabase tasksDataIntoDatabase = new TasksDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(context);
-            queue.add(tasksDataIntoDatabase);
-        }
+        //  starts the request to upload skriptname category, date, time, user to server
+        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(skripteDataIntoDatabase);
 
-        if (subFolder.equals("Answers")){
-            //  starts the request to upload skriptname category, date, time, user to server
-            AnswersDataIntoDatabase answersDataIntoDatabase = new AnswersDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(context);
-            queue.add(answersDataIntoDatabase);
-        }
+
+
 
 
     }
