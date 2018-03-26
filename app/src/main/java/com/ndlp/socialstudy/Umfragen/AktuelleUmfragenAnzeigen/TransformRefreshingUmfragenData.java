@@ -20,14 +20,15 @@ public class TransformRefreshingUmfragenData extends AsyncTask<Void,Void,Boolean
     private RecyclerView recyclerView;
     private ProgressDialog pd;
     private ArrayList<GeneralObject> umfragenarraylist = new ArrayList<>();
-    private BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter = new BasicUmfragenRecyclerAdapter(context, umfragenarraylist);
+    private BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter;
 
 
 
-    public TransformRefreshingUmfragenData (Context context, JSONArray jsonArray, RecyclerView recyclerView){
+    public TransformRefreshingUmfragenData (Context context, JSONArray jsonArray, RecyclerView recyclerView, BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter){
         this.context = context;
         this.jsonArray = jsonArray;
         this.recyclerView = recyclerView;
+        this.basicUmfragenRecyclerAdapter = basicUmfragenRecyclerAdapter;
     }
 
     @Override
@@ -51,10 +52,8 @@ public class TransformRefreshingUmfragenData extends AsyncTask<Void,Void,Boolean
         super.onPostExecute(result);
         pd.dismiss();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        basicUmfragenRecyclerAdapter.setContext(context);
         basicUmfragenRecyclerAdapter.setUmfragenList(umfragenarraylist);
-        recyclerView.setAdapter(basicUmfragenRecyclerAdapter);
+        basicUmfragenRecyclerAdapter.notifyDataSetChanged();
     }
 
     private Boolean parseData(){
@@ -68,7 +67,6 @@ public class TransformRefreshingUmfragenData extends AsyncTask<Void,Void,Boolean
                         , jo.getString("Enddate"), jo.getString("Endtime") ,jo.getString("SurveyTitle"), jo.getString("einzelantwort")
                 , jo.getInt("Survey_ID"));
                 umfragenarraylist.add(generalObject);
-                basicUmfragenRecyclerAdapter.notifyDataSetChanged();
             }
             return true;
         } catch (JSONException e) {

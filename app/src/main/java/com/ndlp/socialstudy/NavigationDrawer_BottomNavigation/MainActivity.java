@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -41,25 +40,18 @@ import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
 import com.ndlp.socialstudy.NewsFeed.NewsFeedFragment;
 import com.ndlp.socialstudy.NewsFeed.NotificationFragment;
-import com.ndlp.socialstudy.Notifications.MyFirebaseInstanceIdService;
 import com.ndlp.socialstudy.Notifications.RegisterTokenAsyncTask;
 import com.ndlp.socialstudy.R;
+import com.ndlp.socialstudy.Skripte.SkripteFragment;
 import com.ndlp.socialstudy.Stundenplan.CalendarFragment;
+import com.ndlp.socialstudy.Umfragen.AktuelleUmfragenAnzeigen.BasicUmfragenFragment;
 import com.ndlp.socialstudy.activity.TinyDB;
 import com.testfairy.TestFairy;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
-
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 /**
  * Activity to handle the fragments with bottomNavigationView and navigationDrawer
@@ -74,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     BottomNavigationView topnavigationview;
     Fragment selectedFragment;
+
+    Boolean fromnotification;
 
     private String token;
 
@@ -126,10 +120,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //identifiying user to testfairy
         SharedPreferences sharedPrefLoginData = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
@@ -295,15 +291,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        //  Manually displaying the first fragment - one time only
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        //clean backstack
+        //receive intent from notification for fragment navigation
+        String menuintent = getIntent().getStringExtra("notificationintent");
 
-        transaction.replace(R.id.frame_layout, NewsFeedFragment.newInstance());
-        transaction.commit();
 
-        //  Used to select an item programmatically
-        //bottomNavigationView.getMenu().getItem(2).setChecked(true);
+        FragmentManager notificationfragmentmanager = getSupportFragmentManager();
+        FragmentTransaction notificationtransaction = notificationfragmentmanager.beginTransaction();
+
+
+        // If menuFragment is defined, then this activity was launched with a fragment selection
+        if (menuintent != null) {
+
+            // Here we can decide what do to -- perhaps load other parameters from the intent extras such as IDs, etc
+            if (menuintent.equals("BasicUmfragenFragment")) {
+                BasicUmfragenFragment basicUmfragenFragment = new BasicUmfragenFragment();
+                notificationtransaction.replace(R.id.frame_layout, basicUmfragenFragment);
+                notificationtransaction.addToBackStack(null);
+                topnavigationview.setVisibility(View.GONE);
+                notificationtransaction.commit();
+                bottomNavigationView.getMenu().getItem(1).setChecked(true);
+            }else {
+                String subfolder = menuintent.substring(0, menuintent.indexOf("!"));
+                String categorie = menuintent.substring(menuintent.indexOf("!")+1);
+
+                Bundle b = new Bundle();
+
+                b.putString("category", categorie);
+                b.putString("subFolder", subfolder);
+                b.putBoolean("fromnotification", true);
+
+                bottomNavigationView.getMenu().getItem(1).setChecked(true);
+                topnavigationview.setVisibility(View.GONE);
+
+
+                SkripteFragment skripteFragment = new SkripteFragment();
+                skripteFragment.setArguments(b);
+                notificationtransaction.replace(R.id.frame_layout, skripteFragment);
+                notificationtransaction.addToBackStack(null);
+                notificationtransaction.commit();
+
+            }
+
+        } else {
+
+            notificationtransaction.replace(R.id.frame_layout, NewsFeedFragment.newInstance());
+            notificationtransaction.commit();
+        }
+
+
+
 
 
     }
@@ -424,11 +460,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
 
 
-        if (getFragmentManager().getBackStackEntryCount() > 0 ){
-            getFragmentManager().popBackStack();
-        } else {
-            super.onBackPressed();
-        }
+            //normal
+            if (getFragmentManager().getBackStackEntryCount() > 0 ){
+                getFragmentManager().popBackStack();
+            } else {
+                super.onBackPressed();
+            }
+
+
+
+
 
 
     }

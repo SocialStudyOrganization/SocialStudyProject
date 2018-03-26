@@ -19,7 +19,6 @@ public class DateienAsyncTask extends AsyncTask<String, Integer, String> {
         this.categorie = categorie;
         this.subfolder = subfolder;
         this.kursid = kursid;
-
     }
 
     @Override
@@ -34,10 +33,11 @@ public class DateienAsyncTask extends AsyncTask<String, Integer, String> {
                         "Eine neue Datei " + dateiname + " bei den " + subfolder + " in " + categorie + " wurde hochgeladen!")
                 .add("title", "Neue Datei :)")
                 .add("kursid", kursid)
+                .add("clickaction", subfolder + "!" + categorie)
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://hellownero.de/SocialStudy/PHP-Dateien/Notifications/push_notification.php")
+                .url("http://h2774251.stratoserver.net/PHP-Dateien/Notifications/push_notificationclickaction.php")
                 .post(body)
                 .build();
 

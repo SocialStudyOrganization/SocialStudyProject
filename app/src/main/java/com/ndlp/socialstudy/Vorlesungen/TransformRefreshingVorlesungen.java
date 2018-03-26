@@ -1,14 +1,9 @@
-package com.ndlp.socialstudy.GeneralFileFolder;
+package com.ndlp.socialstudy.Vorlesungen;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-
-import com.ndlp.socialstudy.Skripte.IndividualSkripteRecyclerAdapter;
-import com.ndlp.socialstudy.Skripte.SkripteObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,28 +12,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * transforms the given data and sends it to the recyclerview
+ * Created by ndlp on 11.03.2018.
  */
 
-
-public class TransformRefreshingData extends AsyncTask<Void, Void, Boolean> {
+public class TransformRefreshingVorlesungen extends AsyncTask<Void, Void, Boolean> {
 
     private Context context;
-    private String subFolder;
     private JSONArray jsonData;
     private RecyclerView recyclerView;
     private ProgressDialog pd;
-    private ArrayList<SkripteObject> skriptarrayList = new ArrayList<>();
-    private IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter;
+    private ArrayList<VorlesungenObject> vorlesungenObjects = new ArrayList<>();
+    private VorlesungenRecyclerAdapter vorlesungenRecyclerAdapter;
 
 
     //  Constructor
-    public TransformRefreshingData(Context context, JSONArray jsonData, RecyclerView recyclerView, String subFolder, IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter) {
+    public TransformRefreshingVorlesungen(Context context, JSONArray jsonData, RecyclerView recyclerView, VorlesungenRecyclerAdapter vorlesungenRecyclerAdapter) {
         this.context = context;
         this.jsonData = jsonData;
         this.recyclerView = recyclerView;
-        this.subFolder = subFolder;
-        this.individualSkripteRecyclerAdapter = individualSkripteRecyclerAdapter;
+        this.vorlesungenRecyclerAdapter = vorlesungenRecyclerAdapter;
     }
 
     //  shows progressDialog to actualize data displayed
@@ -66,9 +58,8 @@ public class TransformRefreshingData extends AsyncTask<Void, Void, Boolean> {
         if (result) {
 
 
-            individualSkripteRecyclerAdapter.setScriptList(skriptarrayList);
-            individualSkripteRecyclerAdapter.setSubFolder(subFolder);
-            individualSkripteRecyclerAdapter.notifyDataSetChanged();
+            vorlesungenRecyclerAdapter.setVorlesungsList(vorlesungenObjects);
+            vorlesungenRecyclerAdapter.notifyDataSetChanged();
 
 
         }
@@ -79,15 +70,16 @@ public class TransformRefreshingData extends AsyncTask<Void, Void, Boolean> {
     private Boolean parseData() {
 
 
+
         try {
 
+
             JSONObject jo;
-            skriptarrayList.clear();
+            vorlesungenObjects.clear();
             for (int i = 0; i < jsonData.length(); i++) {
                 jo = jsonData.getJSONObject(i);
-                SkripteObject scriptObject = new SkripteObject(jo.getInt("file_ID"), jo.getString("filename")
-                        , jo.getString("format"), jo.getString("category"), jo.getString("subfolder"), jo.getString("timestamp"), jo.getString("user"));
-                skriptarrayList.add(scriptObject);
+                VorlesungenObject vorlesungenObject = new VorlesungenObject(jo.getString("Vorlesungsbezeichnung"), jo.getString("vorlesungs_ID"));
+                vorlesungenObjects.add(vorlesungenObject);
 
             }
             return true;

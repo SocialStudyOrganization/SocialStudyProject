@@ -9,9 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-/**
- * Created by ndlp on 21.02.2018.
- */
+
 
 public class UmfragenAsyncTask  extends AsyncTask<String, Integer, String> {
 
@@ -20,8 +18,6 @@ public class UmfragenAsyncTask  extends AsyncTask<String, Integer, String> {
     public UmfragenAsyncTask(String name, String kursid){
         this.name = name;
         this.kursid = kursid;
-
-
     }
 
     @Override
@@ -35,10 +31,11 @@ public class UmfragenAsyncTask  extends AsyncTask<String, Integer, String> {
                 .add("message", "Thema: " + name)
                 .add("title", "Neue Umfrage :)")
                 .add("kursid", kursid)
+                .add("clickaction", "BasicUmfragenFragment")
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://hellownero.de/SocialStudy/PHP-Dateien/Notifications/push_notification.php")
+                .url("http://hellownero.de/SocialStudy/PHP-Dateien/Notifications/push_notificationclickaction.php")
                 .post(body)
                 .build();
 

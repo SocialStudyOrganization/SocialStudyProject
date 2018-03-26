@@ -218,7 +218,7 @@ public class OpenUmfrageToVoteFragment extends Fragment {
     public void uploadVote(final String checked_idsString){
 
 
-        String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/VoteIntoDatabase.php";
+        String urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Umfragen/VoteIntoDatabase.php";
 
 
         StringRequest request = new StringRequest(Request.Method.POST, urlAddress,

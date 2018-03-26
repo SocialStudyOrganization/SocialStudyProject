@@ -12,19 +12,24 @@ import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.github.clans.fab.FloatingActionButton;
-import com.ndlp.socialstudy.GeneralFileFolder.ImageUpload;
-import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.GeneralFileFolder.FileUploader;
+import com.ndlp.socialstudy.GeneralFileFolder.ImageUpload;
 import com.ndlp.socialstudy.GeneralFileFolder.RefreshfromDatabase;
+import com.ndlp.socialstudy.R;
 import com.ndlp.socialstudy.activity.DividerItemDecoration;
 import com.ndlp.socialstudy.activity.TImeDateRequest;
 import com.ndlp.socialstudy.activity.TinyDB;
+
+import java.util.ArrayList;
 
 
 public class SkripteFragment extends Fragment {
@@ -55,8 +60,12 @@ public class SkripteFragment extends Fragment {
     public String user;
     public String kursid;
 
+
     RecyclerView mRecyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
+
+    private ArrayList<SkripteObject> skripteObjects = new ArrayList<>();
+    private IndividualSkripteRecyclerAdapter individualSkripteRecyclerAdapter;
 
 
 //---------------------------------ONCREATE----------------------------------------------------------
@@ -76,22 +85,8 @@ public class SkripteFragment extends Fragment {
         category = getArguments().getString("category");
         subFolder = getArguments().getString("subFolder");
 
+        urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Skripteverwaltung/select_files.php";
 
-
-        fileUri = null;
-        skriptname = null;
-
-
-
-        if (subFolder.equals("Skripte")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_skripte.php";
-        }
-        if (subFolder.equals("Tasks")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_tasks.php";
-        }
-        if (subFolder.equals("Answers")){
-            urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_answers.php";
-        }
 
 
 
@@ -105,6 +100,11 @@ public class SkripteFragment extends Fragment {
         floatingGallery = (FloatingActionButton) rootView.findViewById(R.id.floating_fromGallery);
 
 
+        individualSkripteRecyclerAdapter = new IndividualSkripteRecyclerAdapter(getContext(), skripteObjects, subFolder);
+        mRecyclerView.setAdapter(individualSkripteRecyclerAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         Integer matrikelnummer;
 
         //  gets the username out of sharedPrefs LoginData
@@ -112,18 +112,20 @@ public class SkripteFragment extends Fragment {
         matrikelnummer = sharedPrefLoginData.getInt("matrikelnummer", 1);
         kursid = sharedPrefLoginData.getString("kursid", "");
 
+        if (kursid.equals(""))
+            Toast.makeText(getContext(), "Versuch dich neu einzuloggen", Toast.LENGTH_LONG).show();
 
-        user = matrikelnummer + "";
+        user = Integer.toString(matrikelnummer);
 
         //  calls DownloaderClass and puts urlAddress as parameter to refresh the recyclerView
-        new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder, kursid);
+        new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder, kursid, individualSkripteRecyclerAdapter);
 
         //sets refreshlistener on Swiperefreshlayout
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Refresh items
-                new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder, kursid);
+                new RefreshfromDatabase(getActivity(), urlAddress, mRecyclerView, category, subFolder, kursid, individualSkripteRecyclerAdapter);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -220,7 +222,7 @@ public class SkripteFragment extends Fragment {
 
 
                 //  starts upload task to the server
-                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, kursid, mRecyclerView);
+                FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, kursid, mRecyclerView, individualSkripteRecyclerAdapter);
                 fileUploader.execute();
 
 
@@ -230,9 +232,11 @@ public class SkripteFragment extends Fragment {
     }
 
     private void uploadImage(){
-        FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, kursid, mRecyclerView);
+        FileUploader fileUploader = new FileUploader(getActivity(), fileUri, skriptname, format, category, date, time, user, subFolder, urlAddress, kursid, mRecyclerView, individualSkripteRecyclerAdapter);
         fileUploader.execute();
     }
+
+
 
 
 }

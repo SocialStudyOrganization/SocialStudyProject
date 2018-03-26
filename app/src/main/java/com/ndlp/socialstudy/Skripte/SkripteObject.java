@@ -8,45 +8,51 @@ import android.graphics.drawable.Drawable;
 
 public class SkripteObject {
 
-    private Integer scriptID;
-    private String scriptName;
-    private String scriptFormat;
-    private String scriptCategory;
-    private String scriptDate;
-    private String scriptUser;
+    private Integer id;
+    private String filename;
+    private String format;
+    private String category;
+    private String timestamp;
+    private String user;
+    private String subfolder;
 
     //  Constructor
-    public SkripteObject(Integer scriptID, String scriptName, String scriptFormat, String scriptCategory, String scriptDate, String scriptUser) {
+    public SkripteObject(Integer id, String filename, String format, String category, String subfolder, String timestamp, String user) {
 
-        this.scriptID = scriptID;
-        this.scriptName = scriptName;
-        this.scriptFormat = scriptFormat;
-        this.scriptCategory = scriptCategory;
-        this.scriptDate = scriptDate;
-        this.scriptUser = scriptUser;
+        this.id = id;
+        this.filename = filename;
+        this.format = format;
+        this.category = category;
+        this.timestamp = timestamp;
+        this.user = user;
+        this.subfolder = subfolder;
     }
 
-    public Integer getScriptID() {
-        return scriptID;
+    public Integer getId() {
+        return id;
     }
 
-    public String getScriptName() {
-        return scriptName;
+    public String getFilename() {
+        return filename;
     }
 
-    public String getScriptFormat() {
-        return scriptFormat;
+    public String getFormat() {
+        return format;
     }
 
-    public String getScriptCategory() {
-        return scriptCategory;
+    public String getCategory() {
+        return category;
     }
 
-    public String getScriptDate() {
-        return  scriptDate;
+    public String getTimestamp() {
+        return  timestamp;
     }
 
-    public String getScriptUser() {
-        return scriptUser;
+    public String getUser() {
+        return user;
+    }
+
+    public String getSubfolder() {
+        return subfolder;
     }
 }

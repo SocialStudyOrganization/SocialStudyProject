@@ -21,9 +21,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 
-        String message, title;
+        String message, title, clickaction;
         message = "";
         title = "";
+        clickaction = "";
+
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
@@ -36,16 +38,30 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Title: " + remoteMessage.getNotification().getTitle());
             title = remoteMessage.getNotification().getTitle();
             message =  remoteMessage.getNotification().getBody();
+            clickaction = remoteMessage.getNotification().getClickAction();
         }
 
 
 
-        showNotification(message, title);
+        showNotification(message, title, clickaction);
 
     }
 
-    private void showNotification(String message, String title){
+    private void showNotification(String message, String title, String clickaction){
+
+
+
         Intent intent = new Intent(this, MainActivity.class);
+
+        if (clickaction != null){
+
+            intent.putExtra("notificationintent", clickaction);
+
+        }
+
+
+
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

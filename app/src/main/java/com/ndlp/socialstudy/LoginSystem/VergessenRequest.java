@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class VergessenRequest extends StringRequest {
 
-    private static final String LOGIN_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Loginsystem/PasswortVergessen.php";
+    private static final String LOGIN_Request_URL = "http://h2774251.stratoserver.net/PHP-Dateien/Loginsystem/PasswortVergessen.php";
     private Map<String, String> params;
 
     //  Constructor

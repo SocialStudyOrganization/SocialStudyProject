@@ -169,7 +169,7 @@ public class UmfrageAuswertenFragment extends Fragment {
         answers = tinyDB.getListString("answers" + currentpageint);
         answerIDs = tinyDB.getListInt("answerIDs" + currentpageint);
 
-        String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/UmfrageAuswerten.php";
+        String urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Umfragen/UmfrageAuswerten.php";
 
 
         StringRequest request = new StringRequest(Request.Method.POST, urlAddress,
