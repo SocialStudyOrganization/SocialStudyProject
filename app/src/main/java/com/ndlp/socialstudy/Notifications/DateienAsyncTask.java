@@ -37,7 +37,7 @@ public class DateienAsyncTask extends AsyncTask<String, Integer, String> {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://hellownero.de/SocialStudy/PHP-Dateien/Notifications/push_notificationclickaction.php")
+                .url("http://h2774251.stratoserver.net/PHP-Dateien/Notifications/push_notificationclickaction.php")
                 .post(body)
                 .build();
 

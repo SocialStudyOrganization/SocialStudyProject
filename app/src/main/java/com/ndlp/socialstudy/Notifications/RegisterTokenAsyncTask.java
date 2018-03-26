@@ -33,7 +33,7 @@ public class RegisterTokenAsyncTask extends AsyncTask<String, Integer, String> {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://hellownero.de/SocialStudy/PHP-Dateien/Notifications/TokenEintragen.php")
+                .url("http://h2774251.stratoserver.net/PHP-Dateien/Notifications/TokenEintragen.php")
                 .post(body)
                 .build();
 

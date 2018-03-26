@@ -85,7 +85,7 @@ public class SkripteFragment extends Fragment {
         category = getArguments().getString("category");
         subFolder = getArguments().getString("subFolder");
 
-        urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_files.php";
+        urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Skripteverwaltung/select_files.php";
 
 
 

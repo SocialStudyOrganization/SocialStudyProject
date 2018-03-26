@@ -34,9 +34,9 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
     InputStream inputStream;
 
     //  Serverdata
-    private static final String SERVER_IP = "w0175925.kasserver.com";
-    private static final String USERNAME = "f00dd887";
-    private static final String PASSWORT = "Nadipat2";
+    private static final String SERVER_IP = "h2774251.stratoserver.net";
+    private static final String USERNAME = "studywire";
+    private static final String PASSWORT = "Nadipat1";
 
     //final private int REQUEST_CODE_ASK_FOR_PERMISSIONS = 123;
 
@@ -94,7 +94,18 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
             //  passes Firewall
             ftpClient.enterLocalPassiveMode();                  //telling the server to open a data port to which the client will connect to conduct data transfers.
 
-            ftpClient.changeWorkingDirectory("/SocialStudy/" + subFolder);
+            String directory = null;
+
+            if (subFolder.equals("Lösungen"))
+                directory = "Loesungen";
+
+            if (subFolder.equals("Aufgaben"))
+                directory = "Aufgaben";
+
+            if (subFolder.equals("Skripte"))
+                directory = "Skripte";
+
+            ftpClient.changeWorkingDirectory("/httpdocs/Vorlesungsdokumente/" + directory);
 
             long fileLength = ftpClient.mlistFile(fileName).getSize();
 
@@ -179,7 +190,7 @@ public class FileDownloader extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        progressDialog.hide();
+        progressDialog.dismiss();
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
 
         OpenFileClass openFileClass = new OpenFileClass(context, format, my_clicked_file, fileName, subFolder);

@@ -47,9 +47,9 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
     ProgressDialog progressDialog;
     private PowerManager.WakeLock mWakeLock;
 
-    private static final String SERVER_IP = "w0175925.kasserver.com";
-    private static final String USERNAME = "f00dd887";
-    private static final String PASSWORT = "Nadipat2";
+    private static final String SERVER_IP = "h2774251.stratoserver.net";
+    private static final String USERNAME = "studywire";
+    private static final String PASSWORT = "Nadipat1";
 
     //  Constructor
     public FileUploader (Context context, Uri contentUri, String fileName, String format, String category,
@@ -111,8 +111,23 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
             //  passes Firewall
             ftpClient.enterLocalPassiveMode();
 
+            String directory = null;
+
+            if (subFolder.equals("Lösungen"))
+                directory = "Loesungen";
+
+            if (subFolder.equals("Aufgaben"))
+                directory = "Aufgaben";
+
+            if (subFolder.equals("Skripte"))
+                directory = "Skripte";
+
             //  navigates to the folder on te server
-            ftpClient.changeWorkingDirectory("/SocialStudy/" + subFolder);
+            Boolean changeddirectory = ftpClient.changeWorkingDirectory("/httpdocs/Vorlesungsdokumente/" + directory);
+            Log.i("changed direktory? ", changeddirectory + "");
+
+
+            ftpClient.changeWorkingDirectory("/httpdocs/Vorlesungsdokumente/" + directory);
 
             inputStream = context.getContentResolver().openInputStream(contentUri);
 
@@ -205,6 +220,8 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
             public void onResponse(String response) {
 
                 try {
+                    Log.i("response file upoader: ", response.toString());
+
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
 
@@ -231,7 +248,7 @@ public class FileUploader extends AsyncTask<String, Integer, Boolean> {
 
 
         //  starts the request to upload skriptname category, date, time, user to server
-        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(fileName, format, category, date, time, user, responseListener);
+        SkripteDataIntoDatabase skripteDataIntoDatabase = new SkripteDataIntoDatabase(fileName, format, category, user, kursid, subFolder, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(skripteDataIntoDatabase);
 

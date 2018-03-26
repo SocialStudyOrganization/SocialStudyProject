@@ -30,7 +30,7 @@ public class VorlesungenFragment extends Fragment {
 
     public String subFolder;
     private String kursid;
-    private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Skripteverwaltung/select_vorlesungen.php";
+    private String urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Skripteverwaltung/select_vorlesungen.php";
 
     private RecyclerView recyclerView;
     private ArrayList<VorlesungenObject> vorlesungenObjects = new ArrayList<>();

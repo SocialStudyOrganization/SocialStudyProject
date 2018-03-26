@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class UmfragenDataIntoDatabase extends StringRequest{
 
-    private static final String Register_Request_URL = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/UmfragenDataIntoDatabase.php";
+    private static final String Register_Request_URL = "http://h2774251.stratoserver.net/PHP-Dateien/Umfragen/UmfragenDataIntoDatabase.php";
     private Map<String, String> params;
 
     public UmfragenDataIntoDatabase(String umfragethema, String erstelltamDate, String enddate, String endtime, String user, String arraytostring, String anzahlUmfragen, String onlyoneanswer, String erstellzeit, Response.Listener<String> listener) {

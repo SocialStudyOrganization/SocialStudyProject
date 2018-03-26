@@ -140,18 +140,21 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
                 //pass subfolder
                 fileName = currentScript.getFilename();
 
-                //set subFolder so DownloadFiles gets the right subFolder we came from
-                url = "http://hellownero.de/SocialStudy/" + subFolder + "/" + fileName;
-                try {
-                    switch (subFolder) {
-                        case "Tasks":
-                            url = "http://hellownero.de/SocialStudy/Tasks/" + fileName;
-                        case "Answers":
-                            url = "http://hellownero.de/SocialStudy/Answers/" + fileName;
-                        case "Skripte":
-                            url = "http://hellownero.de/SocialStudy/Skripte/" + fileName;
-                    }
+                String directory = null;
 
+                if (subFolder.equals("Lösungen"))
+                    directory = "Loesungen";
+
+                if (subFolder.equals("Aufgaben"))
+                    directory = "Aufgaben";
+
+                if (subFolder.equals("Skripte"))
+                    directory = "Skripte";
+
+                //set subFolder so DownloadFiles gets the right subFolder we came from
+                url = "http://h2774251.stratoserver.net/Vorlesungsdokumente/" + directory + "/" + fileName;
+
+                try {
 
                     my_clicked_file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                             + "/Android/data/" + context.getPackageName() + "/files/" + subFolder + "/" + fileName);
@@ -161,6 +164,8 @@ public class IndividualSkripteRecyclerAdapter extends RecyclerView.Adapter<Indiv
                         openFileClass.openFile();
                     }
                     else {
+
+
 
                         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();

@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class RefreshUmfragenFromDatabase {
 
-    private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/refreshUmfragen.php";
+    private String urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Umfragen/refreshUmfragen.php";
     private String kursid;
     private BasicUmfragenRecyclerAdapter basicUmfragenRecyclerAdapter;
 

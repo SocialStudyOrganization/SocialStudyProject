@@ -22,7 +22,7 @@ import com.ndlp.socialstudy.activity.DividerItemDecoration;
 
 public class KursmitgliederActivity extends Activity {
 
-    public String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Kursmitglieder/getKursmitglieder.php";
+    public String urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Kursmitglieder/getKursmitglieder.php";
     RecyclerView mRecyclerView;
     String kursid;
     Integer kursidint;

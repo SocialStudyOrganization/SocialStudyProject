@@ -30,7 +30,7 @@ public class DeleteUmfrage {
 
     String topic;
     private Integer survey_id;
-    private String urlAddress = "http://hellownero.de/SocialStudy/PHP-Dateien/Umfragen/DeleteUmfrage.php";
+    private String urlAddress = "http://h2774251.stratoserver.net/PHP-Dateien/Umfragen/DeleteUmfrage.php";
 
     public DeleteUmfrage (Context context, Integer survey_id){
         this.survey_id = survey_id;
